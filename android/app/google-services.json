@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "196748135297",
+    "firebase_url": "https://yallafix2024-default-rtdb.firebaseio.com",
+    "project_id": "yallafix2024",
+    "storage_bucket": "yallafix2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196748135297:android:81612807aab14386067680",
+        "android_client_info": {
+          "package_name": "com.mycompany.yallafix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196748135297-ks2moi0dr8th8os9hi1e9csd8n71l9c0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.yallafix",
+            "certificate_hash": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+          }
+        },
+        {
+          "client_id": "196748135297-1551aucqm2do9t4hhvgnoeaghmg7q57m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_IouRJOMG8ejfHw9ewz5B0EeJ3ykoTrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196748135297-1551aucqm2do9t4hhvgnoeaghmg7q57m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "196748135297-e3ufjcm66tdim7le91oqrnlj4nme4qmd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.yallafix"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
