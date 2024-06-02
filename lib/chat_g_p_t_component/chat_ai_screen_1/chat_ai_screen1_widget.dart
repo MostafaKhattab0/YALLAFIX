@@ -27,9 +27,8 @@ class _ChatAiScreen1WidgetState extends State<ChatAiScreen1Widget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       // showProgressDots
-      setState(() {
-        _model.aiResponding = false;
-      });
+      _model.aiResponding = false;
+      setState(() {});
     });
   }
 

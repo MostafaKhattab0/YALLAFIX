@@ -21,14 +21,8 @@ export '/pages/center/reviews_advisor/reviews_advisor_widget.dart'
 export '/pages/customer/review_cust/review_cust_widget.dart'
     show ReviewCustWidget;
 export '/pages/center/add_center/add_center_widget.dart' show AddCenterWidget;
-export '/pages/customer/pending_request_cust/pending_request_cust_widget.dart'
-    show PendingRequestCustWidget;
-export '/pages/customer/edit_booking_cust/edit_booking_cust_widget.dart'
-    show EditBookingCustWidget;
-export '/pages/center/appoinments_advisor/appoinments_advisor_widget.dart'
-    show AppoinmentsAdvisorWidget;
-export '/pages/customer/appointment_cust/appointment_cust_widget.dart'
-    show AppointmentCustWidget;
+export '/pages/customer/request_cust/request_cust_widget.dart'
+    show RequestCustWidget;
 export '/chat_g_p_t_component/chat_ai_screen_1/chat_ai_screen1_widget.dart'
     show ChatAiScreen1Widget;
 export '/pages/customer/view_centers_cust/view_centers_cust_widget.dart'
@@ -53,3 +47,11 @@ export '/pages/center/map/map_widget.dart' show MapWidget;
 export '/pages/auth/login_cust/login_cust_widget.dart' show LoginCustWidget;
 export '/pages/auth/login_center/login_center_widget.dart'
     show LoginCenterWidget;
+export '/pages/customer/edit_booking_cust/edit_booking_cust_widget.dart'
+    show EditBookingCustWidget;
+export '/pages/customer/appointment_cust/appointment_cust_widget.dart'
+    show AppointmentCustWidget;
+export '/pages/center/appointments_advisor/appointments_advisor_widget.dart'
+    show AppointmentsAdvisorWidget;
+export '/pages/center/contactcust_center/contactcust_center_widget.dart'
+    show ContactcustCenterWidget;

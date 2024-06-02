@@ -907,174 +907,21 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
-  // pendingRequest_cust
+  // Request_cust
   {
-    '8t71ral5': {
-      'en': 'Hello World ',
-      'ar': '',
-    },
-    's0zyrnw5': {
-      'en': 'Hello World ',
-      'ar': '',
-    },
-    '80lqs13d': {
+    'g5jm5b9w': {
       'en': 'Edit',
       'ar': '',
     },
-    'mnmqz8dp': {
+    '1te1qktv': {
       'en': 'Cancel',
       'ar': '',
     },
     'irjcpgqc': {
-      'en': 'Pending Requests',
+      'en': 'Your Pending Requests',
       'ar': '',
     },
     'cfric5h5': {
-      'en': 'Home',
-      'ar': '',
-    },
-  },
-  // edit_booking_cust
-  {
-    't1wqsd0b': {
-      'en': 'Personal Information',
-      'ar': '',
-    },
-    '0774s5bm': {
-      'en': 'Name',
-      'ar': '',
-    },
-    'gelzvaq6': {
-      'en': 'Car',
-      'ar': '',
-    },
-    '3iljmlgt': {
-      'en': 'Model',
-      'ar': '',
-    },
-    '44akqysk': {
-      'en': 'Appointment Information',
-      'ar': '',
-    },
-    '9eddqz7p': {
-      'en': 'Please enter yout car issue',
-      'ar': '',
-    },
-    'kekf9kgo': {
-      'en': '...',
-      'ar': '',
-    },
-    'rvq9tt64': {
-      'en': 'Choose date and time',
-      'ar': '',
-    },
-    'm5frq1s1': {
-      'en': 'Request Appointment',
-      'ar': '',
-    },
-    's8su54at': {
-      'en': 'Please enter the patients full name.',
-      'ar': '',
-    },
-    'mc0arhph': {
-      'en': 'Please choose an option from the dropdown',
-      'ar': '',
-    },
-    'eqar0bsl': {
-      'en': 'Please enter an age for the patient.',
-      'ar': '',
-    },
-    'ezg25j14': {
-      'en': 'Please choose an option from the dropdown',
-      'ar': '',
-    },
-    'y81p54aj': {
-      'en': 'Please choose an option from the dropdown',
-      'ar': '',
-    },
-    'ok1cfamb': {
-      'en': 'Please enter the date of birth of the patient.',
-      'ar': '',
-    },
-    '1rgau0bc': {
-      'en': 'Please choose an option from the dropdown',
-      'ar': '',
-    },
-    'yiez7nq2': {
-      'en': 'Field is required',
-      'ar': '',
-    },
-    '76j3w59q': {
-      'en': 'Please choose an option from the dropdown',
-      'ar': '',
-    },
-    'qhedu4g5': {
-      'en': 'Edit Your Appointment',
-      'ar': '',
-    },
-    'ayd9b2ep': {
-      'en': 'Please fill in the information below to continue.',
-      'ar': '',
-    },
-    '5h13t5f5': {
-      'en': 'Home',
-      'ar': '',
-    },
-  },
-  // appoinments_advisor
-  {
-    'z56dzznl': {
-      'en': 'View Appointments',
-      'ar': '',
-    },
-    'spo702n7': {
-      'en': 'Hello World ',
-      'ar': '',
-    },
-    '0g9sjdhz': {
-      'en': 'Hello World ',
-      'ar': '',
-    },
-    '2sanghgy': {
-      'en': ': ',
-      'ar': '',
-    },
-    'b73iyenv': {
-      'en': 'the car issue that the customer typed',
-      'ar': '',
-    },
-    'feqdki34': {
-      'en': 'In progress',
-      'ar': '',
-    },
-    'lw6supks': {
-      'en': 'Home',
-      'ar': '',
-    },
-  },
-  // appointment_cust
-  {
-    'px5ty0eg': {
-      'en': 'View Appointments',
-      'ar': '',
-    },
-    'gdciuo2e': {
-      'en': 'Date',
-      'ar': '',
-    },
-    't0h13lhy': {
-      'en': ': ',
-      'ar': '',
-    },
-    'riiif2a7': {
-      'en': 'the car issue that the customer typed',
-      'ar': '',
-    },
-    'bulq7rib': {
-      'en': 'In progress',
-      'ar': '',
-    },
-    'h23yfi7p': {
       'en': 'Home',
       'ar': '',
     },
@@ -1139,7 +986,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // home_cust
   {
     'riwj1cq0': {
-      'en': 'Search for your getaway...',
+      'en': 'Search for a specific center...',
       'ar': '',
     },
     '5nf7ccd7': {
@@ -1152,22 +999,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'm79k5r1l': {
       'en': 'My Offers',
-      'ar': '',
-    },
-    '6vt53bq0': {
-      'en': 'on-site',
-      'ar': '',
-    },
-    'ewm9d9v0': {
-      'en': 'Nearest',
-      'ar': '',
-    },
-    '48zcuudi': {
-      'en': 'Top Rated',
-      'ar': '',
-    },
-    '8l4u4oyg': {
-      'en': 'Top rated Centers',
       'ar': '',
     },
     'kyzxmawo': {
@@ -1561,6 +1392,122 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
+  // edit_booking_cust
+  {
+    'df726pu8': {
+      'en': 'Appointment Information',
+      'ar': '',
+    },
+    'qbqc2epv': {
+      'en': 'Option 1',
+      'ar': '',
+    },
+    'xm8a6eui': {
+      'en': 'Choose a service',
+      'ar': '',
+    },
+    's2fvjhf3': {
+      'en': 'Search for an item...',
+      'ar': '',
+    },
+    'zix34a8t': {
+      'en': '',
+      'ar': '',
+    },
+    'clmyyyze': {
+      'en': 'Please enter yout car issue',
+      'ar': '',
+    },
+    'ylx9lnwy': {
+      'en': 'Choose date and time',
+      'ar': '',
+    },
+    '2kakpf0e': {
+      'en': 'Request Appointment',
+      'ar': '',
+    },
+    '53b20atz': {
+      'en': 'Book an Appointment',
+      'ar': '',
+    },
+    'byas9lig': {
+      'en': 'Please fill in the information below to continue.',
+      'ar': '',
+    },
+    'h9wnwngo': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // appointment_cust
+  {
+    'ok9k7zde': {
+      'en': 'Request to edit',
+      'ar': '',
+    },
+    '5l0vo80w': {
+      'en': 'Cancel',
+      'ar': '',
+    },
+    'igilmctw': {
+      'en': 'Your Appointments',
+      'ar': '',
+    },
+    'psalxavf': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // appointments_advisor
+  {
+    'lwwyo7ci': {
+      'en': 'View Customer Requests',
+      'ar': '',
+    },
+    'sdgausol': {
+      'en': 'Finished',
+      'ar': '',
+    },
+    'g8t6a341': {
+      'en': 'Contact',
+      'ar': '',
+    },
+    '0fihrec1': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // contactcust_center
+  {
+    'h8wy4xlc': {
+      'en': 'Andrea Davis',
+      'ar': '',
+    },
+    'uxxbijvb': {
+      'en': 'andrea@domainname.com',
+      'ar': '',
+    },
+    'th78uikn': {
+      'en': 'Active',
+      'ar': '',
+    },
+    'drmrcjhv': {
+      'en': 'Edit Profile',
+      'ar': '',
+    },
+    'mu2hs7jt': {
+      'en': 'Account Settings',
+      'ar': '',
+    },
+    'hrmv2rtw': {
+      'en': 'Log Out',
+      'ar': '',
+    },
+    'yqj0qc14': {
+      'en': '__',
+      'ar': '',
+    },
+  },
   // DashboardTaskList
   {
     'rw87stnq': {
@@ -1674,29 +1621,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
-  // Card24CarDetails
-  {
-    'olwdqzi4': {
-      'en': 'Oil Change',
-      'ar': '',
-    },
-    'l7uzvha2': {
-      'en': 'Tesla Model Y',
-      'ar': '',
-    },
-    'j1vz1wd5': {
-      'en': '#495242',
-      'ar': '',
-    },
-    '005dvdp9': {
-      'en': 'In Preparation',
-      'ar': '',
-    },
-    '0pbvnf9j': {
-      'en': '4:30pm',
-      'ar': '',
-    },
-  },
   // sidebar
   {
     'upzbj6r0': {
@@ -1753,6 +1677,34 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'x02frloj': {
       'en': 'Dark Mode',
+      'ar': '',
+    },
+  },
+  // ChangeThemelightdark
+  {
+    'rt9c1r2k': {
+      'en': 'Update Theme',
+      'ar': '',
+    },
+    'fbj7avvu': {
+      'en':
+          'Update the theme of your application from seleccting one of the options below.',
+      'ar': '',
+    },
+    'x31hyimy': {
+      'en': 'Dark Mode',
+      'ar': '',
+    },
+    'fcs3e7bo': {
+      'en': 'Light Mode',
+      'ar': '',
+    },
+    '0zv9d29z': {
+      'en': 'Cancel',
+      'ar': '',
+    },
+    'lh5a21yi': {
+      'en': 'Save & Close',
       'ar': '',
     },
   },

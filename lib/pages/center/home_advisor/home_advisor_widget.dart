@@ -301,7 +301,7 @@ class _HomeAdvisorWidgetState extends State<HomeAdvisorWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed('appoinments_advisor');
+                                      context.pushNamed('null');
                                     },
                                     child: const Icon(
                                       Icons.date_range,

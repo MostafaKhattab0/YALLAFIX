@@ -59,6 +59,11 @@ class RequestsRecord extends FirestoreRecord {
   bool get isRejected => _isRejected ?? false;
   bool hasIsRejected() => _isRejected != null;
 
+  // "is_done" field.
+  bool? _isDone;
+  bool get isDone => _isDone ?? false;
+  bool hasIsDone() => _isDone != null;
+
   void _initializeFields() {
     _requestId = snapshotData['request_id'] as String?;
     _requestDate = snapshotData['request_date'] as DateTime?;
@@ -69,6 +74,7 @@ class RequestsRecord extends FirestoreRecord {
     _customerRef = snapshotData['customerRef'] as DocumentReference?;
     _isAccepted = snapshotData['is_accepted'] as bool?;
     _isRejected = snapshotData['is_rejected'] as bool?;
+    _isDone = snapshotData['is_done'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -114,6 +120,7 @@ Map<String, dynamic> createRequestsRecordData({
   DocumentReference? customerRef,
   bool? isAccepted,
   bool? isRejected,
+  bool? isDone,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -125,6 +132,7 @@ Map<String, dynamic> createRequestsRecordData({
       'customerRef': customerRef,
       'is_accepted': isAccepted,
       'is_rejected': isRejected,
+      'is_done': isDone,
     }.withoutNulls,
   );
 
@@ -145,7 +153,8 @@ class RequestsRecordDocumentEquality implements Equality<RequestsRecord> {
         e1?.centerRef == e2?.centerRef &&
         e1?.customerRef == e2?.customerRef &&
         e1?.isAccepted == e2?.isAccepted &&
-        e1?.isRejected == e2?.isRejected;
+        e1?.isRejected == e2?.isRejected &&
+        e1?.isDone == e2?.isDone;
   }
 
   @override
@@ -158,7 +167,8 @@ class RequestsRecordDocumentEquality implements Equality<RequestsRecord> {
         e?.centerRef,
         e?.customerRef,
         e?.isAccepted,
-        e?.isRejected
+        e?.isRejected,
+        e?.isDone
       ]);
 
   @override

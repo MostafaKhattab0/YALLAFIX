@@ -9,7 +9,6 @@ import 'schema/users_record.dart';
 import 'schema/customers_record.dart';
 import 'schema/centers_record.dart';
 import 'schema/requests_record.dart';
-import 'schema/appointments_record.dart';
 import 'schema/brands_record.dart';
 import 'schema/services_record.dart';
 import 'dart:async';
@@ -26,7 +25,6 @@ export 'schema/users_record.dart';
 export 'schema/customers_record.dart';
 export 'schema/centers_record.dart';
 export 'schema/requests_record.dart';
-export 'schema/appointments_record.dart';
 export 'schema/brands_record.dart';
 export 'schema/services_record.dart';
 
@@ -323,84 +321,6 @@ Future<FFFirestorePage<RequestsRecord>> queryRequestsRecordPage({
       if (isStream) {
         final streamSubscription =
             (page.dataStream)?.listen((List<RequestsRecord> data) {
-          for (var item in data) {
-            final itemIndexes = controller.itemList!
-                .asMap()
-                .map((k, v) => MapEntry(v.reference.id, k));
-            final index = itemIndexes[item.reference.id];
-            final items = controller.itemList!;
-            if (index != null) {
-              items.replaceRange(index, index + 1, [item]);
-              controller.itemList = {
-                for (var item in items) item.reference: item
-              }.values.toList();
-            }
-          }
-        });
-        streamSubscriptions?.add(streamSubscription);
-      }
-      return page;
-    });
-
-/// Functions to query AppointmentsRecords (as a Stream and as a Future).
-Future<int> queryAppointmentsRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      AppointmentsRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<AppointmentsRecord>> queryAppointmentsRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      AppointmentsRecord.collection,
-      AppointmentsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<AppointmentsRecord>> queryAppointmentsRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      AppointmentsRecord.collection,
-      AppointmentsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-Future<FFFirestorePage<AppointmentsRecord>> queryAppointmentsRecordPage({
-  Query Function(Query)? queryBuilder,
-  DocumentSnapshot? nextPageMarker,
-  required int pageSize,
-  required bool isStream,
-  required PagingController<DocumentSnapshot?, AppointmentsRecord> controller,
-  List<StreamSubscription?>? streamSubscriptions,
-}) =>
-    queryCollectionPage(
-      AppointmentsRecord.collection,
-      AppointmentsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    ).then((page) {
-      controller.appendPage(
-        page.data,
-        page.nextPageMarker,
-      );
-      if (isStream) {
-        final streamSubscription =
-            (page.dataStream)?.listen((List<AppointmentsRecord> data) {
           for (var item in data) {
             final itemIndexes = controller.itemList!
                 .asMap()

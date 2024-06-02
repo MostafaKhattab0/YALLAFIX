@@ -560,14 +560,13 @@ class _AiChatComponent1WidgetState extends State<AiChatComponent1Widget> {
                         ),
                         showLoadingIndicator: true,
                         onPressed: () async {
-                          setState(() {
-                            _model.addToChatHistory(ContentStruct(
-                              text: TextStruct(
-                                value: _model.textController.text,
-                              ),
-                            ));
-                            _model.aiResponding = !_model.aiResponding;
-                          });
+                          _model.addToChatHistory(ContentStruct(
+                            text: TextStruct(
+                              value: _model.textController.text,
+                            ),
+                          ));
+                          _model.aiResponding = !_model.aiResponding;
+                          setState(() {});
                           _model.apiChatResult = await AIChatCall.call(
                             threadID: _model.threadID,
                             prompt: _model.textController.text,
@@ -576,17 +575,16 @@ class _AiChatComponent1WidgetState extends State<AiChatComponent1Widget> {
                             _model.textController?.clear();
                           });
                           if ((_model.apiChatResult?.succeeded ?? true)) {
-                            setState(() {
-                              _model.threadID = getJsonField(
-                                (_model.apiChatResult?.jsonBody ?? ''),
-                                r'''$.result.threadID''',
-                              ).toString();
-                              _model.addToChatHistory(
-                                  ContentStruct.maybeFromMap(getJsonField(
-                                (_model.apiChatResult?.jsonBody ?? ''),
-                                r'''$.result.messages[0].content[0]''',
-                              ))!);
-                            });
+                            _model.threadID = getJsonField(
+                              (_model.apiChatResult?.jsonBody ?? ''),
+                              r'''$.result.threadID''',
+                            ).toString();
+                            _model.addToChatHistory(
+                                ContentStruct.maybeFromMap(getJsonField(
+                              (_model.apiChatResult?.jsonBody ?? ''),
+                              r'''$.result.messages[0].content[0]''',
+                            ))!);
+                            setState(() {});
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -604,9 +602,8 @@ class _AiChatComponent1WidgetState extends State<AiChatComponent1Widget> {
                             );
                           }
 
-                          setState(() {
-                            _model.aiResponding = !_model.aiResponding;
-                          });
+                          _model.aiResponding = !_model.aiResponding;
+                          setState(() {});
                           await Future.delayed(
                               const Duration(milliseconds: 800));
                           await _model.listViewController?.animateTo(

@@ -498,7 +498,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                             ),
                           });
 
-                          context.pushNamed('pendingRequest_cust');
+                          context.pushNamed('Request_cust');
                         },
                         text: FFLocalizations.of(context).getText(
                           'dggoawvk' /* Request Appointment */,

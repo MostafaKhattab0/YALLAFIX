@@ -1,31 +1,30 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/components/timer_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'appointment_cust_model.dart';
-export 'appointment_cust_model.dart';
+import 'request_cust_model.dart';
+export 'request_cust_model.dart';
 
-class AppointmentCustWidget extends StatefulWidget {
-  const AppointmentCustWidget({super.key});
+class RequestCustWidget extends StatefulWidget {
+  const RequestCustWidget({super.key});
 
   @override
-  State<AppointmentCustWidget> createState() => _AppointmentCustWidgetState();
+  State<RequestCustWidget> createState() => _RequestCustWidgetState();
 }
 
-class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
-  late AppointmentCustModel _model;
+class _RequestCustWidgetState extends State<RequestCustWidget> {
+  late RequestCustModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => AppointmentCustModel());
+    _model = createModel(context, () => RequestCustModel());
   }
 
   @override
@@ -57,7 +56,7 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
               ),
             );
           }
-          final appointmentCustCentersRecord = snapshot.data!;
+          final requestCustCentersRecord = snapshot.data!;
           return GestureDetector(
             onTap: () => _model.unfocusNode.canRequestFocus
                 ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -86,7 +85,7 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
                   alignment: const AlignmentDirectional(-1.0, 0.0),
                   child: Text(
                     FFLocalizations.of(context).getText(
-                      'igilmctw' /* Your Appointments */,
+                      'irjcpgqc' /* Your Pending Requests */,
                     ),
                     style: FlutterFlowTheme.of(context).titleMedium.override(
                           fontFamily: 'Readex Pro',
@@ -109,7 +108,11 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
                         )
                         .where(
                           'is_accepted',
-                          isEqualTo: true,
+                          isEqualTo: false,
+                        )
+                        .where(
+                          'is_rejected',
+                          isEqualTo: false,
                         ),
                   ),
                   builder: (context, snapshot) {
@@ -145,37 +148,13 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
                             children: [
                               Image.network(
                                 valueOrDefault<String>(
-                                  appointmentCustCentersRecord.centerImage,
+                                  requestCustCentersRecord.centerImage,
                                   'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/49y4sydb90q0/image_processing20211002-919-utbume.gif',
                                 ),
                                 width: 391.0,
                                 height: 134.0,
                                 fit: BoxFit.cover,
                                 alignment: const Alignment(0.0, 0.5),
-                              ),
-                              Align(
-                                alignment: const AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 1.0, 0.0, 0.0),
-                                  child: wrapWithModel(
-                                    model: _model.timerModels.getModel(
-                                      listViewRequestsRecord.requestId,
-                                      listViewIndex,
-                                    ),
-                                    updateCallback: () => setState(() {}),
-                                    child: TimerWidget(
-                                      key: Key(
-                                        'Keyi2g_${listViewRequestsRecord.requestId}',
-                                      ),
-                                      parameter1: valueOrDefault<int>(
-                                        listViewRequestsRecord
-                                            .requestDate?.secondsSinceEpoch,
-                                        0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
@@ -186,8 +165,7 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
                                     children: [
                                       TextSpan(
                                         text: valueOrDefault<String>(
-                                          appointmentCustCentersRecord
-                                              .centerName,
+                                          requestCustCentersRecord.centerName,
                                           'x',
                                         ),
                                         style: const TextStyle(),
@@ -311,7 +289,7 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
                                         );
                                       },
                                       text: FFLocalizations.of(context).getText(
-                                        'ok9k7zde' /* Request to edit */,
+                                        'g5jm5b9w' /* Edit */,
                                       ),
                                       options: FFButtonOptions(
                                         height: 40.0,
@@ -344,7 +322,7 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
                                             .delete();
                                       },
                                       text: FFLocalizations.of(context).getText(
-                                        '5l0vo80w' /* Cancel */,
+                                        '1te1qktv' /* Cancel */,
                                       ),
                                       options: FFButtonOptions(
                                         height: 40.0,

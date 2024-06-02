@@ -7,25 +7,26 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'requests_advisor_model.dart';
-export 'requests_advisor_model.dart';
+import 'appointments_advisor_model.dart';
+export 'appointments_advisor_model.dart';
 
-class RequestsAdvisorWidget extends StatefulWidget {
-  const RequestsAdvisorWidget({super.key});
+class AppointmentsAdvisorWidget extends StatefulWidget {
+  const AppointmentsAdvisorWidget({super.key});
 
   @override
-  State<RequestsAdvisorWidget> createState() => _RequestsAdvisorWidgetState();
+  State<AppointmentsAdvisorWidget> createState() =>
+      _AppointmentsAdvisorWidgetState();
 }
 
-class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
-  late RequestsAdvisorModel _model;
+class _AppointmentsAdvisorWidgetState extends State<AppointmentsAdvisorWidget> {
+  late AppointmentsAdvisorModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RequestsAdvisorModel());
+    _model = createModel(context, () => AppointmentsAdvisorModel());
   }
 
   @override
@@ -57,7 +58,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
               ),
             );
           }
-          final requestsAdvisorCustomersRecord = snapshot.data!;
+          final appointmentsAdvisorCustomersRecord = snapshot.data!;
           return GestureDetector(
             onTap: () => _model.unfocusNode.canRequestFocus
                 ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -84,7 +85,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                 ),
                 title: Text(
                   FFLocalizations.of(context).getText(
-                    'k01sxd04' /* View Customer Requests */,
+                    'lwwyo7ci' /* View Customer Requests */,
                   ),
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Outfit',
@@ -170,7 +171,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                     ),
                                     child: Image.network(
                                       valueOrDefault<String>(
-                                        requestsAdvisorCustomersRecord
+                                        appointmentsAdvisorCustomersRecord
                                             .customerImage,
                                         'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/2kqy5yy32p16/268-avatar-man.gif',
                                       ),
@@ -183,7 +184,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                       10.0, 0.0, 0.0, 10.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      requestsAdvisorCustomersRecord
+                                      appointmentsAdvisorCustomersRecord
                                           .customerCar,
                                       'x',
                                     ),
@@ -200,7 +201,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                       10.0, 0.0, 0.0, 10.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      requestsAdvisorCustomersRecord
+                                      appointmentsAdvisorCustomersRecord
                                           .customerName,
                                       'x',
                                     ),
@@ -253,20 +254,19 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                     children: [
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
-                                            10.0, 0.0, 165.0, 0.0),
+                                            10.0, 0.0, 100.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             await listViewRequestsRecord
                                                 .reference
                                                 .update(
                                                     createRequestsRecordData(
-                                              isAccepted: true,
-                                              isRejected: false,
+                                              isDone: true,
                                             ));
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(
-                                            'z0fvj6vm' /* Accept */,
+                                            'sdgausol' /* Finished */,
                                           ),
                                           options: FFButtonOptions(
                                             height: 40.0,
@@ -297,15 +297,14 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                         ),
                                       ),
                                       FFButtonWidget(
-                                        onPressed: () async {
-                                          await listViewRequestsRecord.reference
-                                              .update(createRequestsRecordData(
-                                            isRejected: true,
-                                          ));
-                                        },
+                                        onPressed: () async {},
                                         text:
                                             FFLocalizations.of(context).getText(
-                                          '2ucx36ip' /* Reject */,
+                                          'g8t6a341' /* Contact */,
+                                        ),
+                                        icon: const Icon(
+                                          Icons.contact_phone_sharp,
+                                          size: 15.0,
                                         ),
                                         options: FFButtonOptions(
                                           height: 40.0,
@@ -316,7 +315,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                               const EdgeInsetsDirectional.fromSTEB(
                                                   0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .error,
+                                              .accent2,
                                           textStyle:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall

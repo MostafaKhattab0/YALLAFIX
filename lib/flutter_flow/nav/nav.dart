@@ -149,24 +149,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const AddCenterWidget(),
         ),
         FFRoute(
-          name: 'pendingRequest_cust',
-          path: '/pendingRequestCust',
-          builder: (context, params) => const PendingRequestCustWidget(),
-        ),
-        FFRoute(
-          name: 'edit_booking_cust',
-          path: '/editBookingCust',
-          builder: (context, params) => const EditBookingCustWidget(),
-        ),
-        FFRoute(
-          name: 'appoinments_advisor',
-          path: '/appoinmentsAdvisor',
-          builder: (context, params) => const AppoinmentsAdvisorWidget(),
-        ),
-        FFRoute(
-          name: 'appointment_cust',
-          path: '/appointmentCust',
-          builder: (context, params) => const AppointmentCustWidget(),
+          name: 'Request_cust',
+          path: '/requestCust',
+          builder: (context, params) => const RequestCustWidget(),
         ),
         FFRoute(
           name: 'chat_ai_Screen_1',
@@ -254,6 +239,34 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'login_center',
           path: '/loginCenter',
           builder: (context, params) => const LoginCenterWidget(),
+        ),
+        FFRoute(
+          name: 'edit_booking_cust',
+          path: '/editBookingCust',
+          asyncParams: {
+            'req': getDoc(['requests'], RequestsRecord.fromSnapshot),
+          },
+          builder: (context, params) => EditBookingCustWidget(
+            req: params.getParam(
+              'req',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'appointment_cust',
+          path: '/appointmentCust',
+          builder: (context, params) => const AppointmentCustWidget(),
+        ),
+        FFRoute(
+          name: 'appointments_advisor',
+          path: '/appointmentsAdvisor',
+          builder: (context, params) => const AppointmentsAdvisorWidget(),
+        ),
+        FFRoute(
+          name: 'contactcust_center',
+          path: '/contactcustCenter',
+          builder: (context, params) => const ContactcustCenterWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
