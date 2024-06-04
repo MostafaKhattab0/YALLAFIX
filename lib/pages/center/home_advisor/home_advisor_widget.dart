@@ -23,6 +23,9 @@ class _HomeAdvisorWidgetState extends State<HomeAdvisorWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => HomeAdvisorModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'home_advisor'});
   }
 
   @override
@@ -97,6 +100,9 @@ class _HomeAdvisorWidgetState extends State<HomeAdvisorWidget> {
                     size: 24.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent('HOME_ADVISOR_PAGE_person_2_ICN_ON_TAP');
+                    logFirebaseEvent('IconButton_navigate_to');
+
                     context.pushNamed('profile_advisor');
                   },
                 ),
@@ -239,6 +245,10 @@ class _HomeAdvisorWidgetState extends State<HomeAdvisorWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_ADVISOR_PAGE_Icon_putizscb_ON_TAP');
+                                      logFirebaseEvent('Icon_navigate_to');
+
                                       context.pushNamed('requests_advisor');
                                     },
                                     child: const Icon(
@@ -301,7 +311,11 @@ class _HomeAdvisorWidgetState extends State<HomeAdvisorWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed('null');
+                                      logFirebaseEvent(
+                                          'HOME_ADVISOR_PAGE_Icon_yiitbxis_ON_TAP');
+                                      logFirebaseEvent('Icon_navigate_to');
+
+                                      context.pushNamed('appointments_advisor');
                                     },
                                     child: const Icon(
                                       Icons.date_range,
@@ -539,6 +553,10 @@ class _HomeAdvisorWidgetState extends State<HomeAdvisorWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
+                                      logFirebaseEvent(
+                                          'HOME_ADVISOR_PAGE_Icon_0yy14itn_ON_TAP');
+                                      logFirebaseEvent('Icon_navigate_to');
+
                                       context.pushNamed('analysis_advisor');
                                     },
                                     child: Icon(

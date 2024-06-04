@@ -50,6 +50,11 @@ class CustomersRecord extends FirestoreRecord {
   String get customerCar => _customerCar ?? '';
   bool hasCustomerCar() => _customerCar != null;
 
+  // "customer_carphoto" field.
+  String? _customerCarphoto;
+  String get customerCarphoto => _customerCarphoto ?? '';
+  bool hasCustomerCarphoto() => _customerCarphoto != null;
+
   void _initializeFields() {
     _customerName = snapshotData['customer_name'] as String?;
     _customerAge = castToType<int>(snapshotData['customer_age']);
@@ -58,6 +63,7 @@ class CustomersRecord extends FirestoreRecord {
     _customerId = snapshotData['customer_id'] as String?;
     _customerLocation = snapshotData['customer_location'] as LatLng?;
     _customerCar = snapshotData['customer_car'] as String?;
+    _customerCarphoto = snapshotData['customer_carphoto'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -102,6 +108,7 @@ Map<String, dynamic> createCustomersRecordData({
   String? customerId,
   LatLng? customerLocation,
   String? customerCar,
+  String? customerCarphoto,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -112,6 +119,7 @@ Map<String, dynamic> createCustomersRecordData({
       'customer_id': customerId,
       'customer_location': customerLocation,
       'customer_car': customerCar,
+      'customer_carphoto': customerCarphoto,
     }.withoutNulls,
   );
 
@@ -129,7 +137,8 @@ class CustomersRecordDocumentEquality implements Equality<CustomersRecord> {
         e1?.customerImage == e2?.customerImage &&
         e1?.customerId == e2?.customerId &&
         e1?.customerLocation == e2?.customerLocation &&
-        e1?.customerCar == e2?.customerCar;
+        e1?.customerCar == e2?.customerCar &&
+        e1?.customerCarphoto == e2?.customerCarphoto;
   }
 
   @override
@@ -140,7 +149,8 @@ class CustomersRecordDocumentEquality implements Equality<CustomersRecord> {
         e?.customerImage,
         e?.customerId,
         e?.customerLocation,
-        e?.customerCar
+        e?.customerCar,
+        e?.customerCarphoto
       ]);
 
   @override

@@ -23,6 +23,9 @@ class _PaymentCustWidgetState extends State<PaymentCustWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PaymentCustModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'payment_cust'});
   }
 
   @override
@@ -57,6 +60,9 @@ class _PaymentCustWidgetState extends State<PaymentCustWidget> {
                     size: 30.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent(
+                        'PAYMENT_CUST_arrow_back_rounded_ICN_ON_T');
+                    logFirebaseEvent('IconButton_navigate_back');
                     context.pop();
                   },
                 ),
@@ -525,6 +531,10 @@ class _PaymentCustWidgetState extends State<PaymentCustWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'PAYMENT_CUST_Container_xy0gnikd_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_set_dark_mode_settings');
                                           setDarkModeSetting(
                                               context, ThemeMode.light);
                                         },
@@ -617,6 +627,10 @@ class _PaymentCustWidgetState extends State<PaymentCustWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
+                                          logFirebaseEvent(
+                                              'PAYMENT_CUST_Container_rz8vz3px_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Container_set_dark_mode_settings');
                                           setDarkModeSetting(
                                               context, ThemeMode.dark);
                                         },

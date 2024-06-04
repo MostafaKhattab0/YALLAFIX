@@ -135,7 +135,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'GET STARTED',
       'ar': '',
     },
-    '53k68apv': {
+    'xzwyl2ma': {
       'en': 'BE A PARTNER',
       'ar': '',
     },
@@ -148,18 +148,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   {
     '1ji9zc12': {
       'en': 'Emergency',
-      'ar': '',
-    },
-    't2km3154': {
-      'en': 'Car Type',
-      'ar': '',
-    },
-    'e16ksyro': {
-      'en': 'Car Model',
-      'ar': '',
-    },
-    '28uqhkmd': {
-      'en': 'Address',
       'ar': '',
     },
     'cnm3t1io': {
@@ -742,7 +730,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
-  // reviews_advisor
+  // rating_advisor
   {
     'n8kzc8qu': {
       'en': 'View Customer Reviews',
@@ -777,26 +765,10 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
-  // review_cust
+  // rating_cust
   {
     'k6f03ir6': {
-      'en': 'View Customer Reviews',
-      'ar': '',
-    },
-    'yi8z8xcp': {
-      'en': '2,503',
-      'ar': '',
-    },
-    'rj6z996c': {
-      'en': '# of Ratings',
-      'ar': '',
-    },
-    'kfzdclb6': {
-      'en': '4.8',
-      'ar': '',
-    },
-    '5jizavfc': {
-      'en': 'Avg. Rating',
+      'en': 'Rating',
       'ar': '',
     },
     '6btcjjhq': {
@@ -834,8 +806,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Center Address',
       'ar': '',
     },
+    'yoculgac': {
+      'en': 'Which services do you provide',
+      'ar': '',
+    },
     'weqavwpx': {
       'en': 'Support Emergency',
+      'ar': '',
+    },
+    'mxqykpw7': {
+      'en': 'Support OnSite service',
       'ar': '',
     },
     'f88zvci7': {
@@ -944,7 +924,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
     'vxnbr7ks': {
-      'en': '10:00am',
+      'en': 'Opens from 10AM : 10PM',
       'ar': '',
     },
     'ixp3ezbn': {
@@ -954,14 +934,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // profile_cust
   {
-    's1hde3qj': {
-      'en': 'Andrea Davis',
-      'ar': '',
-    },
-    'qangizzp': {
-      'en': 'Andrea Davis',
-      'ar': '',
-    },
     'ghpebd52': {
       'en': 'Account Settings',
       'ar': '',
@@ -980,33 +952,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'vb5erb79': {
       'en': 'Profile',
-      'ar': '',
-    },
-  },
-  // home_cust
-  {
-    'riwj1cq0': {
-      'en': 'Search for a specific center...',
-      'ar': '',
-    },
-    '5nf7ccd7': {
-      'en': 'Requests',
-      'ar': '',
-    },
-    'jy1y8p4y': {
-      'en': 'Emergency',
-      'ar': '',
-    },
-    'm79k5r1l': {
-      'en': 'My Offers',
-      'ar': '',
-    },
-    'kyzxmawo': {
-      'en': 'All Available centers',
-      'ar': '',
-    },
-    'huum8gkd': {
-      'en': 'Home',
       'ar': '',
     },
   },
@@ -1051,48 +996,44 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // create_profile_cust
   {
-    '0rfms1fk': {
-      'en': 'Upload',
-      'ar': '',
-    },
-    '9ci9rlkm': {
-      'en': 'Name',
-      'ar': '',
-    },
-    '9jx24two': {
-      'en': 'Age',
-      'ar': '',
-    },
-    'o8ysfdto': {
-      'en': 'Phone number',
-      'ar': '',
-    },
-    'avryu4eg': {
-      'en': '',
-      'ar': '',
-    },
-    'i3dzo37e': {
-      'en': '',
-      'ar': '',
-    },
-    'ahtz7vcr': {
-      'en': 'Choose brand..',
-      'ar': '',
-    },
-    'jwdcem9h': {
-      'en': 'Search for a brand...',
-      'ar': '',
-    },
-    '2a0f7qsv': {
-      'en': 'Submit',
-      'ar': '',
-    },
     'j273db40': {
       'en': 'Fill',
       'ar': '',
     },
     'zhjwzmsn': {
       'en': 'Please fill out the form below to continue.',
+      'ar': '',
+    },
+    '1b3xbg2s': {
+      'en': 'Name',
+      'ar': '',
+    },
+    '583hh8fz': {
+      'en': 'Age',
+      'ar': '',
+    },
+    'xxerndn6': {
+      'en': 'Phone number',
+      'ar': '',
+    },
+    'ss3y0qjn': {
+      'en': '',
+      'ar': '',
+    },
+    'blmz7ws8': {
+      'en': '',
+      'ar': '',
+    },
+    'm4ds47uq': {
+      'en': 'Choose brand..',
+      'ar': '',
+    },
+    'elw1vd7m': {
+      'en': 'Search for a brand...',
+      'ar': '',
+    },
+    '7x9egm7u': {
+      'en': 'Submit',
       'ar': '',
     },
     '5d0u0utj': {
@@ -1300,7 +1241,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Continue with Google',
       'ar': '',
     },
-    'wuovdfj2': {
+    'fikmerfv': {
       'en': 'Continue with Phone',
       'ar': '',
     },
@@ -1487,24 +1428,129 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'andrea@domainname.com',
       'ar': '',
     },
-    'th78uikn': {
-      'en': 'Active',
-      'ar': '',
-    },
-    'drmrcjhv': {
-      'en': 'Edit Profile',
-      'ar': '',
-    },
-    'mu2hs7jt': {
-      'en': 'Account Settings',
-      'ar': '',
-    },
-    'hrmv2rtw': {
-      'en': 'Log Out',
+    'twdmx781': {
+      'en': 'Customer Phone Number',
       'ar': '',
     },
     'yqj0qc14': {
       'en': '__',
+      'ar': '',
+    },
+  },
+  // ContactUS_Cust
+  {
+    '629mtyvj': {
+      'en': 'Contact Us',
+      'ar': '',
+    },
+    'kgvyn0pf': {
+      'en': 'We\'d love to hear from you!',
+      'ar': '',
+    },
+    'x81kcilb': {
+      'en': 'Name',
+      'ar': '',
+    },
+    'ihh90zgv': {
+      'en': 'Enter your name',
+      'ar': '',
+    },
+    'eggfubpv': {
+      'en': 'Email',
+      'ar': '',
+    },
+    'z1cn70iz': {
+      'en': 'Enter your email',
+      'ar': '',
+    },
+    '333tifg6': {
+      'en': 'Phone',
+      'ar': '',
+    },
+    '6mlp9a8u': {
+      'en': 'Enter your phone number',
+      'ar': '',
+    },
+    '1zb6l28l': {
+      'en': 'Subject',
+      'ar': '',
+    },
+    'us6v1zri': {
+      'en': 'Enter subject',
+      'ar': '',
+    },
+    'bygovtdy': {
+      'en': 'Message',
+      'ar': '',
+    },
+    'vgt58pmc': {
+      'en': 'Enter your message',
+      'ar': '',
+    },
+    '8fxawfud': {
+      'en': 'Submit',
+      'ar': '',
+    },
+    '7mz8326b': {
+      'en': 'Company Information',
+      'ar': '',
+    },
+    '7ri3ehky': {
+      'en': 'Address: 123 Main Street, City, Country',
+      'ar': '',
+    },
+    '1debqftv': {
+      'en': 'Phone: +123 456 7890',
+      'ar': '',
+    },
+    'gdczaqo9': {
+      'en': 'Email: info@company.com',
+      'ar': '',
+    },
+    's3r29nbs': {
+      'en': 'Working Hours: Everyday from 9:00 AM - 6:00 PM',
+      'ar': '',
+    },
+  },
+  // home_cust
+  {
+    'yy89ow3i': {
+      'en': 'Search for a specific center...',
+      'ar': '',
+    },
+    'ze3mw4iu': {
+      'en': 'Requests',
+      'ar': '',
+    },
+    'q4o6tqgh': {
+      'en': 'Appointment',
+      'ar': '',
+    },
+    'p5e9s56t': {
+      'en': 'Contact us',
+      'ar': '',
+    },
+    'v3tsw5em': {
+      'en': '',
+      'ar': '',
+    },
+    'mhugwv8o': {
+      'en': 'Log Out',
+      'ar': '',
+    },
+    'dbn9775j': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // history_cust
+  {
+    '3fhuyktm': {
+      'en': 'Appointment History',
+      'ar': '',
+    },
+    'dg1w26tj': {
+      'en': 'Home',
       'ar': '',
     },
   },
@@ -1562,38 +1608,38 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // offer1
   {
-    'nina5bpp': {
+    'xrp6talp': {
       'en': 'Mobil\'s Offer!',
       'ar': '',
     },
-    'vwk03qdl': {
+    'kb6of3cs': {
       'en': '#MOB1911',
       'ar': '',
     },
-    '2330hpdk': {
+    '5zjly9cc': {
       'en': 'Use the cupon get 25% discount',
       'ar': '',
     },
-    'bd0ocht4': {
+    'i6sjud9h': {
       'en': 'Got it',
       'ar': '',
     },
   },
   // offer2
   {
-    '4k3q1mjv': {
+    'rwq2t4yb': {
       'en': 'Emarat Misr Offer!',
       'ar': '',
     },
-    '1p0ppuur': {
+    'xr7hnz1s': {
       'en': '#EM2007',
       'ar': '',
     },
-    '8t0b04z1': {
+    'b2oh8l8k': {
       'en': 'Use the cupon get 15% discount',
       'ar': '',
     },
-    'caw3hois': {
+    'hc9vu50g': {
       'en': 'Got it',
       'ar': '',
     },
@@ -1623,52 +1669,20 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // sidebar
   {
-    'upzbj6r0': {
-      'en': 'check.io',
-      'ar': '',
-    },
-    'x9cyg46o': {
-      'en': 'Andrew D.',
-      'ar': '',
-    },
-    '9b2th5hq': {
-      'en': 'admin@gmail.com',
-      'ar': '',
-    },
     'xnswxliy': {
       'en': 'Platform Navigation',
       'ar': '',
     },
-    'dgdby3tu': {
-      'en': 'Dashboard',
+    'ogyz0lrs': {
+      'en': 'FAQ',
       'ar': '',
     },
-    '20iku16x': {
-      'en': 'Chats',
+    'rsj45ebf': {
+      'en': 'Appointments history',
       'ar': '',
     },
-    '6axnocfb': {
-      'en': 'Projects',
-      'ar': '',
-    },
-    '331bk4yv': {
-      'en': 'Settings',
-      'ar': '',
-    },
-    'xlksalgs': {
-      'en': 'Notifications',
-      'ar': '',
-    },
-    '9rqo1wyd': {
-      'en': '12',
-      'ar': '',
-    },
-    '4c8etp34': {
-      'en': 'Billing',
-      'ar': '',
-    },
-    'srev6z55': {
-      'en': 'Explore',
+    'vpfjx9tu': {
+      'en': 'Logout',
       'ar': '',
     },
     'k1v6erq8': {
@@ -1699,27 +1713,45 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Light Mode',
       'ar': '',
     },
-    '0zv9d29z': {
-      'en': 'Cancel',
-      'ar': '',
-    },
     'lh5a21yi': {
       'en': 'Save & Close',
+      'ar': '',
+    },
+  },
+  // reviewComponent
+  {
+    'nlyij4m9': {
+      'en': 'Hello World',
+      'ar': '',
+    },
+    '48amb4mo': {
+      'en': 'Type you review here',
+      'ar': '',
+    },
+    's259vayj': {
+      'en': 'Button',
       'ar': '',
     },
   },
   // Miscellaneous
   {
     'rl282i76': {
-      'en': '',
+      'en':
+          'In order to know your location, this app requires permission to access the location',
       'ar': '',
     },
     'i4bcjls3': {
-      'en': '',
+      'en':
+          'In order to take a picture or video, this app requires permission to access the camera.',
       'ar': '',
     },
     'bvju95oc': {
       'en': '',
+      'ar': '',
+    },
+    'wk5nnyqf': {
+      'en':
+          'In order to send notifications, this app requires permission to access your notification',
       'ar': '',
     },
     '75awh2kw': {

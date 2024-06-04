@@ -5,25 +5,28 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'reviews_advisor_model.dart';
-export 'reviews_advisor_model.dart';
+import 'rating_advisor_model.dart';
+export 'rating_advisor_model.dart';
 
-class ReviewsAdvisorWidget extends StatefulWidget {
-  const ReviewsAdvisorWidget({super.key});
+class RatingAdvisorWidget extends StatefulWidget {
+  const RatingAdvisorWidget({super.key});
 
   @override
-  State<ReviewsAdvisorWidget> createState() => _ReviewsAdvisorWidgetState();
+  State<RatingAdvisorWidget> createState() => _RatingAdvisorWidgetState();
 }
 
-class _ReviewsAdvisorWidgetState extends State<ReviewsAdvisorWidget> {
-  late ReviewsAdvisorModel _model;
+class _RatingAdvisorWidgetState extends State<RatingAdvisorWidget> {
+  late RatingAdvisorModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ReviewsAdvisorModel());
+    _model = createModel(context, () => RatingAdvisorModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'rating_advisor'});
   }
 
   @override
@@ -56,6 +59,8 @@ class _ReviewsAdvisorWidgetState extends State<ReviewsAdvisorWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('RATING_ADVISOR_arrow_back_rounded_ICN_ON');
+              logFirebaseEvent('IconButton_navigate_back');
               context.safePop();
             },
           ),

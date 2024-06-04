@@ -74,6 +74,11 @@ class UsersRecord extends FirestoreRecord {
   DocumentReference? get centerRef => _centerRef;
   bool hasCenterRef() => _centerRef != null;
 
+  // "reviewRef" field.
+  DocumentReference? _reviewRef;
+  DocumentReference? get reviewRef => _reviewRef;
+  bool hasReviewRef() => _reviewRef != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _photoUrl = snapshotData['photo_url'] as String?;
@@ -87,6 +92,7 @@ class UsersRecord extends FirestoreRecord {
     _title = snapshotData['title'] as String?;
     _customerRef = snapshotData['customerRef'] as DocumentReference?;
     _centerRef = snapshotData['centerRef'] as DocumentReference?;
+    _reviewRef = snapshotData['reviewRef'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -135,6 +141,7 @@ Map<String, dynamic> createUsersRecordData({
   String? title,
   DocumentReference? customerRef,
   DocumentReference? centerRef,
+  DocumentReference? reviewRef,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -150,6 +157,7 @@ Map<String, dynamic> createUsersRecordData({
       'title': title,
       'customerRef': customerRef,
       'centerRef': centerRef,
+      'reviewRef': reviewRef,
     }.withoutNulls,
   );
 
@@ -172,7 +180,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.role == e2?.role &&
         e1?.title == e2?.title &&
         e1?.customerRef == e2?.customerRef &&
-        e1?.centerRef == e2?.centerRef;
+        e1?.centerRef == e2?.centerRef &&
+        e1?.reviewRef == e2?.reviewRef;
   }
 
   @override
@@ -188,7 +197,8 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.role,
         e?.title,
         e?.customerRef,
-        e?.centerRef
+        e?.centerRef,
+        e?.reviewRef
       ]);
 
   @override

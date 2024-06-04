@@ -23,20 +23,13 @@ class _EmergencyAdvisorWidgetState extends State<EmergencyAdvisorWidget> {
     super.initState();
     _model = createModel(context, () => EmergencyAdvisorModel());
 
-    _model.emailAddressTextController1 ??= TextEditingController();
-    _model.emailAddressFocusNode1 ??= FocusNode();
-
-    _model.emailAddressTextController2 ??= TextEditingController();
-    _model.emailAddressFocusNode2 ??= FocusNode();
-
-    _model.emailAddressTextController3 ??= TextEditingController();
-    _model.emailAddressFocusNode3 ??= FocusNode();
-
-    _model.textController4 ??= TextEditingController();
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'Emergency_advisor'});
+    _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
-          _model.textController4?.text = FFLocalizations.of(context).getText(
+          _model.textController?.text = FFLocalizations.of(context).getText(
             '116h9bqx' /* There is  a car need to Change... */,
           );
         }));
@@ -57,9 +50,9 @@ class _EmergencyAdvisorWidgetState extends State<EmergencyAdvisorWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).alternate,
+          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
           automaticallyImplyLeading: false,
           leading: Align(
             alignment: const AlignmentDirectional(-1.0, 0.0),
@@ -124,229 +117,16 @@ class _EmergencyAdvisorWidgetState extends State<EmergencyAdvisorWidget> {
                     ),
                   ),
                 ),
-                Container(
-                  width: 100.0,
-                  height: 64.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                  child: Align(
-                    alignment: const AlignmentDirectional(-1.0, 0.0),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: TextFormField(
-                          controller: _model.emailAddressTextController1,
-                          focusNode: _model.emailAddressFocusNode1,
-                          autofocus: true,
-                          autofillHints: const [AutofillHints.email],
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: FFLocalizations.of(context).getText(
-                              't2km3154' /* Car Type */,
-                            ),
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            contentPadding: const EdgeInsets.all(24.0),
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          keyboardType: TextInputType.emailAddress,
-                          cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.emailAddressTextController1Validator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 14.0, 0.0, 0.0),
-                  child: Container(
-                    width: 100.0,
-                    height: 60.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
-                    child: Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 10.0, 0.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: TextFormField(
-                          controller: _model.emailAddressTextController2,
-                          focusNode: _model.emailAddressFocusNode2,
-                          autofocus: true,
-                          autofillHints: const [AutofillHints.email],
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: FFLocalizations.of(context).getText(
-                              'e16ksyro' /* Car Model */,
-                            ),
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).alternate,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primary,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 2.0,
-                              ),
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            filled: true,
-                            fillColor: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            contentPadding: const EdgeInsets.all(24.0),
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          keyboardType: TextInputType.emailAddress,
-                          cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.emailAddressTextController2Validator
-                              .asValidator(context),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: TextFormField(
-                      controller: _model.emailAddressTextController3,
-                      focusNode: _model.emailAddressFocusNode3,
-                      autofocus: true,
-                      autofillHints: const [AutofillHints.email],
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: FFLocalizations.of(context).getText(
-                          '28uqhkmd' /* Address */,
-                        ),
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        filled: true,
-                        fillColor:
-                            FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding: const EdgeInsets.all(24.0),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
-                          ),
-                      keyboardType: TextInputType.emailAddress,
-                      cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.emailAddressTextController3Validator
-                          .asValidator(context),
-                    ),
-                  ),
-                ),
                 Padding(
                   padding:
                       const EdgeInsetsDirectional.fromSTEB(10.0, 19.0, 10.0, 0.0),
                   child: TextFormField(
-                    controller: _model.textController4,
+                    controller: _model.textController,
                     focusNode: _model.textFieldFocusNode,
                     onFieldSubmitted: (_) async {
+                      logFirebaseEvent(
+                          'EMERGENCY_ADVISOR_TextField_nujmtup8_ON_');
+                      logFirebaseEvent('TextField_close_dialog,_drawer,_etc');
                       Navigator.pop(context);
                     },
                     autofocus: true,
@@ -409,7 +189,7 @@ class _EmergencyAdvisorWidgetState extends State<EmergencyAdvisorWidget> {
                     maxLines: 9,
                     minLines: 5,
                     validator:
-                        _model.textController4Validator.asValidator(context),
+                        _model.textControllerValidator.asValidator(context),
                   ),
                 ),
                 Row(
@@ -420,6 +200,10 @@ class _EmergencyAdvisorWidgetState extends State<EmergencyAdvisorWidget> {
                           const EdgeInsetsDirectional.fromSTEB(60.0, 20.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'EMERGENCY_ADVISOR_SEND_CAR_BTN_ON_TAP');
+                          logFirebaseEvent('Button_navigate_to');
+
                           context.pushNamed('home_advisor');
                         },
                         text: FFLocalizations.of(context).getText(
@@ -453,6 +237,10 @@ class _EmergencyAdvisorWidgetState extends State<EmergencyAdvisorWidget> {
                           const EdgeInsetsDirectional.fromSTEB(45.0, 20.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'EMERGENCY_ADVISOR_PAGE_REJECT_BTN_ON_TAP');
+                          logFirebaseEvent('Button_navigate_to');
+
                           context.pushNamed('home_advisor');
                         },
                         text: FFLocalizations.of(context).getText(

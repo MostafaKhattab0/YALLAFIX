@@ -1,4 +1,5 @@
 import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -27,6 +28,9 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ViewCentersCustModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ViewCenters_Cust'});
   }
 
   @override
@@ -50,6 +54,8 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
           hoverColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onTap: () async {
+            logFirebaseEvent('VIEW_CENTERS_CUST_Icon_n4vyaksq_ON_TAP');
+            logFirebaseEvent('Icon_navigate_back');
             context.pop();
           },
           child: Icon(
@@ -78,16 +84,54 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12.0),
-                child: Image.network(
-                  valueOrDefault<String>(
+              child: InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  logFirebaseEvent('VIEW_CENTERS_CUST_Image_lubshqk8_ON_TAP');
+                  logFirebaseEvent('Image_expand_image');
+                  await Navigator.push(
+                    context,
+                    PageTransition(
+                      type: PageTransitionType.fade,
+                      child: FlutterFlowExpandedImageView(
+                        image: Image.network(
+                          valueOrDefault<String>(
+                            widget.center?.centerImage,
+                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/0i414sy5trut/WhatsApp-Image-2022-01-11-at-3.52.52-PM.jpeg',
+                          ),
+                          fit: BoxFit.contain,
+                        ),
+                        allowRotation: false,
+                        tag: valueOrDefault<String>(
+                          widget.center?.centerImage,
+                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/0i414sy5trut/WhatsApp-Image-2022-01-11-at-3.52.52-PM.jpeg',
+                        ),
+                        useHeroAnimation: true,
+                      ),
+                    ),
+                  );
+                },
+                child: Hero(
+                  tag: valueOrDefault<String>(
                     widget.center?.centerImage,
-                    'x',
+                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/0i414sy5trut/WhatsApp-Image-2022-01-11-at-3.52.52-PM.jpeg',
                   ),
-                  width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: 230.0,
-                  fit: BoxFit.cover,
+                  transitionOnUserGestures: true,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: Image.network(
+                      valueOrDefault<String>(
+                        widget.center?.centerImage,
+                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/0i414sy5trut/WhatsApp-Image-2022-01-11-at-3.52.52-PM.jpeg',
+                      ),
+                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      height: 230.0,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -111,7 +155,7 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 8.0),
                     child: Text(
                       FFLocalizations.of(context).getText(
-                        'vxnbr7ks' /* 10:00am */,
+                        'vxnbr7ks' /* Opens from 10AM : 10PM */,
                       ),
                       style: FlutterFlowTheme.of(context).titleMedium.override(
                             fontFamily: 'Readex Pro',
@@ -135,39 +179,44 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
                     thickness: 1.0,
                     color: FlutterFlowTheme.of(context).alternate,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Builder(
-                      builder: (context) {
-                        final brands =
-                            widget.center?.centerBrands.toList() ?? [];
-                        return SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children:
-                                List.generate(brands.length, (brandsIndex) {
-                              final brandsItem = brands[brandsIndex];
-                              return Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 10.0, 0.0),
-                                child: Text(
-                                  valueOrDefault<String>(
-                                    brandsItem,
-                                    'x',
+                  Align(
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Builder(
+                        builder: (context) {
+                          final cars = widget.center?.centerBrands
+                                  .map((e) => e)
+                                  .toList()
+                                  .toList() ??
+                              [];
+                          return SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: List.generate(cars.length, (carsIndex) {
+                                final carsItem = cars[carsIndex];
+                                return Padding(
+                                  padding: const EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 10.0, 0.0),
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      carsItem,
+                                      'x',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
                                   ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
-                              );
-                            }),
-                          ),
-                        );
-                      },
+                                );
+                              }),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ],
@@ -179,6 +228,9 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('VIEW_CENTERS_CUST_ButtonPrimary_ON_TAP');
+                    logFirebaseEvent('ButtonPrimary_navigate_to');
+
                     context.pushNamed(
                       'booking_cust',
                       queryParameters: {

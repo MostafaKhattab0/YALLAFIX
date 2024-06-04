@@ -35,6 +35,8 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
     super.initState();
     _model = createModel(context, () => Auth3VerifyPhoneModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'auth_3_verifyPhone'});
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -211,6 +213,10 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                             size: 24.0,
                                           ),
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'AUTH_3_VERIFY_PHONE_arrow_back_rounded_I');
+                                            logFirebaseEvent(
+                                                'IconButton_navigate_back');
                                             context.safePop();
                                           },
                                         ),
@@ -235,6 +241,10 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'AUTH_3_VERIFY_PHONE_RichText_ivnckzvq_ON');
+                                            logFirebaseEvent(
+                                                'RichText_navigate_back');
                                             context.safePop();
                                           },
                                           child: RichText(
@@ -351,6 +361,9 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                                   0.0, 0.0, 0.0, 16.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'AUTH_3_VERIFY_PHONE_VERIFY_CODE_BTN_ON_T');
+                                              logFirebaseEvent('Button_auth');
                                               GoRouter.of(context)
                                                   .prepareAuthEvent();
                                               final smsCodeVal = _model
@@ -374,6 +387,9 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                               if (phoneVerifiedUser == null) {
                                                 return;
                                               }
+
+                                              logFirebaseEvent(
+                                                  'Button_navigate_to');
 
                                               context.pushNamedAuth(
                                                   'home_cust', context.mounted);

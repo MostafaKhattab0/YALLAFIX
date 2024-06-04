@@ -1,6 +1,6 @@
 import '/backend/backend.dart';
-import '/components/sidebar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/customer/sidebar/sidebar_widget.dart';
 import 'home_cust_widget.dart' show HomeCustWidget;
 import 'package:flutter/material.dart';
 
@@ -12,6 +12,11 @@ class HomeCustModel extends FlutterFlowModel<HomeCustWidget> {
   TextEditingController? emailAddressTextController;
   String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
   List<CentersRecord> simpleSearchResults = [];
+  // State field(s) for TabBar widget.
+  TabController? tabBarController;
+  int get tabBarCurrentIndex =>
+      tabBarController != null ? tabBarController!.index : 0;
+
   // Model for sidebar component.
   late SidebarModel sidebarModel;
 
@@ -25,6 +30,7 @@ class HomeCustModel extends FlutterFlowModel<HomeCustWidget> {
     emailAddressFocusNode?.dispose();
     emailAddressTextController?.dispose();
 
+    tabBarController?.dispose();
     sidebarModel.dispose();
   }
 }

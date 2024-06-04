@@ -130,13 +130,14 @@ class _ChangeThemelightdarkWidgetState extends State<ChangeThemelightdarkWidget>
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               12.0, 4.0, 12.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Expanded(
                                 child: Column(
@@ -187,6 +188,9 @@ class _ChangeThemelightdarkWidgetState extends State<ChangeThemelightdarkWidget>
                                     size: 24.0,
                                   ),
                                   onPressed: () async {
+                                    logFirebaseEvent(
+                                        'CHANGE_THEMELIGHTDARK_close_rounded_ICN_');
+                                    logFirebaseEvent('IconButton_bottom_sheet');
                                     Navigator.pop(context);
                                   },
                                 ),
@@ -241,6 +245,10 @@ class _ChangeThemelightdarkWidgetState extends State<ChangeThemelightdarkWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'CHANGE_THEMELIGHTDARK_Container_9sx5tjwk');
+                                            logFirebaseEvent(
+                                                'Container_set_dark_mode_settings');
                                             setDarkModeSetting(
                                                 context, ThemeMode.dark);
                                           },
@@ -496,6 +504,10 @@ class _ChangeThemelightdarkWidgetState extends State<ChangeThemelightdarkWidget>
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
+                                            logFirebaseEvent(
+                                                'CHANGE_THEMELIGHTDARK_Container_yc8adgmn');
+                                            logFirebaseEvent(
+                                                'Container_set_dark_mode_settings');
                                             setDarkModeSetting(
                                                 context, ThemeMode.light);
                                           },
@@ -729,43 +741,18 @@ class _ChangeThemelightdarkWidgetState extends State<ChangeThemelightdarkWidget>
                               0.0, 20.0, 0.0, 12.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 16.0, 0.0),
-                                child: FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
-                                  },
-                                  text: FFLocalizations.of(context).getText(
-                                    '0zv9d29z' /* Cancel */,
-                                  ),
-                                  options: FFButtonOptions(
-                                    padding: const EdgeInsets.all(24.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
-                                    elevation: 0.0,
-                                    borderSide: BorderSide(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                      width: 2.0,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12.0),
-                                  ),
-                                ),
-                              ),
                               FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  logFirebaseEvent(
+                                      'CHANGE_THEMELIGHTDARK_SAVE_&_CLOSE_BTN_O');
+                                  logFirebaseEvent(
+                                      'Button_set_dark_mode_settings');
+                                  setDarkModeSetting(context, ThemeMode.system);
+                                  logFirebaseEvent(
+                                      'Button_close_dialog,_drawer,_etc');
+                                  Navigator.pop(context);
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   'lh5a21yi' /* Save & Close */,

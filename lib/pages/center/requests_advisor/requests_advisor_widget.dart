@@ -26,6 +26,9 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RequestsAdvisorModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'requests_advisor'});
   }
 
   @override
@@ -79,6 +82,10 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                     size: 30.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent(
+                        'REQUESTS_ADVISOR_arrow_back_rounded_ICN_');
+                    logFirebaseEvent('IconButton_navigate_to');
+
                     context.pushNamed('home_advisor');
                   },
                 ),
@@ -256,6 +263,11 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                             10.0, 0.0, 165.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'REQUESTS_ADVISOR_PAGE_ACCEPT_BTN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Button_backend_call');
+
                                             await listViewRequestsRecord
                                                 .reference
                                                 .update(
@@ -298,6 +310,11 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                       ),
                                       FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'REQUESTS_ADVISOR_PAGE_REJECT_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_backend_call');
+
                                           await listViewRequestsRecord.reference
                                               .update(createRequestsRecordData(
                                             isRejected: true,

@@ -30,6 +30,8 @@ class _Auth3ForgotPasswordWidgetState extends State<Auth3ForgotPasswordWidget>
     super.initState();
     _model = createModel(context, () => Auth3ForgotPasswordModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'auth_3_ForgotPassword'});
     _model.emailTextController ??= TextEditingController();
     _model.emailFocusNode ??= FocusNode();
 
@@ -209,6 +211,10 @@ class _Auth3ForgotPasswordWidgetState extends State<Auth3ForgotPasswordWidget>
                                             size: 24.0,
                                           ),
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'AUTH_3_FORGOT_PASSWORD_arrow_back_rounde');
+                                            logFirebaseEvent(
+                                                'IconButton_navigate_back');
                                             context.safePop();
                                           },
                                         ),
@@ -341,6 +347,9 @@ class _Auth3ForgotPasswordWidgetState extends State<Auth3ForgotPasswordWidget>
                                                   0.0, 0.0, 0.0, 16.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'AUTH_3_FORGOT_PASSWORD_SEND_RESET_LINK_B');
+                                              logFirebaseEvent('Button_auth');
                                               if (_model.emailTextController
                                                   .text.isEmpty) {
                                                 ScaffoldMessenger.of(context)

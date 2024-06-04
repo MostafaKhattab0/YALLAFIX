@@ -134,14 +134,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const RequestsAdvisorWidget(),
         ),
         FFRoute(
-          name: 'reviews_advisor',
-          path: '/reviewsAdvisor',
-          builder: (context, params) => const ReviewsAdvisorWidget(),
+          name: 'rating_advisor',
+          path: '/ratingAdvisor',
+          builder: (context, params) => const RatingAdvisorWidget(),
         ),
         FFRoute(
-          name: 'review_cust',
-          path: '/reviewCust',
-          builder: (context, params) => const ReviewCustWidget(),
+          name: 'rating_cust',
+          path: '/ratingCust',
+          builder: (context, params) => const RatingCustWidget(),
         ),
         FFRoute(
           name: 'add_center',
@@ -177,13 +177,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => params.isEmpty
               ? const NavBarPage(initialPage: 'profile_cust')
               : const ProfileCustWidget(),
-        ),
-        FFRoute(
-          name: 'home_cust',
-          path: '/homeCust',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'home_cust')
-              : const HomeCustWidget(),
         ),
         FFRoute(
           name: 'profile_advisor',
@@ -267,6 +260,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'contactcust_center',
           path: '/contactcustCenter',
           builder: (context, params) => const ContactcustCenterWidget(),
+        ),
+        FFRoute(
+          name: 'ContactUS_Cust',
+          path: '/contactUSCust',
+          builder: (context, params) => const ContactUSCustWidget(),
+        ),
+        FFRoute(
+          name: 'home_cust',
+          path: '/homeCust',
+          builder: (context, params) => params.isEmpty
+              ? const NavBarPage(initialPage: 'home_cust')
+              : const HomeCustWidget(),
+        ),
+        FFRoute(
+          name: 'history_cust',
+          path: '/historyCust',
+          builder: (context, params) => const HistoryCustWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

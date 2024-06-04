@@ -9,6 +9,7 @@ import 'backend/firebase/firebase_config.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'index.dart';
 
 void main() async {
@@ -139,46 +140,39 @@ class _NavBarPageState extends State<NavBarPage> {
 
     return Scaffold(
       body: _currentPage ?? tabs[_currentPageName],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (i) => setState(() {
+      bottomNavigationBar: GNav(
+        selectedIndex: currentIndex,
+        onTabChange: (i) => setState(() {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        selectedItemColor: FlutterFlowTheme.of(context).primaryText,
-        unselectedItemColor: const Color(0xFFD0CFCF),
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.account_circle_outlined,
-              size: 24.0,
-            ),
-            activeIcon: const Icon(
-              Icons.account_circle,
-              size: 24.0,
-            ),
-            label: FFLocalizations.of(context).getText(
+        color: const Color(0xFFD0CFCF),
+        activeColor: FlutterFlowTheme.of(context).primaryText,
+        tabBackgroundColor: const Color(0x00000000),
+        tabBorderRadius: 100.0,
+        tabMargin: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+        gap: 0.0,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        duration: const Duration(milliseconds: 500),
+        haptic: false,
+        tabs: [
+          GButton(
+            icon: currentIndex == 0
+                ? Icons.account_circle
+                : Icons.account_circle_outlined,
+            text: FFLocalizations.of(context).getText(
               'vb5erb79' /* Profile */,
             ),
-            tooltip: '',
+            iconSize: 24.0,
           ),
-          BottomNavigationBarItem(
-            icon: const Icon(
-              Icons.home_outlined,
-              size: 24.0,
+          GButton(
+            icon: currentIndex == 1 ? Icons.home : Icons.home_outlined,
+            text: FFLocalizations.of(context).getText(
+              'dbn9775j' /* Home */,
             ),
-            activeIcon: const Icon(
-              Icons.home,
-              size: 28.0,
-            ),
-            label: FFLocalizations.of(context).getText(
-              'huum8gkd' /* Home */,
-            ),
-            tooltip: '',
+            iconSize: 24.0,
           )
         ],
       ),

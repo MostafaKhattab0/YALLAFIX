@@ -30,6 +30,8 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
     super.initState();
     _model = createModel(context, () => Auth3PhoneModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'auth_3_phone'});
     _model.phoneNumberTextController ??= TextEditingController();
     _model.phoneNumberFocusNode ??= FocusNode();
 
@@ -179,6 +181,10 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
                                             size: 24.0,
                                           ),
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'AUTH_3_PHONE_arrow_back_rounded_ICN_ON_T');
+                                            logFirebaseEvent(
+                                                'IconButton_navigate_back');
                                             context.safePop();
                                           },
                                         ),
@@ -323,6 +329,9 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
                                                   0.0, 0.0, 0.0, 16.0),
                                           child: FFButtonWidget(
                                             onPressed: () async {
+                                              logFirebaseEvent(
+                                                  'AUTH_3_PHONE_PAGE_CONTINUE_BTN_ON_TAP');
+                                              logFirebaseEvent('Button_auth');
                                               final phoneNumberVal = _model
                                                   .phoneNumberTextController
                                                   .text;

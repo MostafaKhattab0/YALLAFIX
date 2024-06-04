@@ -5,25 +5,27 @@ import '/flutter_flow/flutter_flow_util.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'review_cust_model.dart';
-export 'review_cust_model.dart';
+import 'rating_cust_model.dart';
+export 'rating_cust_model.dart';
 
-class ReviewCustWidget extends StatefulWidget {
-  const ReviewCustWidget({super.key});
+class RatingCustWidget extends StatefulWidget {
+  const RatingCustWidget({super.key});
 
   @override
-  State<ReviewCustWidget> createState() => _ReviewCustWidgetState();
+  State<RatingCustWidget> createState() => _RatingCustWidgetState();
 }
 
-class _ReviewCustWidgetState extends State<ReviewCustWidget> {
-  late ReviewCustModel _model;
+class _RatingCustWidgetState extends State<RatingCustWidget> {
+  late RatingCustModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ReviewCustModel());
+    _model = createModel(context, () => RatingCustModel());
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'rating_cust'});
   }
 
   @override
@@ -56,12 +58,14 @@ class _ReviewCustWidgetState extends State<ReviewCustWidget> {
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('RATING_CUST_arrow_back_rounded_ICN_ON_TA');
+              logFirebaseEvent('IconButton_navigate_back');
               context.safePop();
             },
           ),
           title: Text(
             FFLocalizations.of(context).getText(
-              'k6f03ir6' /* View Customer Reviews */,
+              'k6f03ir6' /* Rating */,
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Outfit',
@@ -81,9 +85,9 @@ class _ReviewCustWidgetState extends State<ReviewCustWidget> {
             children: [
               Container(
                 width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
+                decoration: BoxDecoration(
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 3.0,
                       color: Color(0x39000000),
@@ -93,106 +97,6 @@ class _ReviewCustWidgetState extends State<ReviewCustWidget> {
                       ),
                     )
                   ],
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(12.0, 16.0, 12.0, 24.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 12.0),
-                            child: Text(
-                              FFLocalizations.of(context).getText(
-                                'yi8z8xcp' /* 2,503 */,
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .displaySmall
-                                  .override(
-                                    fontFamily: 'Outfit',
-                                    color: const Color(0xFF14181B),
-                                    fontSize: 28.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                            ),
-                          ),
-                          Text(
-                            FFLocalizations.of(context).getText(
-                              'rj6z996c' /* # of Ratings */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: const Color(0xFF57636C),
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 0.0, 12.0),
-                                child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    'kfzdclb6' /* 4.8 */,
-                                  ),
-                                  style: FlutterFlowTheme.of(context)
-                                      .displaySmall
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: const Color(0xFF14181B),
-                                        fontSize: 28.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
-                              ),
-                              const Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    4.0, 0.0, 0.0, 12.0),
-                                child: Icon(
-                                  Icons.star_rounded,
-                                  color: Color(0xFFF3A743),
-                                  size: 24.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Text(
-                            FFLocalizations.of(context).getText(
-                              '5jizavfc' /* Avg. Rating */,
-                            ),
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: const Color(0xFF57636C),
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
                 ),
               ),
               Divider(
@@ -230,7 +134,8 @@ class _ReviewCustWidgetState extends State<ReviewCustWidget> {
                                           .titleLarge
                                           .override(
                                             fontFamily: 'Outfit',
-                                            color: const Color(0xFF14181B),
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryText,
                                             fontSize: 22.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w500,
@@ -262,8 +167,8 @@ class _ReviewCustWidgetState extends State<ReviewCustWidget> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(2.0),
                                     child: Container(
-                                      width: 50.0,
-                                      height: 50.0,
+                                      width: 85.0,
+                                      height: 85.0,
                                       clipBehavior: Clip.antiAlias,
                                       decoration: const BoxDecoration(
                                         shape: BoxShape.circle,
@@ -274,7 +179,7 @@ class _ReviewCustWidgetState extends State<ReviewCustWidget> {
                                         fadeOutDuration:
                                             const Duration(milliseconds: 500),
                                         imageUrl:
-                                            'https://images.unsplash.com/photo-1499996860823-5214fcc65f8f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHw2fHxodW1hbnxlbnwwfHx8fDE3MTMyMDk0NTl8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                            'https://images.unsplash.com/photo-1599566150163-29194dcaad36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxNHx8cGVyc29ufGVufDB8fHx8MTcxNzQyNjEzMnww&ixlib=rb-4.0.3&q=80&w=400',
                                       ),
                                     ),
                                   ),

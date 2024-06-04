@@ -25,6 +25,8 @@ class _AdmincreateAccountcenterWidgetState
     super.initState();
     _model = createModel(context, () => AdmincreateAccountcenterModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'admincreateAccountcenter'});
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
@@ -276,6 +278,9 @@ class _AdmincreateAccountcenterWidgetState
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'ADMINCREATE_ACCOUNTCENTER_CREATE_CENTER_');
+                                      logFirebaseEvent('Button_auth');
                                       GoRouter.of(context).prepareAuthEvent();
                                       if (valueOrDefault<String>(
                                             _model.passwordTextController.text,
@@ -305,6 +310,8 @@ class _AdmincreateAccountcenterWidgetState
                                       if (user == null) {
                                         return;
                                       }
+
+                                      logFirebaseEvent('Button_navigate_to');
 
                                       context.pushNamedAuth(
                                           'add_center', context.mounted);
@@ -343,6 +350,10 @@ class _AdmincreateAccountcenterWidgetState
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'ADMINCREATE_ACCOUNTCENTER_CUSTOMER_LOGIN');
+                                      logFirebaseEvent('Button_navigate_to');
+
                                       context.pushNamed('login_cust');
                                     },
                                     text: FFLocalizations.of(context).getText(
@@ -379,6 +390,10 @@ class _AdmincreateAccountcenterWidgetState
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
+                                      logFirebaseEvent(
+                                          'ADMINCREATE_ACCOUNTCENTER_CENTER_LOGIN_B');
+                                      logFirebaseEvent('Button_navigate_to');
+
                                       context.pushNamed('login_center');
                                     },
                                     text: FFLocalizations.of(context).getText(

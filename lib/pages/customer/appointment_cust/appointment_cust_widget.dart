@@ -26,6 +26,9 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AppointmentCustModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'appointment_cust'});
   }
 
   @override
@@ -79,6 +82,10 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
                     size: 30.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent(
+                        'APPOINTMENT_CUST_arrow_back_rounded_ICN_');
+                    logFirebaseEvent('IconButton_navigate_to');
+
                     context.pushNamed('home_cust');
                   },
                 ),
@@ -297,6 +304,10 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
                                   children: [
                                     FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'APPOINTMENT_CUST_REQUEST_TO_EDIT_BTN_ON_');
+                                        logFirebaseEvent('Button_navigate_to');
+
                                         context.pushNamed(
                                           'edit_booking_cust',
                                           queryParameters: {
@@ -340,6 +351,9 @@ class _AppointmentCustWidgetState extends State<AppointmentCustWidget> {
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'APPOINTMENT_CUST_PAGE_CANCEL_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_backend_call');
                                         await listViewRequestsRecord.reference
                                             .delete();
                                       },

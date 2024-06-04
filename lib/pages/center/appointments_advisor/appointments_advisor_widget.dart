@@ -27,6 +27,9 @@ class _AppointmentsAdvisorWidgetState extends State<AppointmentsAdvisorWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AppointmentsAdvisorModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'appointments_advisor'});
   }
 
   @override
@@ -80,6 +83,10 @@ class _AppointmentsAdvisorWidgetState extends State<AppointmentsAdvisorWidget> {
                     size: 30.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent(
+                        'APPOINTMENTS_ADVISOR_arrow_back_rounded_');
+                    logFirebaseEvent('IconButton_navigate_to');
+
                     context.pushNamed('home_advisor');
                   },
                 ),
@@ -257,6 +264,11 @@ class _AppointmentsAdvisorWidgetState extends State<AppointmentsAdvisorWidget> {
                                             10.0, 0.0, 100.0, 0.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'APPOINTMENTS_ADVISOR_FINISHED_BTN_ON_TAP');
+                                            logFirebaseEvent(
+                                                'Button_backend_call');
+
                                             await listViewRequestsRecord
                                                 .reference
                                                 .update(
@@ -297,7 +309,15 @@ class _AppointmentsAdvisorWidgetState extends State<AppointmentsAdvisorWidget> {
                                         ),
                                       ),
                                       FFButtonWidget(
-                                        onPressed: () async {},
+                                        onPressed: () async {
+                                          logFirebaseEvent(
+                                              'APPOINTMENTS_ADVISOR_CONTACT_BTN_ON_TAP');
+                                          logFirebaseEvent(
+                                              'Button_navigate_to');
+
+                                          context
+                                              .pushNamed('contactcust_center');
+                                        },
                                         text:
                                             FFLocalizations.of(context).getText(
                                           'g8t6a341' /* Contact */,

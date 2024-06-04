@@ -22,6 +22,9 @@ class _BalanceAdvisorWidgetState extends State<BalanceAdvisorWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => BalanceAdvisorModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'balance_advisor'});
   }
 
   @override

@@ -33,6 +33,8 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
     super.initState();
     _model = createModel(context, () => BookingCustModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'booking_cust'});
     _model.descriptionTextController ??= TextEditingController();
     _model.descriptionFocusNode ??= FocusNode();
     _model.descriptionFocusNode!.addListener(() => setState(() {}));
@@ -122,6 +124,8 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                       size: 24.0,
                     ),
                     onPressed: () async {
+                      logFirebaseEvent('BOOKING_CUST_close_rounded_ICN_ON_TAP');
+                      logFirebaseEvent('IconButton_navigate_back');
                       context.safePop();
                     },
                   ),
@@ -361,6 +365,9 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                 size: 24.0,
                               ),
                               onPressed: () async {
+                                logFirebaseEvent(
+                                    'BOOKING_CUST_PAGE_Date_ON_TAP');
+                                logFirebaseEvent('Date_date_time_picker');
                                 final datePickedDate = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
@@ -475,10 +482,18 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onLongPress: () async {
+                        logFirebaseEvent(
+                            'BOOKING_CUST_REQUEST_APPOINTMENT_BTN_ON_');
+                        logFirebaseEvent('Button_navigate_to');
+
                         context.goNamed('requests_advisor');
                       },
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'BOOKING_CUST_REQUEST_APPOINTMENT_BTN_ON_');
+                          logFirebaseEvent('Button_backend_call');
+
                           await RequestsRecord.collection.doc().set({
                             ...createRequestsRecordData(
                               requestDate: _model.datePicked,
@@ -497,6 +512,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                               },
                             ),
                           });
+                          logFirebaseEvent('Button_navigate_to');
 
                           context.pushNamed('Request_cust');
                         },

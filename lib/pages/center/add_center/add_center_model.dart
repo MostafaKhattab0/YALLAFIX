@@ -32,11 +32,19 @@ class AddCenterModel extends FlutterFlowModel<AddCenterWidget> {
   List<String>? dropDownValue;
   FormFieldController<List<String>>? dropDownValueController;
   // State field(s) for centerAddress widget.
-  FocusNode? centerAddressFocusNode;
-  TextEditingController? centerAddressTextController;
-  String? Function(BuildContext, String?)? centerAddressTextControllerValidator;
+  FocusNode? centerAddressFocusNode1;
+  TextEditingController? centerAddressTextController1;
+  String? Function(BuildContext, String?)?
+      centerAddressTextController1Validator;
+  // State field(s) for centerAddress widget.
+  FocusNode? centerAddressFocusNode2;
+  TextEditingController? centerAddressTextController2;
+  String? Function(BuildContext, String?)?
+      centerAddressTextController2Validator;
   // State field(s) for Checkbox widget.
-  bool? checkboxValue;
+  bool? checkboxValue1;
+  // State field(s) for Checkbox widget.
+  bool? checkboxValue2;
   // State field(s) for centerLocation widget.
   var centerLocationValue = const FFPlace();
   // State field(s) for centerDescription widget.
@@ -56,8 +64,11 @@ class AddCenterModel extends FlutterFlowModel<AddCenterWidget> {
     centerNameFocusNode?.dispose();
     centerNameTextController?.dispose();
 
-    centerAddressFocusNode?.dispose();
-    centerAddressTextController?.dispose();
+    centerAddressFocusNode1?.dispose();
+    centerAddressTextController1?.dispose();
+
+    centerAddressFocusNode2?.dispose();
+    centerAddressTextController2?.dispose();
 
     centerDescriptionFocusNode?.dispose();
     centerDescriptionTextController?.dispose();

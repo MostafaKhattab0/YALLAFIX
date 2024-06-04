@@ -252,10 +252,16 @@ class _AiChatComponent1WidgetState extends State<AiChatComponent1Widget> {
                                                                           .transparent,
                                                                   onTap:
                                                                       () async {
+                                                                    logFirebaseEvent(
+                                                                        'AI_CHAT_COMPONENT_1_Container_ft59lv4g_O');
+                                                                    logFirebaseEvent(
+                                                                        'Container_copy_to_clipboard');
                                                                     await Clipboard.setData(ClipboardData(
                                                                         text: chatItem
                                                                             .text
                                                                             .value));
+                                                                    logFirebaseEvent(
+                                                                        'Container_show_snack_bar');
                                                                     ScaffoldMessenger.of(
                                                                             context)
                                                                         .showSnackBar(
@@ -560,6 +566,9 @@ class _AiChatComponent1WidgetState extends State<AiChatComponent1Widget> {
                         ),
                         showLoadingIndicator: true,
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'AI_CHAT_COMPONENT_1_send_rounded_ICN_ON_');
+                          logFirebaseEvent('IconButton_update_component_state');
                           _model.addToChatHistory(ContentStruct(
                             text: TextStruct(
                               value: _model.textController.text,
@@ -567,14 +576,18 @@ class _AiChatComponent1WidgetState extends State<AiChatComponent1Widget> {
                           ));
                           _model.aiResponding = !_model.aiResponding;
                           setState(() {});
+                          logFirebaseEvent('IconButton_backend_call');
                           _model.apiChatResult = await AIChatCall.call(
                             threadID: _model.threadID,
                             prompt: _model.textController.text,
                           );
+                          logFirebaseEvent('IconButton_reset_form_fields');
                           setState(() {
                             _model.textController?.clear();
                           });
                           if ((_model.apiChatResult?.succeeded ?? true)) {
+                            logFirebaseEvent(
+                                'IconButton_update_component_state');
                             _model.threadID = getJsonField(
                               (_model.apiChatResult?.jsonBody ?? ''),
                               r'''$.result.threadID''',
@@ -586,6 +599,7 @@ class _AiChatComponent1WidgetState extends State<AiChatComponent1Widget> {
                             ))!);
                             setState(() {});
                           } else {
+                            logFirebaseEvent('IconButton_show_snack_bar');
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -602,10 +616,13 @@ class _AiChatComponent1WidgetState extends State<AiChatComponent1Widget> {
                             );
                           }
 
+                          logFirebaseEvent('IconButton_update_component_state');
                           _model.aiResponding = !_model.aiResponding;
                           setState(() {});
+                          logFirebaseEvent('IconButton_wait__delay');
                           await Future.delayed(
                               const Duration(milliseconds: 800));
+                          logFirebaseEvent('IconButton_scroll_to');
                           await _model.listViewController?.animateTo(
                             _model.listViewController!.position.maxScrollExtent,
                             duration: const Duration(milliseconds: 100),

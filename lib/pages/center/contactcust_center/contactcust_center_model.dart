@@ -6,8 +6,6 @@ class ContactcustCenterModel extends FlutterFlowModel<ContactcustCenterWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // State field(s) for SwitchListTile widget.
-  bool? switchListTileValue;
 
   @override
   void initState(BuildContext context) {}

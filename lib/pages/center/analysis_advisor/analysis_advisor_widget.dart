@@ -30,6 +30,8 @@ class _AnalysisAdvisorWidgetState extends State<AnalysisAdvisorWidget>
     super.initState();
     _model = createModel(context, () => AnalysisAdvisorModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'analysis_advisor'});
     animationsMap.addAll({
       'containerOnPageLoadAnimation4': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -148,6 +150,8 @@ class _AnalysisAdvisorWidgetState extends State<AnalysisAdvisorWidget>
               size: 30.0,
             ),
             onPressed: () async {
+              logFirebaseEvent('ANALYSIS_ADVISOR_arrow_back_rounded_ICN_');
+              logFirebaseEvent('IconButton_navigate_back');
               context.pop();
             },
           ),

@@ -30,6 +30,8 @@ class _EditProfileCustWidgetState extends State<EditProfileCustWidget> {
     super.initState();
     _model = createModel(context, () => EditProfileCustModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'edit_profile_cust'});
     _model.nameTextController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
     _model.nameFocusNode!.addListener(() => setState(() {}));
@@ -99,6 +101,9 @@ class _EditProfileCustWidgetState extends State<EditProfileCustWidget> {
                   size: 24.0,
                 ),
                 onPressed: () async {
+                  logFirebaseEvent('EDIT_PROFILE_CUST_close_rounded_ICN_ON_T');
+                  logFirebaseEvent('IconButton_navigate_to');
+
                   context.goNamed('home_cust');
                 },
               ),
@@ -133,6 +138,8 @@ class _EditProfileCustWidgetState extends State<EditProfileCustWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
+                  logFirebaseEvent('EDIT_PROFILE_CUST_PAGE_UPLOAD_BTN_ON_TAP');
+                  logFirebaseEvent('Button_upload_media_to_firebase');
                   final selectedMedia = await selectMediaWithSourceBottomSheet(
                     context: context,
                     allowPhoto: true,
@@ -210,6 +217,9 @@ class _EditProfileCustWidgetState extends State<EditProfileCustWidget> {
                       controller: _model.nameTextController,
                       focusNode: _model.nameFocusNode,
                       onFieldSubmitted: (_) async {
+                        logFirebaseEvent(
+                            'EDIT_PROFILE_CUST_Name_ON_TEXTFIELD_SUBM');
+                        logFirebaseEvent('Name_auth');
                         if (_model.nameTextController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

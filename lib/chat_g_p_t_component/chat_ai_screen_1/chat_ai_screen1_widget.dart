@@ -24,9 +24,13 @@ class _ChatAiScreen1WidgetState extends State<ChatAiScreen1Widget> {
     super.initState();
     _model = createModel(context, () => ChatAiScreen1Model());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'chat_ai_Screen_1'});
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
+      logFirebaseEvent('CHAT_AI_SCREEN_1_chat_ai_Screen_1_ON_INI');
       // showProgressDots
+      logFirebaseEvent('chat_ai_Screen_1_showProgressDots');
       _model.aiResponding = false;
       setState(() {});
     });
@@ -75,6 +79,9 @@ class _ChatAiScreen1WidgetState extends State<ChatAiScreen1Widget> {
                   size: 24.0,
                 ),
                 onPressed: () async {
+                  logFirebaseEvent('CHAT_AI_SCREEN_1_refresh_rounded_ICN_ON_');
+                  logFirebaseEvent('IconButton_navigate_to');
+
                   context.pushNamed(
                     'chat_ai_Screen_1',
                     extra: <String, dynamic>{

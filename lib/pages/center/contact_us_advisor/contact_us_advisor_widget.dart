@@ -23,6 +23,8 @@ class _ContactUsAdvisorWidgetState extends State<ContactUsAdvisorWidget> {
     super.initState();
     _model = createModel(context, () => ContactUsAdvisorModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'ContactUs_advisor'});
     _model.textController1 ??= TextEditingController();
     _model.textFieldFocusNode1 ??= FocusNode();
 
@@ -61,6 +63,8 @@ class _ContactUsAdvisorWidgetState extends State<ContactUsAdvisorWidget> {
             size: 25.0,
           ),
           onPressed: () async {
+            logFirebaseEvent('CONTACT_US_ADVISOR_arrow_back_rounded_IC');
+            logFirebaseEvent('IconButton_navigate_back');
             context.safePop();
           },
         ),

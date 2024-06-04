@@ -1,5 +1,5 @@
 // Export pages
-export '/pages/auth/first/first_widget.dart' show FirstWidget;
+export '/pages/first/first_widget.dart' show FirstWidget;
 export '/pages/center/emergency_advisor/emergency_advisor_widget.dart'
     show EmergencyAdvisorWidget;
 export '/pages/customer/booking_cust/booking_cust_widget.dart'
@@ -16,10 +16,10 @@ export '/pages/center/contact_us_advisor/contact_us_advisor_widget.dart'
     show ContactUsAdvisorWidget;
 export '/pages/center/requests_advisor/requests_advisor_widget.dart'
     show RequestsAdvisorWidget;
-export '/pages/center/reviews_advisor/reviews_advisor_widget.dart'
-    show ReviewsAdvisorWidget;
-export '/pages/customer/review_cust/review_cust_widget.dart'
-    show ReviewCustWidget;
+export '/pages/center/rating_advisor/rating_advisor_widget.dart'
+    show RatingAdvisorWidget;
+export '/pages/customer/rating_cust/rating_cust_widget.dart'
+    show RatingCustWidget;
 export '/pages/center/add_center/add_center_widget.dart' show AddCenterWidget;
 export '/pages/customer/request_cust/request_cust_widget.dart'
     show RequestCustWidget;
@@ -29,7 +29,6 @@ export '/pages/customer/view_centers_cust/view_centers_cust_widget.dart'
     show ViewCentersCustWidget;
 export '/pages/customer/profile_cust/profile_cust_widget.dart'
     show ProfileCustWidget;
-export '/pages/customer/home_cust/home_cust_widget.dart' show HomeCustWidget;
 export '/pages/center/profile_advisor/profile_advisor_widget.dart'
     show ProfileAdvisorWidget;
 export '/pages/customer/create_profile_cust/create_profile_cust_widget.dart'
@@ -55,3 +54,7 @@ export '/pages/center/appointments_advisor/appointments_advisor_widget.dart'
     show AppointmentsAdvisorWidget;
 export '/pages/center/contactcust_center/contactcust_center_widget.dart'
     show ContactcustCenterWidget;
+export '/contact_u_s_cust/contact_u_s_cust_widget.dart'
+    show ContactUSCustWidget;
+export '/pages/customer/home_cust/home_cust_widget.dart' show HomeCustWidget;
+export '/pages/history_cust/history_cust_widget.dart' show HistoryCustWidget;

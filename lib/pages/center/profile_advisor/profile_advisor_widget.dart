@@ -29,6 +29,8 @@ class _ProfileAdvisorWidgetState extends State<ProfileAdvisorWidget>
     super.initState();
     _model = createModel(context, () => ProfileAdvisorModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'profile_advisor'});
     animationsMap.addAll({
       'cardOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -232,6 +234,8 @@ class _ProfileAdvisorWidgetState extends State<ProfileAdvisorWidget>
                   size: 30.0,
                 ),
                 onPressed: () async {
+                  logFirebaseEvent('PROFILE_ADVISOR_close_rounded_ICN_ON_TAP');
+                  logFirebaseEvent('IconButton_navigate_back');
                   context.pop();
                 },
               ),
@@ -469,9 +473,13 @@ class _ProfileAdvisorWidgetState extends State<ProfileAdvisorWidget>
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    logFirebaseEvent('PROFILE_ADVISOR_PAGE_LOG_OUT_BTN_ON_TAP');
+                    logFirebaseEvent('Button_auth');
                     GoRouter.of(context).prepareAuthEvent();
                     await authManager.signOut();
                     GoRouter.of(context).clearRedirectLocation();
+
+                    logFirebaseEvent('Button_navigate_to');
 
                     context.goNamedAuth('First', context.mounted);
                   },
@@ -534,6 +542,10 @@ class _ProfileAdvisorWidgetState extends State<ProfileAdvisorWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'PROFILE_ADVISOR_Container_cnbl533e_ON_TA');
+                                  logFirebaseEvent(
+                                      'Container_set_dark_mode_settings');
                                   setDarkModeSetting(context, ThemeMode.light);
                                 },
                                 child: Container(
@@ -610,6 +622,10 @@ class _ProfileAdvisorWidgetState extends State<ProfileAdvisorWidget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
+                                  logFirebaseEvent(
+                                      'PROFILE_ADVISOR_Container_0np50l29_ON_TA');
+                                  logFirebaseEvent(
+                                      'Container_set_dark_mode_settings');
                                   setDarkModeSetting(context, ThemeMode.dark);
                                 },
                                 child: Container(

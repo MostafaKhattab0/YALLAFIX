@@ -25,9 +25,15 @@ class ServicesRecord extends FirestoreRecord {
   String get serviceName => _serviceName ?? '';
   bool hasServiceName() => _serviceName != null;
 
+  // "Is_onSite" field.
+  bool? _isOnSite;
+  bool get isOnSite => _isOnSite ?? false;
+  bool hasIsOnSite() => _isOnSite != null;
+
   void _initializeFields() {
     _serviceId = castToType<int>(snapshotData['service_id']);
     _serviceName = snapshotData['service_name'] as String?;
+    _isOnSite = snapshotData['Is_onSite'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -67,11 +73,13 @@ class ServicesRecord extends FirestoreRecord {
 Map<String, dynamic> createServicesRecordData({
   int? serviceId,
   String? serviceName,
+  bool? isOnSite,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'service_id': serviceId,
       'service_name': serviceName,
+      'Is_onSite': isOnSite,
     }.withoutNulls,
   );
 
@@ -83,12 +91,14 @@ class ServicesRecordDocumentEquality implements Equality<ServicesRecord> {
 
   @override
   bool equals(ServicesRecord? e1, ServicesRecord? e2) {
-    return e1?.serviceId == e2?.serviceId && e1?.serviceName == e2?.serviceName;
+    return e1?.serviceId == e2?.serviceId &&
+        e1?.serviceName == e2?.serviceName &&
+        e1?.isOnSite == e2?.isOnSite;
   }
 
   @override
   int hash(ServicesRecord? e) =>
-      const ListEquality().hash([e?.serviceId, e?.serviceName]);
+      const ListEquality().hash([e?.serviceId, e?.serviceName, e?.isOnSite]);
 
   @override
   bool isValidKey(Object? o) => o is ServicesRecord;

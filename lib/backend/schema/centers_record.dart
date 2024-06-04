@@ -60,6 +60,16 @@ class CentersRecord extends FirestoreRecord {
   DocumentReference? get uid => _uid;
   bool hasUid() => _uid != null;
 
+  // "supports_onSite" field.
+  bool? _supportsOnSite;
+  bool get supportsOnSite => _supportsOnSite ?? false;
+  bool hasSupportsOnSite() => _supportsOnSite != null;
+
+  // "ratingRef" field.
+  List<double>? _ratingRef;
+  List<double> get ratingRef => _ratingRef ?? const [];
+  bool hasRatingRef() => _ratingRef != null;
+
   void _initializeFields() {
     _centerName = snapshotData['center_name'] as String?;
     _centerLocation = snapshotData['center_location'] as LatLng?;
@@ -70,6 +80,8 @@ class CentersRecord extends FirestoreRecord {
     _centerId = snapshotData['center_id'] as String?;
     _centerBrands = getDataList(snapshotData['center_brands']);
     _uid = snapshotData['uid'] as DocumentReference?;
+    _supportsOnSite = snapshotData['supports_onSite'] as bool?;
+    _ratingRef = getDataList(snapshotData['ratingRef']);
   }
 
   static CollectionReference get collection =>
@@ -115,6 +127,7 @@ Map<String, dynamic> createCentersRecordData({
   double? centerRating,
   String? centerId,
   DocumentReference? uid,
+  bool? supportsOnSite,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -126,6 +139,7 @@ Map<String, dynamic> createCentersRecordData({
       'center_rating': centerRating,
       'center_id': centerId,
       'uid': uid,
+      'supports_onSite': supportsOnSite,
     }.withoutNulls,
   );
 
@@ -146,7 +160,9 @@ class CentersRecordDocumentEquality implements Equality<CentersRecord> {
         e1?.centerRating == e2?.centerRating &&
         e1?.centerId == e2?.centerId &&
         listEquality.equals(e1?.centerBrands, e2?.centerBrands) &&
-        e1?.uid == e2?.uid;
+        e1?.uid == e2?.uid &&
+        e1?.supportsOnSite == e2?.supportsOnSite &&
+        listEquality.equals(e1?.ratingRef, e2?.ratingRef);
   }
 
   @override
@@ -159,7 +175,9 @@ class CentersRecordDocumentEquality implements Equality<CentersRecord> {
         e?.centerRating,
         e?.centerId,
         e?.centerBrands,
-        e?.uid
+        e?.uid,
+        e?.supportsOnSite,
+        e?.ratingRef
       ]);
 
   @override

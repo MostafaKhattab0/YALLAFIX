@@ -21,6 +21,8 @@ class _MapWidgetState extends State<MapWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MapModel());
+
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'map'});
   }
 
   @override

@@ -32,6 +32,8 @@ class _EditBookingCustWidgetState extends State<EditBookingCustWidget> {
     super.initState();
     _model = createModel(context, () => EditBookingCustModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'edit_booking_cust'});
     _model.descriptionTextController ??= TextEditingController();
     _model.descriptionFocusNode ??= FocusNode();
     _model.descriptionFocusNode!.addListener(() => setState(() {}));
@@ -121,6 +123,9 @@ class _EditBookingCustWidgetState extends State<EditBookingCustWidget> {
                       size: 24.0,
                     ),
                     onPressed: () async {
+                      logFirebaseEvent(
+                          'EDIT_BOOKING_CUST_close_rounded_ICN_ON_T');
+                      logFirebaseEvent('IconButton_navigate_back');
                       context.safePop();
                     },
                   ),
@@ -360,6 +365,9 @@ class _EditBookingCustWidgetState extends State<EditBookingCustWidget> {
                                 size: 24.0,
                               ),
                               onPressed: () async {
+                                logFirebaseEvent(
+                                    'EDIT_BOOKING_CUST_PAGE_Date_ON_TAP');
+                                logFirebaseEvent('Date_date_time_picker');
                                 final datePickedDate = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
@@ -474,10 +482,18 @@ class _EditBookingCustWidgetState extends State<EditBookingCustWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onLongPress: () async {
+                        logFirebaseEvent(
+                            'EDIT_BOOKING_CUST_REQUEST_APPOINTMENT_BT');
+                        logFirebaseEvent('Button_navigate_to');
+
                         context.goNamed('requests_advisor');
                       },
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'EDIT_BOOKING_CUST_REQUEST_APPOINTMENT_BT');
+                          logFirebaseEvent('Button_backend_call');
+
                           await widget.req!.reference.update({
                             ...createRequestsRecordData(
                               requestDescription:
@@ -492,6 +508,7 @@ class _EditBookingCustWidgetState extends State<EditBookingCustWidget> {
                               },
                             ),
                           });
+                          logFirebaseEvent('Button_navigate_to');
 
                           context.goNamed('Request_cust');
                         },

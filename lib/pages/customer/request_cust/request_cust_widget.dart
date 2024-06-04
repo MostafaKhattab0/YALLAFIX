@@ -25,6 +25,9 @@ class _RequestCustWidgetState extends State<RequestCustWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => RequestCustModel());
+
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'Request_cust'});
   }
 
   @override
@@ -78,6 +81,10 @@ class _RequestCustWidgetState extends State<RequestCustWidget> {
                     size: 30.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent(
+                        'REQUEST_CUST_arrow_back_rounded_ICN_ON_T');
+                    logFirebaseEvent('IconButton_navigate_to');
+
                     context.pushNamed('home_cust');
                   },
                 ),
@@ -275,6 +282,10 @@ class _RequestCustWidgetState extends State<RequestCustWidget> {
                                   children: [
                                     FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'REQUEST_CUST_PAGE_EDIT_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_navigate_to');
+
                                         context.pushNamed(
                                           'edit_booking_cust',
                                           queryParameters: {
@@ -318,6 +329,9 @@ class _RequestCustWidgetState extends State<RequestCustWidget> {
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'REQUEST_CUST_PAGE_CANCEL_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_backend_call');
                                         await listViewRequestsRecord.reference
                                             .delete();
                                       },

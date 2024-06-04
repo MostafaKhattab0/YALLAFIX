@@ -29,6 +29,8 @@ class _LoginCenterWidgetState extends State<LoginCenterWidget>
     super.initState();
     _model = createModel(context, () => LoginCenterModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'login_center'});
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
@@ -356,6 +358,9 @@ class _LoginCenterWidgetState extends State<LoginCenterWidget>
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'LOGIN_CENTER_PAGE_SIGN_IN_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_auth');
                                         GoRouter.of(context).prepareAuthEvent();
 
                                         final user =
@@ -410,6 +415,10 @@ class _LoginCenterWidgetState extends State<LoginCenterWidget>
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'LOGIN_CENTER_FORGOT_PASSWORD?_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_navigate_to');
+
                                         context
                                             .pushNamed('auth_3_ForgotPassword');
                                       },
@@ -483,6 +492,9 @@ class _LoginCenterWidgetState extends State<LoginCenterWidget>
                                             0.0, 0.0, 0.0, 16.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
+                                            logFirebaseEvent(
+                                                'LOGIN_CENTER_CONTINUE_WITH_GOOGLE_BTN_ON');
+                                            logFirebaseEvent('Button_auth');
                                             GoRouter.of(context)
                                                 .prepareAuthEvent();
                                             final user = await authManager
@@ -547,6 +559,10 @@ class _LoginCenterWidgetState extends State<LoginCenterWidget>
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'LOGIN_CENTER_BE_A_PARTNER_BTN_ON_TAP');
+                                        logFirebaseEvent('Button_navigate_to');
+
                                         context.pushNamed('ContactUs_advisor');
                                       },
                                       text: FFLocalizations.of(context).getText(

@@ -31,12 +31,16 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
     super.initState();
     _model = createModel(context, () => AddCenterModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'add_center'});
     _model.centerNameTextController ??= TextEditingController();
     _model.centerNameFocusNode ??= FocusNode();
     _model.centerNameFocusNode!.addListener(() => setState(() {}));
-    _model.centerAddressTextController ??= TextEditingController();
-    _model.centerAddressFocusNode ??= FocusNode();
-    _model.centerAddressFocusNode!.addListener(() => setState(() {}));
+    _model.centerAddressTextController1 ??= TextEditingController();
+    _model.centerAddressFocusNode1 ??= FocusNode();
+    _model.centerAddressFocusNode1!.addListener(() => setState(() {}));
+    _model.centerAddressTextController2 ??= TextEditingController();
+    _model.centerAddressFocusNode2 ??= FocusNode();
+    _model.centerAddressFocusNode2!.addListener(() => setState(() {}));
     _model.centerDescriptionTextController ??= TextEditingController();
     _model.centerDescriptionFocusNode ??= FocusNode();
     _model.centerDescriptionFocusNode!.addListener(() => setState(() {}));
@@ -94,6 +98,9 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onLongPress: () async {
+                  logFirebaseEvent('ADD_CENTER_close_rounded_ICN_ON_LONG_PRE');
+                  logFirebaseEvent('IconButton_navigate_to');
+
                   context.pushNamed('home_cust');
                 },
                 child: FlutterFlowIconButton(
@@ -108,6 +115,10 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                     size: 24.0,
                   ),
                   onPressed: () async {
+                    logFirebaseEvent(
+                        'ADD_CENTER_PAGE_close_rounded_ICN_ON_TAP');
+                    logFirebaseEvent('IconButton_navigate_to');
+
                     context.pushNamed('home_advisor');
                   },
                 ),
@@ -164,13 +175,17 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                         'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/0cd3qw0fgzur/735cea56968f703df45d4c551ee3b160.gif',
                                       ),
                                       width: 250.0,
-                                      height: 150.0,
+                                      height: 130.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                   if (_model.uploadedFileUrl == '')
                                     FFButtonWidget(
                                       onPressed: () async {
+                                        logFirebaseEvent(
+                                            'ADD_CENTER_PAGE_UPLOAD_BTN_ON_TAP');
+                                        logFirebaseEvent(
+                                            'Button_upload_media_to_firebase');
                                         final selectedMedia =
                                             await selectMediaWithSourceBottomSheet(
                                           context: context,
@@ -454,8 +469,8 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                   ),
                                   TextFormField(
                                     controller:
-                                        _model.centerAddressTextController,
-                                    focusNode: _model.centerAddressFocusNode,
+                                        _model.centerAddressTextController1,
+                                    focusNode: _model.centerAddressFocusNode1,
                                     autofocus: true,
                                     textCapitalization:
                                         TextCapitalization.words,
@@ -523,7 +538,7 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                             BorderRadius.circular(12.0),
                                       ),
                                       filled: true,
-                                      fillColor: (_model.centerAddressFocusNode
+                                      fillColor: (_model.centerAddressFocusNode1
                                                   ?.hasFocus ??
                                               false)
                                           ? FlutterFlowTheme.of(context).accent1
@@ -542,7 +557,100 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                     cursorColor:
                                         FlutterFlowTheme.of(context).primary,
                                     validator: _model
-                                        .centerAddressTextControllerValidator
+                                        .centerAddressTextController1Validator
+                                        .asValidator(context),
+                                  ),
+                                  TextFormField(
+                                    controller:
+                                        _model.centerAddressTextController2,
+                                    focusNode: _model.centerAddressFocusNode2,
+                                    autofocus: true,
+                                    textCapitalization:
+                                        TextCapitalization.words,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelText:
+                                          FFLocalizations.of(context).getText(
+                                        'yoculgac' /* Which services do you provide */,
+                                      ),
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            letterSpacing: 0.0,
+                                          ),
+                                      errorStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'Readex Pro',
+                                            color: FlutterFlowTheme.of(context)
+                                                .error,
+                                            fontSize: 12.0,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .alternate,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(12.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: (_model.centerAddressFocusNode2
+                                                  ?.hasFocus ??
+                                              false)
+                                          ? FlutterFlowTheme.of(context).accent1
+                                          : FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                      contentPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16.0, 20.0, 16.0, 20.0),
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyLarge
+                                        .override(
+                                          fontFamily: 'Readex Pro',
+                                          letterSpacing: 0.0,
+                                        ),
+                                    cursorColor:
+                                        FlutterFlowTheme.of(context).primary,
+                                    validator: _model
+                                        .centerAddressTextController2Validator
                                         .asValidator(context),
                                   ),
                                   Align(
@@ -585,11 +693,74 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                                     .secondaryText,
                                           ),
                                           child: Checkbox(
-                                            value: _model.checkboxValue ??=
+                                            value: _model.checkboxValue1 ??=
                                                 false,
                                             onChanged: (newValue) async {
                                               setState(() => _model
-                                                  .checkboxValue = newValue!);
+                                                  .checkboxValue1 = newValue!);
+                                            },
+                                            side: BorderSide(
+                                              width: 2,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                            ),
+                                            activeColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            checkColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 50.0, 0.0),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'mxqykpw7' /* Support OnSite service */,
+                                            ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                          ),
+                                        ),
+                                        Theme(
+                                          data: ThemeData(
+                                            checkboxTheme: CheckboxThemeData(
+                                              visualDensity:
+                                                  VisualDensity.compact,
+                                              materialTapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                              ),
+                                            ),
+                                            unselectedWidgetColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                          ),
+                                          child: Checkbox(
+                                            value: _model.checkboxValue2 ??=
+                                                false,
+                                            onChanged: (newValue) async {
+                                              setState(() => _model
+                                                  .checkboxValue2 = newValue!);
                                             },
                                             side: BorderSide(
                                               width: 2,
@@ -774,10 +945,20 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onLongPress: () async {
+                                        logFirebaseEvent(
+                                            'ADD_CENTER_CreatCenter_ON_LONG_PRESS');
+                                        logFirebaseEvent(
+                                            'CreatCenter_navigate_to');
+
                                         context.goNamed('home_cust');
                                       },
                                       child: FFButtonWidget(
                                         onPressed: () async {
+                                          logFirebaseEvent(
+                                              'ADD_CENTER_PAGE_CreatCenter_ON_TAP');
+                                          logFirebaseEvent(
+                                              'CreatCenter_backend_call');
+
                                           await CentersRecord.collection
                                               .doc()
                                               .set({
@@ -791,7 +972,7 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                               centerLocation: _model
                                                   .centerLocationValue.latLng,
                                               supportEmergency:
-                                                  _model.checkboxValue,
+                                                  _model.checkboxValue1,
                                               centerImage:
                                                   valueOrDefault<String>(
                                                 _model.uploadedFileUrl,
@@ -804,6 +985,8 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                                 currentUserReference?.id,
                                                 'x',
                                               ),
+                                              supportsOnSite:
+                                                  _model.checkboxValue2,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -812,6 +995,8 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                               },
                                             ),
                                           });
+                                          logFirebaseEvent(
+                                              'CreatCenter_navigate_to');
 
                                           context.pushNamed('home_advisor');
                                         },

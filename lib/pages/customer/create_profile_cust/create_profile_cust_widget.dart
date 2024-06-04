@@ -31,6 +31,8 @@ class _CreateProfileCustWidgetState extends State<CreateProfileCustWidget> {
     super.initState();
     _model = createModel(context, () => CreateProfileCustModel());
 
+    logFirebaseEvent('screen_view',
+        parameters: {'screen_name': 'create_profile_cust'});
     _model.nameTextController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
     _model.nameFocusNode!.addListener(() => setState(() {}));
@@ -100,6 +102,9 @@ class _CreateProfileCustWidgetState extends State<CreateProfileCustWidget> {
                   size: 24.0,
                 ),
                 onPressed: () async {
+                  logFirebaseEvent('CREATE_PROFILE_CUST_close_rounded_ICN_ON');
+                  logFirebaseEvent('IconButton_navigate_to');
+
                   context.goNamed('home_cust');
                 },
               ),
@@ -108,500 +113,578 @@ class _CreateProfileCustWidgetState extends State<CreateProfileCustWidget> {
           centerTitle: false,
           elevation: 0.0,
         ),
-        body: SafeArea(
-          top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              width: 150.0,
+              height: 150.0,
+              decoration: const BoxDecoration(),
+              child: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
-                child: Container(
-                  width: 149.0,
-                  height: 149.0,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: Image.network(
-                    valueOrDefault<String>(
-                      _model.uploadedFileUrl,
-                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/2kqy5yy32p16/268-avatar-man.gif',
+                child: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    logFirebaseEvent(
+                        'CREATE_PROFILE_CUST_CircleImage_1tqhi69p');
+                    logFirebaseEvent('CircleImage_upload_media_to_firebase');
+                    final selectedMedia =
+                        await selectMediaWithSourceBottomSheet(
+                      context: context,
+                      allowPhoto: true,
+                    );
+                    if (selectedMedia != null &&
+                        selectedMedia.every((m) =>
+                            validateFileFormat(m.storagePath, context))) {
+                      setState(() => _model.isDataUploading1 = true);
+                      var selectedUploadedFiles = <FFUploadedFile>[];
+
+                      var downloadUrls = <String>[];
+                      try {
+                        selectedUploadedFiles = selectedMedia
+                            .map((m) => FFUploadedFile(
+                                  name: m.storagePath.split('/').last,
+                                  bytes: m.bytes,
+                                  height: m.dimensions?.height,
+                                  width: m.dimensions?.width,
+                                  blurHash: m.blurHash,
+                                ))
+                            .toList();
+
+                        downloadUrls = (await Future.wait(
+                          selectedMedia.map(
+                            (m) async =>
+                                await uploadData(m.storagePath, m.bytes),
+                          ),
+                        ))
+                            .where((u) => u != null)
+                            .map((u) => u!)
+                            .toList();
+                      } finally {
+                        _model.isDataUploading1 = false;
+                      }
+                      if (selectedUploadedFiles.length ==
+                              selectedMedia.length &&
+                          downloadUrls.length == selectedMedia.length) {
+                        setState(() {
+                          _model.uploadedLocalFile1 =
+                              selectedUploadedFiles.first;
+                          _model.uploadedFileUrl1 = downloadUrls.first;
+                        });
+                      } else {
+                        setState(() {});
+                        return;
+                      }
+                    }
+                  },
+                  child: Container(
+                    clipBehavior: Clip.antiAlias,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
                     ),
-                    fit: BoxFit.cover,
+                    child: Image.network(
+                      valueOrDefault<String>(
+                        _model.uploadedFileUrl1,
+                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/2kqy5yy32p16/268-avatar-man.gif',
+                      ),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               ),
-              FFButtonWidget(
-                onPressed: () async {
-                  final selectedMedia = await selectMediaWithSourceBottomSheet(
-                    context: context,
-                    allowPhoto: true,
-                  );
-                  if (selectedMedia != null &&
-                      selectedMedia.every(
-                          (m) => validateFileFormat(m.storagePath, context))) {
-                    setState(() => _model.isDataUploading = true);
-                    var selectedUploadedFiles = <FFUploadedFile>[];
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 326.0,
+                    height: 191.0,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.of(context).secondaryBackground,
+                    ),
+                    alignment: const AlignmentDirectional(0.0, 0.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        logFirebaseEvent(
+                            'CREATE_PROFILE_CUST_Image_9klasbcy_ON_TA');
+                        logFirebaseEvent('Image_upload_media_to_firebase');
+                        final selectedMedia =
+                            await selectMediaWithSourceBottomSheet(
+                          context: context,
+                          allowPhoto: true,
+                        );
+                        if (selectedMedia != null &&
+                            selectedMedia.every((m) =>
+                                validateFileFormat(m.storagePath, context))) {
+                          setState(() => _model.isDataUploading2 = true);
+                          var selectedUploadedFiles = <FFUploadedFile>[];
 
-                    var downloadUrls = <String>[];
-                    try {
-                      selectedUploadedFiles = selectedMedia
-                          .map((m) => FFUploadedFile(
-                                name: m.storagePath.split('/').last,
-                                bytes: m.bytes,
-                                height: m.dimensions?.height,
-                                width: m.dimensions?.width,
-                                blurHash: m.blurHash,
-                              ))
-                          .toList();
+                          var downloadUrls = <String>[];
+                          try {
+                            selectedUploadedFiles = selectedMedia
+                                .map((m) => FFUploadedFile(
+                                      name: m.storagePath.split('/').last,
+                                      bytes: m.bytes,
+                                      height: m.dimensions?.height,
+                                      width: m.dimensions?.width,
+                                      blurHash: m.blurHash,
+                                    ))
+                                .toList();
 
-                      downloadUrls = (await Future.wait(
-                        selectedMedia.map(
-                          (m) async => await uploadData(m.storagePath, m.bytes),
+                            downloadUrls = (await Future.wait(
+                              selectedMedia.map(
+                                (m) async =>
+                                    await uploadData(m.storagePath, m.bytes),
+                              ),
+                            ))
+                                .where((u) => u != null)
+                                .map((u) => u!)
+                                .toList();
+                          } finally {
+                            _model.isDataUploading2 = false;
+                          }
+                          if (selectedUploadedFiles.length ==
+                                  selectedMedia.length &&
+                              downloadUrls.length == selectedMedia.length) {
+                            setState(() {
+                              _model.uploadedLocalFile2 =
+                                  selectedUploadedFiles.first;
+                              _model.uploadedFileUrl2 = downloadUrls.first;
+                            });
+                          } else {
+                            setState(() {});
+                            return;
+                          }
+                        }
+                      },
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          'https://images.unsplash.com/photo-1463462927315-fb10af2c68d8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxN3x8bXklMjBjYXJ8ZW58MHx8fHwxNzE3MzYzNjczfDA&ixlib=rb-4.0.3&q=85',
+                          width: 286.0,
+                          height: 200.0,
+                          fit: BoxFit.cover,
                         ),
-                      ))
-                          .where((u) => u != null)
-                          .map((u) => u!)
-                          .toList();
-                    } finally {
-                      _model.isDataUploading = false;
-                    }
-                    if (selectedUploadedFiles.length == selectedMedia.length &&
-                        downloadUrls.length == selectedMedia.length) {
-                      setState(() {
-                        _model.uploadedLocalFile = selectedUploadedFiles.first;
-                        _model.uploadedFileUrl = downloadUrls.first;
-                      });
-                    } else {
-                      setState(() {});
-                      return;
-                    }
-                  }
-                },
-                text: FFLocalizations.of(context).getText(
-                  '0rfms1fk' /* Upload */,
-                ),
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
-                        color: Colors.white,
-                        letterSpacing: 0.0,
                       ),
-                  elevation: 3.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
+                    ),
                   ),
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextFormField(
-                      controller: _model.nameTextController,
-                      focusNode: _model.nameFocusNode,
-                      autofocus: true,
-                      textCapitalization: TextCapitalization.words,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: FFLocalizations.of(context).getText(
-                          '9ci9rlkm' /* Name */,
-                        ),
-                        labelStyle: FlutterFlowTheme.of(context)
-                            .headlineMedium
-                            .override(
-                              fontFamily: 'Outfit',
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              letterSpacing: 0.0,
-                            ),
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        errorStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context).error,
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        filled: true,
-                        fillColor: (_model.nameFocusNode?.hasFocus ?? false)
-                            ? FlutterFlowTheme.of(context).accent1
-                            : FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 20.0, 16.0, 20.0),
+                  TextFormField(
+                    controller: _model.nameTextController,
+                    focusNode: _model.nameFocusNode,
+                    autofocus: true,
+                    textCapitalization: TextCapitalization.words,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: FFLocalizations.of(context).getText(
+                        '1b3xbg2s' /* Name */,
                       ),
-                      style:
-                          FlutterFlowTheme.of(context).headlineMedium.override(
-                                fontFamily: 'Outfit',
+                      labelStyle: FlutterFlowTheme.of(context)
+                          .headlineMedium
+                          .override(
+                            fontFamily: 'Outfit',
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            letterSpacing: 0.0,
+                          ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
                                 letterSpacing: 0.0,
                               ),
-                      cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.nameTextControllerValidator
-                          .asValidator(context),
-                    ),
-                    TextFormField(
-                      controller: _model.ageTextController,
-                      focusNode: _model.ageFocusNode,
-                      autofocus: true,
-                      textCapitalization: TextCapitalization.words,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: FFLocalizations.of(context).getText(
-                          '9jx24two' /* Age */,
-                        ),
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelLarge.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        errorStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context).error,
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        filled: true,
-                        fillColor: (_model.ageFocusNode?.hasFocus ?? false)
-                            ? FlutterFlowTheme.of(context).accent1
-                            : FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 20.0, 16.0, 20.0),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
-                          ),
-                      cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.ageTextControllerValidator
-                          .asValidator(context),
-                    ),
-                    TextFormField(
-                      controller: _model.phoneNumberTextController,
-                      focusNode: _model.phoneNumberFocusNode,
-                      autofocus: true,
-                      textCapitalization: TextCapitalization.words,
-                      obscureText: false,
-                      decoration: InputDecoration(
-                        labelText: FFLocalizations.of(context).getText(
-                          'o8ysfdto' /* Phone number */,
-                        ),
-                        labelStyle:
-                            FlutterFlowTheme.of(context).labelLarge.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        hintStyle:
-                            FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  letterSpacing: 0.0,
-                                ),
-                        errorStyle:
-                            FlutterFlowTheme.of(context).bodyMedium.override(
-                                  fontFamily: 'Readex Pro',
-                                  color: FlutterFlowTheme.of(context).error,
-                                  fontSize: 12.0,
-                                  letterSpacing: 0.0,
-                                ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).alternate,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).primary,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: FlutterFlowTheme.of(context).error,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        filled: true,
-                        fillColor: (_model.phoneNumberFocusNode?.hasFocus ??
-                                false)
-                            ? FlutterFlowTheme.of(context).accent1
-                            : FlutterFlowTheme.of(context).secondaryBackground,
-                        contentPadding: const EdgeInsetsDirectional.fromSTEB(
-                            16.0, 20.0, 16.0, 20.0),
-                      ),
-                      style: FlutterFlowTheme.of(context).bodyLarge.override(
-                            fontFamily: 'Readex Pro',
-                            letterSpacing: 0.0,
-                          ),
-                      cursorColor: FlutterFlowTheme.of(context).primary,
-                      validator: _model.phoneNumberTextControllerValidator
-                          .asValidator(context),
-                    ),
-                    StreamBuilder<List<BrandsRecord>>(
-                      stream: queryBrandsRecord(
-                        queryBuilder: (brandsRecord) =>
-                            brandsRecord.orderBy('brand_id', descending: true),
-                      ),
-                      builder: (context, snapshot) {
-                        // Customize what your widget looks like when it's loading.
-                        if (!snapshot.hasData) {
-                          return Center(
-                            child: SizedBox(
-                              width: 50.0,
-                              height: 50.0,
-                              child: SpinKitFadingCircle(
-                                color: FlutterFlowTheme.of(context).primary,
-                                size: 50.0,
+                      errorStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).error,
+                                fontSize: 12.0,
+                                letterSpacing: 0.0,
                               ),
-                            ),
-                          );
-                        }
-                        List<BrandsRecord> dropDownBrandsRecordList =
-                            snapshot.data!;
-                        return FlutterFlowDropDown<String>(
-                          controller: _model.dropDownValueController ??=
-                              FormFieldController<String>(null),
-                          options: dropDownBrandsRecordList
-                              .map((e) => valueOrDefault<String>(
-                                    e.brandName,
-                                    'x',
-                                  ))
-                              .toList(),
-                          onChanged: (val) =>
-                              setState(() => _model.dropDownValue = val),
-                          width: 300.0,
-                          height: 56.0,
-                          searchHintTextStyle:
-                              FlutterFlowTheme.of(context).labelMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          searchTextStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          textStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'Readex Pro',
-                                    letterSpacing: 0.0,
-                                  ),
-                          hintText: FFLocalizations.of(context).getText(
-                            'ahtz7vcr' /* Choose brand.. */,
-                          ),
-                          searchHintText: FFLocalizations.of(context).getText(
-                            'jwdcem9h' /* Search for a brand... */,
-                          ),
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          elevation: 2.0,
-                          borderColor: FlutterFlowTheme.of(context).alternate,
-                          borderWidth: 2.0,
-                          borderRadius: 8.0,
-                          margin: const EdgeInsetsDirectional.fromSTEB(
-                              16.0, 4.0, 16.0, 4.0),
-                          hidesUnderline: true,
-                          isOverButton: true,
-                          isSearchable: true,
-                          isMultiSelect: false,
-                        );
-                      },
-                    ),
-                    Padding(
-                      padding: const EdgeInsetsDirectional.fromSTEB(
-                          16.0, 12.0, 16.0, 12.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          var customersRecordReference =
-                              CustomersRecord.collection.doc();
-                          await customersRecordReference
-                              .set(createCustomersRecordData(
-                            customerName: valueOrDefault<String>(
-                              _model.nameTextController.text,
-                              'x',
-                            ),
-                            customerAge: valueOrDefault<int>(
-                              int.tryParse(_model.ageTextController.text),
-                              0,
-                            ),
-                            customerPhone: valueOrDefault<String>(
-                              _model.phoneNumberTextController.text,
-                              'x',
-                            ),
-                            customerImage: valueOrDefault<String>(
-                              _model.uploadedFileUrl,
-                              'x',
-                            ),
-                            customerId: valueOrDefault<String>(
-                              currentUserReference?.id,
-                              'x',
-                            ),
-                            customerCar: valueOrDefault<String>(
-                              _model.dropDownValue,
-                              'x',
-                            ),
-                          ));
-                          _model.customerOutput =
-                              CustomersRecord.getDocumentFromData(
-                                  createCustomersRecordData(
-                                    customerName: valueOrDefault<String>(
-                                      _model.nameTextController.text,
-                                      'x',
-                                    ),
-                                    customerAge: valueOrDefault<int>(
-                                      int.tryParse(
-                                          _model.ageTextController.text),
-                                      0,
-                                    ),
-                                    customerPhone: valueOrDefault<String>(
-                                      _model.phoneNumberTextController.text,
-                                      'x',
-                                    ),
-                                    customerImage: valueOrDefault<String>(
-                                      _model.uploadedFileUrl,
-                                      'x',
-                                    ),
-                                    customerId: valueOrDefault<String>(
-                                      currentUserReference?.id,
-                                      'x',
-                                    ),
-                                    customerCar: valueOrDefault<String>(
-                                      _model.dropDownValue,
-                                      'x',
-                                    ),
-                                  ),
-                                  customersRecordReference);
-
-                          await currentUserReference!
-                              .update(createUsersRecordData(
-                            customerRef: _model.customerOutput?.reference,
-                          ));
-
-                          context.pushNamed('home_cust');
-
-                          setState(() {});
-                        },
-                        text: FFLocalizations.of(context).getText(
-                          '2a0f7qsv' /* Submit */,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 2.0,
                         ),
-                        options: FFButtonOptions(
-                          height: 48.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
                           color: FlutterFlowTheme.of(context).primary,
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
+                          width: 2.0,
                         ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor: (_model.nameFocusNode?.hasFocus ?? false)
+                          ? FlutterFlowTheme.of(context).accent1
+                          : FlutterFlowTheme.of(context).secondaryBackground,
+                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 20.0, 16.0, 20.0),
+                    ),
+                    style: FlutterFlowTheme.of(context).headlineMedium.override(
+                          fontFamily: 'Outfit',
+                          letterSpacing: 0.0,
+                        ),
+                    cursorColor: FlutterFlowTheme.of(context).primary,
+                    validator:
+                        _model.nameTextControllerValidator.asValidator(context),
+                  ),
+                  TextFormField(
+                    controller: _model.ageTextController,
+                    focusNode: _model.ageFocusNode,
+                    autofocus: true,
+                    textCapitalization: TextCapitalization.words,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: FFLocalizations.of(context).getText(
+                        '583hh8fz' /* Age */,
+                      ),
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelLarge.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0.0,
+                              ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0.0,
+                              ),
+                      errorStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).error,
+                                fontSize: 12.0,
+                                letterSpacing: 0.0,
+                              ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor: (_model.ageFocusNode?.hasFocus ?? false)
+                          ? FlutterFlowTheme.of(context).accent1
+                          : FlutterFlowTheme.of(context).secondaryBackground,
+                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 20.0, 16.0, 20.0),
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                    cursorColor: FlutterFlowTheme.of(context).primary,
+                    validator:
+                        _model.ageTextControllerValidator.asValidator(context),
+                  ),
+                  TextFormField(
+                    controller: _model.phoneNumberTextController,
+                    focusNode: _model.phoneNumberFocusNode,
+                    autofocus: true,
+                    textCapitalization: TextCapitalization.words,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: FFLocalizations.of(context).getText(
+                        'xxerndn6' /* Phone number */,
+                      ),
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelLarge.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0.0,
+                              ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0.0,
+                              ),
+                      errorStyle:
+                          FlutterFlowTheme.of(context).bodyMedium.override(
+                                fontFamily: 'Readex Pro',
+                                color: FlutterFlowTheme.of(context).error,
+                                fontSize: 12.0,
+                                letterSpacing: 0.0,
+                              ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      errorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      focusedErrorBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      filled: true,
+                      fillColor: (_model.phoneNumberFocusNode?.hasFocus ??
+                              false)
+                          ? FlutterFlowTheme.of(context).accent1
+                          : FlutterFlowTheme.of(context).secondaryBackground,
+                      contentPadding: const EdgeInsetsDirectional.fromSTEB(
+                          16.0, 20.0, 16.0, 20.0),
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0.0,
+                        ),
+                    cursorColor: FlutterFlowTheme.of(context).primary,
+                    validator: _model.phoneNumberTextControllerValidator
+                        .asValidator(context),
+                  ),
+                  StreamBuilder<List<BrandsRecord>>(
+                    stream: queryBrandsRecord(
+                      queryBuilder: (brandsRecord) =>
+                          brandsRecord.orderBy('brand_id', descending: true),
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: SpinKitFadingCircle(
+                              color: FlutterFlowTheme.of(context).primary,
+                              size: 50.0,
+                            ),
+                          ),
+                        );
+                      }
+                      List<BrandsRecord> dropDownBrandsRecordList =
+                          snapshot.data!;
+                      return FlutterFlowDropDown<String>(
+                        controller: _model.dropDownValueController ??=
+                            FormFieldController<String>(null),
+                        options: dropDownBrandsRecordList
+                            .map((e) => valueOrDefault<String>(
+                                  e.brandName,
+                                  'x',
+                                ))
+                            .toList(),
+                        onChanged: (val) =>
+                            setState(() => _model.dropDownValue = val),
+                        width: 300.0,
+                        height: 56.0,
+                        searchHintTextStyle:
+                            FlutterFlowTheme.of(context).labelMedium.override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                        searchTextStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                        textStyle:
+                            FlutterFlowTheme.of(context).bodyMedium.override(
+                                  fontFamily: 'Readex Pro',
+                                  letterSpacing: 0.0,
+                                ),
+                        hintText: FFLocalizations.of(context).getText(
+                          'm4ds47uq' /* Choose brand.. */,
+                        ),
+                        searchHintText: FFLocalizations.of(context).getText(
+                          'elw1vd7m' /* Search for a brand... */,
+                        ),
+                        icon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 24.0,
+                        ),
+                        fillColor:
+                            FlutterFlowTheme.of(context).secondaryBackground,
+                        elevation: 2.0,
+                        borderColor: FlutterFlowTheme.of(context).alternate,
+                        borderWidth: 2.0,
+                        borderRadius: 8.0,
+                        margin: const EdgeInsetsDirectional.fromSTEB(
+                            16.0, 4.0, 16.0, 4.0),
+                        hidesUnderline: true,
+                        isOverButton: true,
+                        isSearchable: true,
+                        isMultiSelect: false,
+                      );
+                    },
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        logFirebaseEvent(
+                            'CREATE_PROFILE_CUST_SUBMIT_BTN_ON_TAP');
+                        logFirebaseEvent('Button_backend_call');
+
+                        var customersRecordReference =
+                            CustomersRecord.collection.doc();
+                        await customersRecordReference
+                            .set(createCustomersRecordData(
+                          customerName: valueOrDefault<String>(
+                            _model.nameTextController.text,
+                            'x',
+                          ),
+                          customerAge: valueOrDefault<int>(
+                            int.tryParse(_model.ageTextController.text),
+                            0,
+                          ),
+                          customerPhone: valueOrDefault<String>(
+                            _model.phoneNumberTextController.text,
+                            'x',
+                          ),
+                          customerImage: valueOrDefault<String>(
+                            _model.uploadedFileUrl1,
+                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/2kqy5yy32p16/268-avatar-man.gif',
+                          ),
+                          customerId: valueOrDefault<String>(
+                            currentUserReference?.id,
+                            'x',
+                          ),
+                          customerCar: valueOrDefault<String>(
+                            _model.dropDownValue,
+                            'x',
+                          ),
+                          customerCarphoto: valueOrDefault<String>(
+                            _model.uploadedFileUrl2,
+                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/fnw06lzy5ooo/A7cznGxdoZIU.gif',
+                          ),
+                        ));
+                        _model.customerOutput =
+                            CustomersRecord.getDocumentFromData(
+                                createCustomersRecordData(
+                                  customerName: valueOrDefault<String>(
+                                    _model.nameTextController.text,
+                                    'x',
+                                  ),
+                                  customerAge: valueOrDefault<int>(
+                                    int.tryParse(_model.ageTextController.text),
+                                    0,
+                                  ),
+                                  customerPhone: valueOrDefault<String>(
+                                    _model.phoneNumberTextController.text,
+                                    'x',
+                                  ),
+                                  customerImage: valueOrDefault<String>(
+                                    _model.uploadedFileUrl1,
+                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/2kqy5yy32p16/268-avatar-man.gif',
+                                  ),
+                                  customerId: valueOrDefault<String>(
+                                    currentUserReference?.id,
+                                    'x',
+                                  ),
+                                  customerCar: valueOrDefault<String>(
+                                    _model.dropDownValue,
+                                    'x',
+                                  ),
+                                  customerCarphoto: valueOrDefault<String>(
+                                    _model.uploadedFileUrl2,
+                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/fnw06lzy5ooo/A7cznGxdoZIU.gif',
+                                  ),
+                                ),
+                                customersRecordReference);
+                        logFirebaseEvent('Button_backend_call');
+
+                        await currentUserReference!
+                            .update(createUsersRecordData(
+                          customerRef: _model.customerOutput?.reference,
+                        ));
+                        logFirebaseEvent('Button_navigate_to');
+
+                        context.pushNamed('home_cust');
+
+                        setState(() {});
+                      },
+                      text: FFLocalizations.of(context).getText(
+                        '7x9egm7u' /* Submit */,
+                      ),
+                      options: FFButtonOptions(
+                        height: 48.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: FlutterFlowTheme.of(context).primary,
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                        elevation: 3.0,
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
-                  ]
-                      .divide(const SizedBox(height: 12.0))
-                      .addToEnd(const SizedBox(height: 32.0)),
-                ),
+                  ),
+                ]
+                    .divide(const SizedBox(height: 12.0))
+                    .addToEnd(const SizedBox(height: 32.0)),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
