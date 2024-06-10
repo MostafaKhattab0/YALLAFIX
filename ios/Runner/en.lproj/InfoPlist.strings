@@ -1,2 +1,3 @@
+NSLocationWhenInUseUsageDescription = "In order to know your location, this app requires permission to access the location";
 NSCameraUsageDescription = "In order to take a picture or video, this app requires permission to access the camera.";
 PermissionGroupNotification = "In order to send notifications, this app requires permission to access your notification";

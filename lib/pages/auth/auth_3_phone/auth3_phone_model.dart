@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'auth3_phone_widget.dart' show Auth3PhoneWidget;
 import 'package:flutter/material.dart';
@@ -12,6 +13,8 @@ class Auth3PhoneModel extends FlutterFlowModel<Auth3PhoneWidget> {
   TextEditingController? phoneNumberTextController;
   final phoneNumberMask = MaskTextInputFormatter(mask: '+(##)###-###-###-##');
   String? Function(BuildContext, String?)? phoneNumberTextControllerValidator;
+  // Stores action output result for [Backend Call - Read Document] action in Button widget.
+  CustomersRecord? customerRef;
 
   @override
   void initState(BuildContext context) {}

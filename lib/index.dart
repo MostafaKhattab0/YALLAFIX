@@ -12,7 +12,7 @@ export '/pages/center/balance_advisor/balance_advisor_widget.dart'
     show BalanceAdvisorWidget;
 export '/pages/center/analysis_advisor/analysis_advisor_widget.dart'
     show AnalysisAdvisorWidget;
-export '/pages/center/contact_us_advisor/contact_us_advisor_widget.dart'
+export '/pages/contact_us_advisor/contact_us_advisor_widget.dart'
     show ContactUsAdvisorWidget;
 export '/pages/center/requests_advisor/requests_advisor_widget.dart'
     show RequestsAdvisorWidget;
@@ -46,15 +46,16 @@ export '/pages/center/map/map_widget.dart' show MapWidget;
 export '/pages/auth/login_cust/login_cust_widget.dart' show LoginCustWidget;
 export '/pages/auth/login_center/login_center_widget.dart'
     show LoginCenterWidget;
-export '/pages/customer/edit_booking_cust/edit_booking_cust_widget.dart'
-    show EditBookingCustWidget;
+export '/pages/customer/booking_edit_cust/booking_edit_cust_widget.dart'
+    show BookingEditCustWidget;
 export '/pages/customer/appointment_cust/appointment_cust_widget.dart'
     show AppointmentCustWidget;
-export '/pages/center/appointments_advisor/appointments_advisor_widget.dart'
-    show AppointmentsAdvisorWidget;
 export '/pages/center/contactcust_center/contactcust_center_widget.dart'
     show ContactcustCenterWidget;
 export '/contact_u_s_cust/contact_u_s_cust_widget.dart'
     show ContactUSCustWidget;
 export '/pages/customer/home_cust/home_cust_widget.dart' show HomeCustWidget;
 export '/pages/history_cust/history_cust_widget.dart' show HistoryCustWidget;
+export '/pages/center/appointment_advisor/appointment_advisor_widget.dart'
+    show AppointmentAdvisorWidget;
+export '/maps/maps_widget.dart' show MapsWidget;

@@ -79,6 +79,16 @@ class UsersRecord extends FirestoreRecord {
   DocumentReference? get reviewRef => _reviewRef;
   bool hasReviewRef() => _reviewRef != null;
 
+  // "is_Admin" field.
+  bool? _isAdmin;
+  bool get isAdmin => _isAdmin ?? false;
+  bool hasIsAdmin() => _isAdmin != null;
+
+  // "is_Center" field.
+  bool? _isCenter;
+  bool get isCenter => _isCenter ?? false;
+  bool hasIsCenter() => _isCenter != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _photoUrl = snapshotData['photo_url'] as String?;
@@ -93,6 +103,8 @@ class UsersRecord extends FirestoreRecord {
     _customerRef = snapshotData['customerRef'] as DocumentReference?;
     _centerRef = snapshotData['centerRef'] as DocumentReference?;
     _reviewRef = snapshotData['reviewRef'] as DocumentReference?;
+    _isAdmin = snapshotData['is_Admin'] as bool?;
+    _isCenter = snapshotData['is_Center'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -142,6 +154,8 @@ Map<String, dynamic> createUsersRecordData({
   DocumentReference? customerRef,
   DocumentReference? centerRef,
   DocumentReference? reviewRef,
+  bool? isAdmin,
+  bool? isCenter,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -158,6 +172,8 @@ Map<String, dynamic> createUsersRecordData({
       'customerRef': customerRef,
       'centerRef': centerRef,
       'reviewRef': reviewRef,
+      'is_Admin': isAdmin,
+      'is_Center': isCenter,
     }.withoutNulls,
   );
 
@@ -181,7 +197,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.title == e2?.title &&
         e1?.customerRef == e2?.customerRef &&
         e1?.centerRef == e2?.centerRef &&
-        e1?.reviewRef == e2?.reviewRef;
+        e1?.reviewRef == e2?.reviewRef &&
+        e1?.isAdmin == e2?.isAdmin &&
+        e1?.isCenter == e2?.isCenter;
   }
 
   @override
@@ -198,7 +216,9 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.title,
         e?.customerRef,
         e?.centerRef,
-        e?.reviewRef
+        e?.reviewRef,
+        e?.isAdmin,
+        e?.isCenter
       ]);
 
   @override

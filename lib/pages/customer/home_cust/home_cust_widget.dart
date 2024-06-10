@@ -29,6 +29,7 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
   late HomeCustModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  LatLng? currentUserLocationValue;
 
   final animationsMap = <String, AnimationInfo>{};
 
@@ -41,23 +42,26 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       logFirebaseEvent('HOME_CUST_PAGE_home_cust_ON_INIT_STATE');
-      if (() {
-        if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
-          return true;
-        } else if (MediaQuery.sizeOf(context).width < kBreakpointMedium) {
-          return true;
-        } else if (MediaQuery.sizeOf(context).width < kBreakpointLarge) {
-          return true;
-        } else {
-          return true;
-        }
-      }()) {
-        return;
-      }
+      if (loggedIn) {
+        if (valueOrDefault<bool>(currentUserDocument?.isCenter, false) ==
+            true) {
+          logFirebaseEvent('home_cust_navigate_to');
 
-      return;
+          context.pushNamed('home_advisor');
+
+          return;
+        } else {
+          return;
+        }
+      } else {
+        logFirebaseEvent('home_cust_navigate_to');
+
+        context.pushNamed('First');
+      }
     });
 
+    getCurrentUserLocation(defaultLocation: const LatLng(0.0, 0.0), cached: true)
+        .then((loc) => setState(() => currentUserLocationValue = loc));
     _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
@@ -170,77 +174,90 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<CentersRecord>>(
-      stream: queryCentersRecord(
-        singleRecord: true,
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-            body: Center(
-              child: SizedBox(
-                width: 50.0,
-                height: 50.0,
-                child: SpinKitFadingCircle(
-                  color: FlutterFlowTheme.of(context).primary,
-                  size: 50.0,
-                ),
-              ),
+    if (currentUserLocationValue == null) {
+      return Container(
+        color: FlutterFlowTheme.of(context).primaryBackground,
+        child: Center(
+          child: SizedBox(
+            width: 50.0,
+            height: 50.0,
+            child: SpinKitFadingCircle(
+              color: FlutterFlowTheme.of(context).primary,
+              size: 50.0,
             ),
-          );
-        }
-        List<CentersRecord> homeCustCentersRecordList = snapshot.data!;
-        final homeCustCentersRecord = homeCustCentersRecordList.isNotEmpty
-            ? homeCustCentersRecordList.first
-            : null;
-        return Scaffold(
-          key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          floatingActionButton: Builder(
-            builder: (context) => FloatingActionButton(
-              onPressed: () async {
-                logFirebaseEvent('HOME_CUST_FloatingActionButton_m5qqb8qc_');
-                logFirebaseEvent('FloatingActionButton_alert_dialog');
-                await showDialog(
-                  context: context,
-                  builder: (dialogContext) {
-                    return Dialog(
-                      elevation: 0,
-                      insetPadding: EdgeInsets.zero,
-                      backgroundColor: Colors.transparent,
-                      alignment: const AlignmentDirectional(0.0, 0.0)
-                          .resolve(Directionality.of(context)),
-                      child: const SizedBox(
-                        height: 680.0,
-                        width: 360.0,
-                        child: AiChatComponent1Widget(),
-                      ),
-                    );
-                  },
-                ).then((value) => setState(() {}));
+          ),
+        ),
+      );
+    }
+
+    return Scaffold(
+      key: scaffoldKey,
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      floatingActionButton: Builder(
+        builder: (context) => FloatingActionButton(
+          onPressed: () async {
+            logFirebaseEvent('HOME_CUST_FloatingActionButton_m5qqb8qc_');
+            logFirebaseEvent('FloatingActionButton_alert_dialog');
+            await showDialog(
+              context: context,
+              builder: (dialogContext) {
+                return Dialog(
+                  elevation: 0,
+                  insetPadding: EdgeInsets.zero,
+                  backgroundColor: Colors.transparent,
+                  alignment: const AlignmentDirectional(0.0, 0.0)
+                      .resolve(Directionality.of(context)),
+                  child: const SizedBox(
+                    height: 680.0,
+                    width: 360.0,
+                    child: AiChatComponent1Widget(),
+                  ),
+                );
               },
-              backgroundColor: FlutterFlowTheme.of(context).primary,
-              elevation: 8.0,
-              child: FaIcon(
-                FontAwesomeIcons.solidCommentDots,
-                color: FlutterFlowTheme.of(context).info,
-                size: 24.0,
-              ),
-            ),
+            ).then((value) => setState(() {}));
+          },
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          elevation: 8.0,
+          child: FaIcon(
+            FontAwesomeIcons.solidCommentDots,
+            color: FlutterFlowTheme.of(context).info,
+            size: 24.0,
           ),
-          drawer: Drawer(
-            elevation: 16.0,
-            child: wrapWithModel(
-              model: _model.sidebarModel,
-              updateCallback: () => setState(() {}),
-              child: const SidebarWidget(),
-            ),
+        ),
+      ),
+      drawer: Drawer(
+        elevation: 16.0,
+        child: wrapWithModel(
+          model: _model.sidebarModel,
+          updateCallback: () => setState(() {}),
+          child: const SidebarWidget(),
+        ),
+      ),
+      body: Align(
+        alignment: const AlignmentDirectional(0.0, 0.0),
+        child: StreamBuilder<List<CentersRecord>>(
+          stream: queryCentersRecord(
+            singleRecord: true,
           ),
-          body: Align(
-            alignment: const AlignmentDirectional(0.0, 0.0),
-            child: SingleChildScrollView(
+          builder: (context, snapshot) {
+            // Customize what your widget looks like when it's loading.
+            if (!snapshot.hasData) {
+              return Center(
+                child: SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                  child: SpinKitFadingCircle(
+                    color: FlutterFlowTheme.of(context).primary,
+                    size: 50.0,
+                  ),
+                ),
+              );
+            }
+            List<CentersRecord> columnCentersRecordList = snapshot.data!;
+            final columnCentersRecord = columnCentersRecordList.isNotEmpty
+                ? columnCentersRecordList.first
+                : null;
+            return SingleChildScrollView(
               primary: false,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -273,9 +290,89 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
+                                  Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Align(
+                                          alignment: const AlignmentDirectional(
+                                              -0.91, -0.22),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    15.0, 10.0, 0.0, 0.0),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                logFirebaseEvent(
+                                                    'HOME_CUST_PAGE_Icon_nqvclnxg_ON_TAP');
+                                                logFirebaseEvent('Icon_drawer');
+                                                scaffoldKey.currentState!
+                                                    .openDrawer();
+                                              },
+                                              child: Icon(
+                                                Icons.menu,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryBackground,
+                                                size: 40.0,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        if (valueOrDefault<bool>(
+                                                currentUserDocument?.isAdmin,
+                                                false) ==
+                                            true)
+                                          Align(
+                                            alignment:
+                                                const AlignmentDirectional(0.0, 0.0),
+                                            child: Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      230.0, 0.0, 0.0, 0.0),
+                                              child: AuthUserStreamWidget(
+                                                builder: (context) => InkWell(
+                                                  splashColor:
+                                                      Colors.transparent,
+                                                  focusColor:
+                                                      Colors.transparent,
+                                                  hoverColor:
+                                                      Colors.transparent,
+                                                  highlightColor:
+                                                      Colors.transparent,
+                                                  onTap: () async {
+                                                    logFirebaseEvent(
+                                                        'HOME_CUST_PAGE_Icon_zdt1hqna_ON_TAP');
+                                                    logFirebaseEvent(
+                                                        'Icon_navigate_to');
+
+                                                    context.pushNamed(
+                                                        'admincreateAccountcenter');
+                                                  },
+                                                  child: Icon(
+                                                    Icons
+                                                        .admin_panel_settings_rounded,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
+                                                    size: 24.0,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 60.0, 0.0, 0.0),
+                                        0.0, 10.0, 0.0, 0.0),
                                     child: SizedBox(
                                       width: double.infinity,
                                       child: TextFormField(
@@ -303,12 +400,9 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
                                                       )
                                                       .toList(),
                                                 )
-                                                        .search(valueOrDefault<
-                                                            String>(
-                                                          homeCustCentersRecord
-                                                              ?.centerName,
-                                                          'x',
-                                                        ))
+                                                        .search(
+                                                            columnCentersRecord!
+                                                                .centerName)
                                                         .map((r) => r.object)
                                                         .toList(),
                                               )
@@ -400,31 +494,6 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
                                     ),
                                   ),
                                 ],
-                              ),
-                            ),
-                            Align(
-                              alignment: const AlignmentDirectional(-0.91, -0.22),
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    15.0, 10.0, 0.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    logFirebaseEvent(
-                                        'HOME_CUST_PAGE_Icon_nqvclnxg_ON_TAP');
-                                    logFirebaseEvent('Icon_drawer');
-                                    scaffoldKey.currentState!.openDrawer();
-                                  },
-                                  child: Icon(
-                                    Icons.menu,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                    size: 40.0,
-                                  ),
-                                ),
                               ),
                             ),
                           ],
@@ -771,7 +840,21 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
                                             0.0, 16.0, 0.0, 52.0),
                                         child:
                                             StreamBuilder<List<CentersRecord>>(
-                                          stream: queryCentersRecord(),
+                                          stream: queryCentersRecord(
+                                            queryBuilder: (centersRecord) =>
+                                                centersRecord.where(Filter.or(
+                                              Filter(
+                                                'carFix',
+                                                isEqualTo: true,
+                                              ),
+                                              Filter(
+                                                'center_location',
+                                                isEqualTo:
+                                                    currentUserLocationValue
+                                                        ?.toGeoPoint(),
+                                              ),
+                                            )),
+                                          ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
@@ -1046,7 +1129,14 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
                                             0.0, 16.0, 0.0, 52.0),
                                         child:
                                             StreamBuilder<List<CentersRecord>>(
-                                          stream: queryCentersRecord(),
+                                          stream: queryCentersRecord(
+                                            queryBuilder: (centersRecord) =>
+                                                centersRecord.where(
+                                              'carWash',
+                                              isEqualTo: true,
+                                              isNull: (true) == null,
+                                            ),
+                                          ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
@@ -1340,7 +1430,14 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
                                             0.0, 16.0, 0.0, 52.0),
                                         child:
                                             StreamBuilder<List<CentersRecord>>(
-                                          stream: queryCentersRecord(),
+                                          stream: queryCentersRecord(
+                                            queryBuilder: (centersRecord) =>
+                                                centersRecord.where(
+                                              'CarElectrician',
+                                              isEqualTo: true,
+                                              isNull: (true) == null,
+                                            ),
+                                          ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
@@ -1619,7 +1716,14 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
                                             0.0, 16.0, 0.0, 52.0),
                                         child:
                                             StreamBuilder<List<CentersRecord>>(
-                                          stream: queryCentersRecord(),
+                                          stream: queryCentersRecord(
+                                            queryBuilder: (centersRecord) =>
+                                                centersRecord.where(
+                                              'truckTow',
+                                              isEqualTo: true,
+                                              isNull: (true) == null,
+                                            ),
+                                          ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
@@ -1910,7 +2014,14 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
                                             0.0, 16.0, 0.0, 52.0),
                                         child:
                                             StreamBuilder<List<CentersRecord>>(
-                                          stream: queryCentersRecord(),
+                                          stream: queryCentersRecord(
+                                            queryBuilder: (centersRecord) =>
+                                                centersRecord.where(
+                                              'other',
+                                              isEqualTo: true,
+                                              isNull: (true) == null,
+                                            ),
+                                          ),
                                           builder: (context, snapshot) {
                                             // Customize what your widget looks like when it's loading.
                                             if (!snapshot.hasData) {
@@ -2234,10 +2345,10 @@ class _HomeCustWidgetState extends State<HomeCustWidget>
                   ),
                 ],
               ),
-            ),
-          ),
-        );
-      },
+            );
+          },
+        ),
+      ),
     );
   }
 }

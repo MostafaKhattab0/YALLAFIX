@@ -7,28 +7,29 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'requests_advisor_model.dart';
-export 'requests_advisor_model.dart';
+import 'appointment_advisor_model.dart';
+export 'appointment_advisor_model.dart';
 
-class RequestsAdvisorWidget extends StatefulWidget {
-  const RequestsAdvisorWidget({super.key});
+class AppointmentAdvisorWidget extends StatefulWidget {
+  const AppointmentAdvisorWidget({super.key});
 
   @override
-  State<RequestsAdvisorWidget> createState() => _RequestsAdvisorWidgetState();
+  State<AppointmentAdvisorWidget> createState() =>
+      _AppointmentAdvisorWidgetState();
 }
 
-class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
-  late RequestsAdvisorModel _model;
+class _AppointmentAdvisorWidgetState extends State<AppointmentAdvisorWidget> {
+  late AppointmentAdvisorModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => RequestsAdvisorModel());
+    _model = createModel(context, () => AppointmentAdvisorModel());
 
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'requests_advisor'});
+        parameters: {'screen_name': 'appointment_advisor'});
   }
 
   @override
@@ -60,7 +61,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
               ),
             );
           }
-          final requestsAdvisorCentersRecord = snapshot.data!;
+          final appointmentAdvisorCentersRecord = snapshot.data!;
           return GestureDetector(
             onTap: () => _model.unfocusNode.canRequestFocus
                 ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -83,7 +84,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                   ),
                   onPressed: () async {
                     logFirebaseEvent(
-                        'REQUESTS_ADVISOR_arrow_back_rounded_ICN_');
+                        'APPOINTMENT_ADVISOR_arrow_back_rounded_I');
                     logFirebaseEvent('IconButton_navigate_to');
 
                     context.pushNamed('home_advisor');
@@ -91,7 +92,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                 ),
                 title: Text(
                   FFLocalizations.of(context).getText(
-                    'k01sxd04' /* View Customer Requests */,
+                    'lwwyo7ci' /* View Customer Requests */,
                   ),
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Outfit',
@@ -117,11 +118,12 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                           )
                           .where(
                             'is_accepted',
-                            isEqualTo: false,
+                            isEqualTo: true,
                           )
                           .where(
                             'centerRef',
-                            isEqualTo: requestsAdvisorCentersRecord.reference,
+                            isEqualTo:
+                                appointmentAdvisorCentersRecord.reference,
                           ),
                     ),
                     builder: (context, snapshot) {
@@ -214,7 +216,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                                   Colors.transparent,
                                               onTap: () async {
                                                 logFirebaseEvent(
-                                                    'REQUESTS_ADVISOR_Image_dv8zxjsj_ON_TAP');
+                                                    'APPOINTMENT_ADVISOR_Image_3yr5ehkt_ON_TA');
                                                 logFirebaseEvent(
                                                     'Image_expand_image');
                                                 await Navigator.push(
@@ -262,7 +264,10 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 10.0),
                                         child: Text(
-                                          columnCustomersRecord.customerName,
+                                          valueOrDefault<String>(
+                                            columnCustomersRecord.customerCar,
+                                            'x',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -275,8 +280,10 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 10.0),
                                         child: Text(
-                                          columnCustomersRecord.customerAge
-                                              .toString(),
+                                          valueOrDefault<String>(
+                                            columnCustomersRecord.customerName,
+                                            'x',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -372,11 +379,11 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                             Padding(
                                               padding: const EdgeInsetsDirectional
                                                   .fromSTEB(
-                                                      10.0, 0.0, 165.0, 0.0),
+                                                      10.0, 0.0, 100.0, 0.0),
                                               child: FFButtonWidget(
                                                 onPressed: () async {
                                                   logFirebaseEvent(
-                                                      'REQUESTS_ADVISOR_PAGE_ACCEPT_BTN_ON_TAP');
+                                                      'APPOINTMENT_ADVISOR_FINISHED_BTN_ON_TAP');
                                                   logFirebaseEvent(
                                                       'Button_backend_call');
 
@@ -384,14 +391,13 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                                       .reference
                                                       .update(
                                                           createRequestsRecordData(
-                                                    isAccepted: true,
-                                                    isRejected: false,
+                                                    isDone: true,
                                                   ));
                                                 },
                                                 text:
                                                     FFLocalizations.of(context)
                                                         .getText(
-                                                  '6dttyth7' /* Accept */,
+                                                  'sdgausol' /* Finished */,
                                                 ),
                                                 options: FFButtonOptions(
                                                   height: 40.0,
@@ -429,20 +435,20 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                             FFButtonWidget(
                                               onPressed: () async {
                                                 logFirebaseEvent(
-                                                    'REQUESTS_ADVISOR_PAGE_REJECT_BTN_ON_TAP');
+                                                    'APPOINTMENT_ADVISOR_CONTACT_BTN_ON_TAP');
                                                 logFirebaseEvent(
-                                                    'Button_backend_call');
+                                                    'Button_navigate_to');
 
-                                                await listViewRequestsRecord
-                                                    .reference
-                                                    .update(
-                                                        createRequestsRecordData(
-                                                  isRejected: true,
-                                                ));
+                                                context.pushNamed(
+                                                    'contactcust_center');
                                               },
                                               text: FFLocalizations.of(context)
                                                   .getText(
-                                                'pp2twei4' /* Reject */,
+                                                'g8t6a341' /* Contact */,
+                                              ),
+                                              icon: const Icon(
+                                                Icons.contact_phone_sharp,
+                                                size: 15.0,
                                               ),
                                               options: FFButtonOptions(
                                                 height: 40.0,
@@ -455,7 +461,7 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                                             0.0, 0.0, 0.0, 0.0),
                                                 color:
                                                     FlutterFlowTheme.of(context)
-                                                        .error,
+                                                        .accent2,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .titleSmall
@@ -478,10 +484,9 @@ class _RequestsAdvisorWidgetState extends State<RequestsAdvisorWidget> {
                                         ),
                                       ),
                                       Divider(
-                                        height: 2.0,
-                                        thickness: 10.0,
+                                        thickness: 1.0,
                                         color: FlutterFlowTheme.of(context)
-                                            .alternate,
+                                            .accent4,
                                       ),
                                     ],
                                   );

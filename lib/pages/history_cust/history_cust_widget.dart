@@ -40,8 +40,8 @@ class _HistoryCustWidgetState extends State<HistoryCustWidget> {
   @override
   Widget build(BuildContext context) {
     return AuthUserStreamWidget(
-      builder: (context) => StreamBuilder<CentersRecord>(
-        stream: CentersRecord.getDocument(currentUserDocument!.centerRef!),
+      builder: (context) => StreamBuilder<CustomersRecord>(
+        stream: CustomersRecord.getDocument(currentUserDocument!.customerRef!),
         builder: (context, snapshot) {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
@@ -59,7 +59,7 @@ class _HistoryCustWidgetState extends State<HistoryCustWidget> {
               ),
             );
           }
-          final historyCustCentersRecord = snapshot.data!;
+          final historyCustCustomersRecord = snapshot.data!;
           return GestureDetector(
             onTap: () => _model.unfocusNode.canRequestFocus
                 ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -111,7 +111,7 @@ class _HistoryCustWidgetState extends State<HistoryCustWidget> {
                     queryBuilder: (requestsRecord) => requestsRecord
                         .where(
                           'customerRef',
-                          isEqualTo: currentUserDocument?.customerRef,
+                          isEqualTo: historyCustCustomersRecord.reference,
                         )
                         .where(
                           'is_done',
@@ -145,134 +145,160 @@ class _HistoryCustWidgetState extends State<HistoryCustWidget> {
                             listViewRequestsRecordList[listViewIndex];
                         return Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.network(
-                                valueOrDefault<String>(
-                                  historyCustCentersRecord.centerImage,
-                                  'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/49y4sydb90q0/image_processing20211002-919-utbume.gif',
-                                ),
-                                width: 391.0,
-                                height: 134.0,
-                                fit: BoxFit.cover,
-                                alignment: const Alignment(0.0, 0.5),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 12.0, 0.0, 8.0),
-                                child: RichText(
-                                  textScaler: MediaQuery.of(context).textScaler,
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: valueOrDefault<String>(
-                                          historyCustCentersRecord.centerName,
-                                          'x',
-                                        ),
-                                        style: const TextStyle(),
-                                      )
-                                    ],
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
+                          child: StreamBuilder<CentersRecord>(
+                            stream: CentersRecord.getDocument(
+                                currentUserDocument!.centerRef!),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: SpinKitFadingCircle(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      size: 50.0,
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(6.0),
-                                child: Builder(
-                                  builder: (context) {
-                                    final services = listViewRequestsRecord
-                                        .requestServices
-                                        .toList();
-                                    return Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: List.generate(services.length,
-                                          (servicesIndex) {
-                                        final servicesItem =
-                                            services[servicesIndex];
-                                        return Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  10.0, 0.0, 15.0, 0.0),
-                                          child: Text(
-                                            valueOrDefault<String>(
-                                              servicesItem,
+                                );
+                              }
+                              final columnCentersRecord = snapshot.data!;
+                              return Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Image.network(
+                                    valueOrDefault<String>(
+                                      columnCentersRecord.centerImage,
+                                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/49y4sydb90q0/image_processing20211002-919-utbume.gif',
+                                    ),
+                                    width: 391.0,
+                                    height: 134.0,
+                                    fit: BoxFit.cover,
+                                    alignment: const Alignment(0.0, 0.5),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 12.0, 0.0, 8.0),
+                                    child: RichText(
+                                      textScaler:
+                                          MediaQuery.of(context).textScaler,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: valueOrDefault<String>(
+                                              columnCentersRecord.centerName,
                                               'x',
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
+                                            style: const TextStyle(),
+                                          )
+                                        ],
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(6.0),
+                                    child: Builder(
+                                      builder: (context) {
+                                        final services = listViewRequestsRecord
+                                            .requestServices
+                                            .toList();
+                                        return Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: List.generate(
+                                              services.length, (servicesIndex) {
+                                            final servicesItem =
+                                                services[servicesIndex];
+                                            return Padding(
+                                              padding: const EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      10.0, 0.0, 15.0, 0.0),
+                                              child: Text(
+                                                valueOrDefault<String>(
+                                                  servicesItem,
+                                                  'x',
                                                 ),
-                                          ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily:
+                                                              'Readex Pro',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                              ),
+                                            );
+                                          }),
                                         );
-                                      }),
-                                    );
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 12.0, 0.0, 8.0),
-                                child: RichText(
-                                  textScaler: MediaQuery.of(context).textScaler,
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: valueOrDefault<String>(
-                                          listViewRequestsRecord
-                                              .requestDescription,
-                                          'x',
-                                        ),
-                                        style: const TextStyle(),
-                                      )
-                                    ],
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
+                                      },
+                                    ),
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 12.0, 0.0, 8.0),
-                                child: RichText(
-                                  textScaler: MediaQuery.of(context).textScaler,
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: valueOrDefault<String>(
-                                          listViewRequestsRecord.requestDate
-                                              ?.toString(),
-                                          'x',
-                                        ),
-                                        style: const TextStyle(),
-                                      )
-                                    ],
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyLarge
-                                        .override(
-                                          fontFamily: 'Readex Pro',
-                                          letterSpacing: 0.0,
-                                        ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 12.0, 0.0, 8.0),
+                                    child: RichText(
+                                      textScaler:
+                                          MediaQuery.of(context).textScaler,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: valueOrDefault<String>(
+                                              listViewRequestsRecord
+                                                  .requestDescription,
+                                              'x',
+                                            ),
+                                            style: const TextStyle(),
+                                          )
+                                        ],
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              StarsWidget(
-                                key: Key(
-                                    'Key381_${listViewIndex}_of_${listViewRequestsRecordList.length}'),
-                              ),
-                            ],
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        12.0, 12.0, 0.0, 8.0),
+                                    child: RichText(
+                                      textScaler:
+                                          MediaQuery.of(context).textScaler,
+                                      text: TextSpan(
+                                        children: [
+                                          TextSpan(
+                                            text: valueOrDefault<String>(
+                                              listViewRequestsRecord.requestDate
+                                                  ?.toString(),
+                                              'x',
+                                            ),
+                                            style: const TextStyle(),
+                                          )
+                                        ],
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Readex Pro',
+                                              letterSpacing: 0.0,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  StarsWidget(
+                                    key: Key(
+                                        'Key381_${listViewIndex}_of_${listViewRequestsRecordList.length}'),
+                                  ),
+                                ],
+                              );
+                            },
                           ),
                         );
                       },

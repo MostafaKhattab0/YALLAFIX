@@ -315,7 +315,7 @@ class _HomeAdvisorWidgetState extends State<HomeAdvisorWidget> {
                                           'HOME_ADVISOR_PAGE_Icon_yiitbxis_ON_TAP');
                                       logFirebaseEvent('Icon_navigate_to');
 
-                                      context.pushNamed('appointments_advisor');
+                                      context.pushNamed('appointment_advisor');
                                     },
                                     child: const Icon(
                                       Icons.date_range,
@@ -464,38 +464,51 @@ class _HomeAdvisorWidgetState extends State<HomeAdvisorWidget> {
                             Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 12.0),
-                              child: Container(
-                                width: double.infinity,
-                                height: 64.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 3.0,
-                                      color: Color(0x33000000),
-                                      offset: Offset(
-                                        0.0,
-                                        1.0,
-                                      ),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(12.0),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                    width: 1.0,
-                                  ),
-                                ),
-                                child: Align(
-                                  alignment: const AlignmentDirectional(0.0, 0.0),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: FaIcon(
-                                      FontAwesomeIcons.handsHelping,
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  logFirebaseEvent(
+                                      'HOME_ADVISOR_Container_n7bsjrvh_ON_TAP');
+                                  logFirebaseEvent('Container_navigate_to');
+
+                                  context.pushNamed('ContactUs_advisor');
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 64.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        blurRadius: 3.0,
+                                        color: Color(0x33000000),
+                                        offset: Offset(
+                                          0.0,
+                                          1.0,
+                                        ),
+                                      )
+                                    ],
+                                    borderRadius: BorderRadius.circular(12.0),
+                                    border: Border.all(
                                       color: FlutterFlowTheme.of(context)
-                                          .secondary,
-                                      size: 32.0,
+                                          .alternate,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: FaIcon(
+                                        FontAwesomeIcons.handsHelping,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondary,
+                                        size: 32.0,
+                                      ),
                                     ),
                                   ),
                                 ),

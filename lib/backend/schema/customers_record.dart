@@ -35,11 +35,6 @@ class CustomersRecord extends FirestoreRecord {
   String get customerImage => _customerImage ?? '';
   bool hasCustomerImage() => _customerImage != null;
 
-  // "customer_id" field.
-  String? _customerId;
-  String get customerId => _customerId ?? '';
-  bool hasCustomerId() => _customerId != null;
-
   // "customer_location" field.
   LatLng? _customerLocation;
   LatLng? get customerLocation => _customerLocation;
@@ -60,7 +55,6 @@ class CustomersRecord extends FirestoreRecord {
     _customerAge = castToType<int>(snapshotData['customer_age']);
     _customerPhone = snapshotData['customer_phone'] as String?;
     _customerImage = snapshotData['customer_image'] as String?;
-    _customerId = snapshotData['customer_id'] as String?;
     _customerLocation = snapshotData['customer_location'] as LatLng?;
     _customerCar = snapshotData['customer_car'] as String?;
     _customerCarphoto = snapshotData['customer_carphoto'] as String?;
@@ -105,7 +99,6 @@ Map<String, dynamic> createCustomersRecordData({
   int? customerAge,
   String? customerPhone,
   String? customerImage,
-  String? customerId,
   LatLng? customerLocation,
   String? customerCar,
   String? customerCarphoto,
@@ -116,7 +109,6 @@ Map<String, dynamic> createCustomersRecordData({
       'customer_age': customerAge,
       'customer_phone': customerPhone,
       'customer_image': customerImage,
-      'customer_id': customerId,
       'customer_location': customerLocation,
       'customer_car': customerCar,
       'customer_carphoto': customerCarphoto,
@@ -135,7 +127,6 @@ class CustomersRecordDocumentEquality implements Equality<CustomersRecord> {
         e1?.customerAge == e2?.customerAge &&
         e1?.customerPhone == e2?.customerPhone &&
         e1?.customerImage == e2?.customerImage &&
-        e1?.customerId == e2?.customerId &&
         e1?.customerLocation == e2?.customerLocation &&
         e1?.customerCar == e2?.customerCar &&
         e1?.customerCarphoto == e2?.customerCarphoto;
@@ -147,7 +138,6 @@ class CustomersRecordDocumentEquality implements Equality<CustomersRecord> {
         e?.customerAge,
         e?.customerPhone,
         e?.customerImage,
-        e?.customerId,
         e?.customerLocation,
         e?.customerCar,
         e?.customerCarphoto

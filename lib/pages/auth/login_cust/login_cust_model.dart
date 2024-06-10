@@ -6,6 +6,8 @@ class LoginCustModel extends FlutterFlowModel<LoginCustWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
+  final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -27,21 +29,22 @@ class LoginCustModel extends FlutterFlowModel<LoginCustWidget> {
   TextEditingController? confirmTextController;
   late bool confirmVisibility;
   String? Function(BuildContext, String?)? confirmTextControllerValidator;
-  // State field(s) for emailAddress widget.
-  FocusNode? emailAddressFocusNode;
-  TextEditingController? emailAddressTextController;
-  String? Function(BuildContext, String?)? emailAddressTextControllerValidator;
-  // State field(s) for password widget.
-  FocusNode? passwordFocusNode;
-  TextEditingController? passwordTextController;
-  late bool passwordVisibility;
-  String? Function(BuildContext, String?)? passwordTextControllerValidator;
+  // State field(s) for emailAddresslog widget.
+  FocusNode? emailAddresslogFocusNode;
+  TextEditingController? emailAddresslogTextController;
+  String? Function(BuildContext, String?)?
+      emailAddresslogTextControllerValidator;
+  // State field(s) for passwordlog widget.
+  FocusNode? passwordlogFocusNode;
+  TextEditingController? passwordlogTextController;
+  late bool passwordlogVisibility;
+  String? Function(BuildContext, String?)? passwordlogTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
     passwordCreateVisibility = false;
     confirmVisibility = false;
-    passwordVisibility = false;
+    passwordlogVisibility = false;
   }
 
   @override
@@ -57,10 +60,10 @@ class LoginCustModel extends FlutterFlowModel<LoginCustWidget> {
     confirmFocusNode?.dispose();
     confirmTextController?.dispose();
 
-    emailAddressFocusNode?.dispose();
-    emailAddressTextController?.dispose();
+    emailAddresslogFocusNode?.dispose();
+    emailAddresslogTextController?.dispose();
 
-    passwordFocusNode?.dispose();
-    passwordTextController?.dispose();
+    passwordlogFocusNode?.dispose();
+    passwordlogTextController?.dispose();
   }
 }

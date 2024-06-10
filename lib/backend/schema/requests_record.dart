@@ -14,11 +14,6 @@ class RequestsRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "request_id" field.
-  String? _requestId;
-  String get requestId => _requestId ?? '';
-  bool hasRequestId() => _requestId != null;
-
   // "request_date" field.
   DateTime? _requestDate;
   DateTime? get requestDate => _requestDate;
@@ -64,8 +59,12 @@ class RequestsRecord extends FirestoreRecord {
   bool get isDone => _isDone ?? false;
   bool hasIsDone() => _isDone != null;
 
+  // "request_id" field.
+  String? _requestId;
+  String get requestId => _requestId ?? '';
+  bool hasRequestId() => _requestId != null;
+
   void _initializeFields() {
-    _requestId = snapshotData['request_id'] as String?;
     _requestDate = snapshotData['request_date'] as DateTime?;
     _requestLocation = snapshotData['request_location'] as LatLng?;
     _requestDescription = snapshotData['request_description'] as String?;
@@ -75,6 +74,7 @@ class RequestsRecord extends FirestoreRecord {
     _isAccepted = snapshotData['is_accepted'] as bool?;
     _isRejected = snapshotData['is_rejected'] as bool?;
     _isDone = snapshotData['is_done'] as bool?;
+    _requestId = snapshotData['request_id'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -112,7 +112,6 @@ class RequestsRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createRequestsRecordData({
-  String? requestId,
   DateTime? requestDate,
   LatLng? requestLocation,
   String? requestDescription,
@@ -121,10 +120,10 @@ Map<String, dynamic> createRequestsRecordData({
   bool? isAccepted,
   bool? isRejected,
   bool? isDone,
+  String? requestId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'request_id': requestId,
       'request_date': requestDate,
       'request_location': requestLocation,
       'request_description': requestDescription,
@@ -133,6 +132,7 @@ Map<String, dynamic> createRequestsRecordData({
       'is_accepted': isAccepted,
       'is_rejected': isRejected,
       'is_done': isDone,
+      'request_id': requestId,
     }.withoutNulls,
   );
 
@@ -145,8 +145,7 @@ class RequestsRecordDocumentEquality implements Equality<RequestsRecord> {
   @override
   bool equals(RequestsRecord? e1, RequestsRecord? e2) {
     const listEquality = ListEquality();
-    return e1?.requestId == e2?.requestId &&
-        e1?.requestDate == e2?.requestDate &&
+    return e1?.requestDate == e2?.requestDate &&
         e1?.requestLocation == e2?.requestLocation &&
         e1?.requestDescription == e2?.requestDescription &&
         listEquality.equals(e1?.requestServices, e2?.requestServices) &&
@@ -154,12 +153,12 @@ class RequestsRecordDocumentEquality implements Equality<RequestsRecord> {
         e1?.customerRef == e2?.customerRef &&
         e1?.isAccepted == e2?.isAccepted &&
         e1?.isRejected == e2?.isRejected &&
-        e1?.isDone == e2?.isDone;
+        e1?.isDone == e2?.isDone &&
+        e1?.requestId == e2?.requestId;
   }
 
   @override
   int hash(RequestsRecord? e) => const ListEquality().hash([
-        e?.requestId,
         e?.requestDate,
         e?.requestLocation,
         e?.requestDescription,
@@ -168,7 +167,8 @@ class RequestsRecordDocumentEquality implements Equality<RequestsRecord> {
         e?.customerRef,
         e?.isAccepted,
         e?.isRejected,
-        e?.isDone
+        e?.isDone,
+        e?.requestId
       ]);
 
   @override

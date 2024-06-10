@@ -1,4 +1,3 @@
-import '/components/change_themelightdark_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,7 +5,6 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart'
     as smooth_page_indicator;
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'first_model.dart';
@@ -33,46 +31,6 @@ class _FirstWidgetState extends State<FirstWidget>
     _model = createModel(context, () => FirstModel());
 
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'First'});
-    // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      logFirebaseEvent('FIRST_PAGE_First_ON_INIT_STATE');
-      logFirebaseEvent('First_bottom_sheet');
-      await showModalBottomSheet(
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        enableDrag: false,
-        useSafeArea: true,
-        context: context,
-        builder: (context) {
-          return GestureDetector(
-            onTap: () => _model.unfocusNode.canRequestFocus
-                ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-                : FocusScope.of(context).unfocus(),
-            child: Padding(
-              padding: MediaQuery.viewInsetsOf(context),
-              child: const ChangeThemelightdarkWidget(),
-            ),
-          );
-        },
-      ).then((value) => safeSetState(() {}));
-
-      if (() {
-        if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
-          return true;
-        } else if (MediaQuery.sizeOf(context).width < kBreakpointMedium) {
-          return true;
-        } else if (MediaQuery.sizeOf(context).width < kBreakpointLarge) {
-          return true;
-        } else {
-          return true;
-        }
-      }()) {
-        return;
-      }
-
-      return;
-    });
-
     animationsMap.addAll({
       'containerOnPageLoadAnimation': AnimationInfo(
         loop: true,
@@ -530,7 +488,7 @@ class _FirstWidgetState extends State<FirstWidget>
                                                             FFLocalizations.of(
                                                                     context)
                                                                 .getText(
-                                                              'zl6dq79x' /* MAKE IT HAPPEN! */,
+                                                              'zl6dq79x' /* Click | Book | Fixed! */,
                                                             ),
                                                             textAlign: TextAlign
                                                                 .center,
@@ -765,7 +723,7 @@ class _FirstWidgetState extends State<FirstWidget>
                                           'FIRST_PAGE_BE_A_PARTNER_BTN_ON_TAP');
                                       logFirebaseEvent('Button_navigate_to');
 
-                                      context.pushNamed('login_cust');
+                                      context.pushNamed('login_center');
                                     },
                                     text: FFLocalizations.of(context).getText(
                                       'xzwyl2ma' /* BE A PARTNER */,

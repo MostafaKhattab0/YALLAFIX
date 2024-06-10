@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'edit_booking_cust_widget.dart' show EditBookingCustWidget;
+import 'booking_edit_cust_widget.dart' show BookingEditCustWidget;
 import 'package:flutter/material.dart';
 
-class EditBookingCustModel extends FlutterFlowModel<EditBookingCustWidget> {
+class BookingEditCustModel extends FlutterFlowModel<BookingEditCustWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

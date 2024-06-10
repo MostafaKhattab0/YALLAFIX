@@ -197,85 +197,118 @@ class _CreateProfileCustWidgetState extends State<CreateProfileCustWidget> {
                 ),
               ),
             ),
+            Icon(
+              Icons.upload,
+              color: FlutterFlowTheme.of(context).secondaryText,
+              size: 24.0,
+            ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 326.0,
-                    height: 191.0,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                    ),
+                  Align(
                     alignment: const AlignmentDirectional(0.0, 0.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        logFirebaseEvent(
-                            'CREATE_PROFILE_CUST_Image_9klasbcy_ON_TA');
-                        logFirebaseEvent('Image_upload_media_to_firebase');
-                        final selectedMedia =
-                            await selectMediaWithSourceBottomSheet(
-                          context: context,
-                          allowPhoto: true,
-                        );
-                        if (selectedMedia != null &&
-                            selectedMedia.every((m) =>
-                                validateFileFormat(m.storagePath, context))) {
-                          setState(() => _model.isDataUploading2 = true);
-                          var selectedUploadedFiles = <FFUploadedFile>[];
+                    child: Container(
+                      width: 326.0,
+                      height: 191.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      alignment: const AlignmentDirectional(0.0, 0.0),
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                logFirebaseEvent(
+                                    'CREATE_PROFILE_CUST_Image_9klasbcy_ON_TA');
+                                logFirebaseEvent(
+                                    'Image_upload_media_to_firebase');
+                                final selectedMedia =
+                                    await selectMediaWithSourceBottomSheet(
+                                  context: context,
+                                  allowPhoto: true,
+                                );
+                                if (selectedMedia != null &&
+                                    selectedMedia.every((m) =>
+                                        validateFileFormat(
+                                            m.storagePath, context))) {
+                                  setState(
+                                      () => _model.isDataUploading2 = true);
+                                  var selectedUploadedFiles =
+                                      <FFUploadedFile>[];
 
-                          var downloadUrls = <String>[];
-                          try {
-                            selectedUploadedFiles = selectedMedia
-                                .map((m) => FFUploadedFile(
-                                      name: m.storagePath.split('/').last,
-                                      bytes: m.bytes,
-                                      height: m.dimensions?.height,
-                                      width: m.dimensions?.width,
-                                      blurHash: m.blurHash,
+                                  var downloadUrls = <String>[];
+                                  try {
+                                    selectedUploadedFiles = selectedMedia
+                                        .map((m) => FFUploadedFile(
+                                              name:
+                                                  m.storagePath.split('/').last,
+                                              bytes: m.bytes,
+                                              height: m.dimensions?.height,
+                                              width: m.dimensions?.width,
+                                              blurHash: m.blurHash,
+                                            ))
+                                        .toList();
+
+                                    downloadUrls = (await Future.wait(
+                                      selectedMedia.map(
+                                        (m) async => await uploadData(
+                                            m.storagePath, m.bytes),
+                                      ),
                                     ))
-                                .toList();
-
-                            downloadUrls = (await Future.wait(
-                              selectedMedia.map(
-                                (m) async =>
-                                    await uploadData(m.storagePath, m.bytes),
+                                        .where((u) => u != null)
+                                        .map((u) => u!)
+                                        .toList();
+                                  } finally {
+                                    _model.isDataUploading2 = false;
+                                  }
+                                  if (selectedUploadedFiles.length ==
+                                          selectedMedia.length &&
+                                      downloadUrls.length ==
+                                          selectedMedia.length) {
+                                    setState(() {
+                                      _model.uploadedLocalFile2 =
+                                          selectedUploadedFiles.first;
+                                      _model.uploadedFileUrl2 =
+                                          downloadUrls.first;
+                                    });
+                                  } else {
+                                    setState(() {});
+                                    return;
+                                  }
+                                }
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8.0),
+                                child: Image.network(
+                                  valueOrDefault<String>(
+                                    _model.uploadedFileUrl2,
+                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/ru8ixs0esjdx/Screenshot_1.png',
+                                  ),
+                                  width: 231.0,
+                                  height: 181.0,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ))
-                                .where((u) => u != null)
-                                .map((u) => u!)
-                                .toList();
-                          } finally {
-                            _model.isDataUploading2 = false;
-                          }
-                          if (selectedUploadedFiles.length ==
-                                  selectedMedia.length &&
-                              downloadUrls.length == selectedMedia.length) {
-                            setState(() {
-                              _model.uploadedLocalFile2 =
-                                  selectedUploadedFiles.first;
-                              _model.uploadedFileUrl2 = downloadUrls.first;
-                            });
-                          } else {
-                            setState(() {});
-                            return;
-                          }
-                        }
-                      },
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          'https://images.unsplash.com/photo-1463462927315-fb10af2c68d8?crop=entropy&cs=srgb&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxN3x8bXklMjBjYXJ8ZW58MHx8fHwxNzE3MzYzNjczfDA&ixlib=rb-4.0.3&q=85',
-                          width: 286.0,
-                          height: 200.0,
-                          fit: BoxFit.cover,
-                        ),
+                            ),
+                          ),
+                          Align(
+                            alignment: const AlignmentDirectional(0.0, 0.87),
+                            child: Icon(
+                              Icons.upload,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -596,10 +629,6 @@ class _CreateProfileCustWidgetState extends State<CreateProfileCustWidget> {
                             _model.uploadedFileUrl1,
                             'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/2kqy5yy32p16/268-avatar-man.gif',
                           ),
-                          customerId: valueOrDefault<String>(
-                            currentUserReference?.id,
-                            'x',
-                          ),
                           customerCar: valueOrDefault<String>(
                             _model.dropDownValue,
                             'x',
@@ -609,7 +638,7 @@ class _CreateProfileCustWidgetState extends State<CreateProfileCustWidget> {
                             'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/fnw06lzy5ooo/A7cznGxdoZIU.gif',
                           ),
                         ));
-                        _model.customerOutput =
+                        _model.customerDoc =
                             CustomersRecord.getDocumentFromData(
                                 createCustomersRecordData(
                                   customerName: valueOrDefault<String>(
@@ -628,10 +657,6 @@ class _CreateProfileCustWidgetState extends State<CreateProfileCustWidget> {
                                     _model.uploadedFileUrl1,
                                     'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/2kqy5yy32p16/268-avatar-man.gif',
                                   ),
-                                  customerId: valueOrDefault<String>(
-                                    currentUserReference?.id,
-                                    'x',
-                                  ),
                                   customerCar: valueOrDefault<String>(
                                     _model.dropDownValue,
                                     'x',
@@ -646,7 +671,7 @@ class _CreateProfileCustWidgetState extends State<CreateProfileCustWidget> {
 
                         await currentUserReference!
                             .update(createUsersRecordData(
-                          customerRef: _model.customerOutput?.reference,
+                          customerRef: _model.customerDoc?.reference,
                         ));
                         logFirebaseEvent('Button_navigate_to');
 

@@ -21,7 +21,7 @@ class AddCenterModel extends FlutterFlowModel<AddCenterWidget> {
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return FFLocalizations.of(context).getText(
-        '3h7lo9t6' /* Please enter an age for the pa... */,
+        '3h7lo9t6' /* Please enter  */,
       );
     }
 
@@ -36,15 +36,43 @@ class AddCenterModel extends FlutterFlowModel<AddCenterWidget> {
   TextEditingController? centerAddressTextController1;
   String? Function(BuildContext, String?)?
       centerAddressTextController1Validator;
+  String? _centerAddressTextController1Validator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'q3dplyw8' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
   // State field(s) for centerAddress widget.
   FocusNode? centerAddressFocusNode2;
   TextEditingController? centerAddressTextController2;
   String? Function(BuildContext, String?)?
       centerAddressTextController2Validator;
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue1;
-  // State field(s) for Checkbox widget.
-  bool? checkboxValue2;
+  String? _centerAddressTextController2Validator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        'olbcytr9' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
+
+  // State field(s) for CarWash widget.
+  bool? carWashValue;
+  // State field(s) for CarFix widget.
+  bool? carFixValue;
+  // State field(s) for TruckTow widget.
+  bool? truckTowValue;
+  // State field(s) for CarElectrician widget.
+  bool? carElectricianValue;
+  // State field(s) for other widget.
+  bool? otherValue;
   // State field(s) for centerLocation widget.
   var centerLocationValue = const FFPlace();
   // State field(s) for centerDescription widget.
@@ -52,10 +80,26 @@ class AddCenterModel extends FlutterFlowModel<AddCenterWidget> {
   TextEditingController? centerDescriptionTextController;
   String? Function(BuildContext, String?)?
       centerDescriptionTextControllerValidator;
+  String? _centerDescriptionTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return FFLocalizations.of(context).getText(
+        '5jhldwx8' /* Field is required */,
+      );
+    }
+
+    return null;
+  }
 
   @override
   void initState(BuildContext context) {
     centerNameTextControllerValidator = _centerNameTextControllerValidator;
+    centerAddressTextController1Validator =
+        _centerAddressTextController1Validator;
+    centerAddressTextController2Validator =
+        _centerAddressTextController2Validator;
+    centerDescriptionTextControllerValidator =
+        _centerDescriptionTextControllerValidator;
   }
 
   @override

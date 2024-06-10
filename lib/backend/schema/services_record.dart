@@ -15,25 +15,55 @@ class ServicesRecord extends FirestoreRecord {
     _initializeFields();
   }
 
-  // "service_id" field.
-  int? _serviceId;
-  int get serviceId => _serviceId ?? 0;
-  bool hasServiceId() => _serviceId != null;
+  // "carFix_id" field.
+  int? _carFixId;
+  int get carFixId => _carFixId ?? 0;
+  bool hasCarFixId() => _carFixId != null;
 
-  // "service_name" field.
-  String? _serviceName;
-  String get serviceName => _serviceName ?? '';
-  bool hasServiceName() => _serviceName != null;
+  // "carFix_name" field.
+  String? _carFixName;
+  String get carFixName => _carFixName ?? '';
+  bool hasCarFixName() => _carFixName != null;
 
-  // "Is_onSite" field.
-  bool? _isOnSite;
-  bool get isOnSite => _isOnSite ?? false;
-  bool hasIsOnSite() => _isOnSite != null;
+  // "carWash_id" field.
+  int? _carWashId;
+  int get carWashId => _carWashId ?? 0;
+  bool hasCarWashId() => _carWashId != null;
+
+  // "carWash_name" field.
+  String? _carWashName;
+  String get carWashName => _carWashName ?? '';
+  bool hasCarWashName() => _carWashName != null;
+
+  // "carElectricity_id" field.
+  int? _carElectricityId;
+  int get carElectricityId => _carElectricityId ?? 0;
+  bool hasCarElectricityId() => _carElectricityId != null;
+
+  // "carElectricity_name" field.
+  String? _carElectricityName;
+  String get carElectricityName => _carElectricityName ?? '';
+  bool hasCarElectricityName() => _carElectricityName != null;
+
+  // "truckTow_id" field.
+  int? _truckTowId;
+  int get truckTowId => _truckTowId ?? 0;
+  bool hasTruckTowId() => _truckTowId != null;
+
+  // "truckTow_name" field.
+  String? _truckTowName;
+  String get truckTowName => _truckTowName ?? '';
+  bool hasTruckTowName() => _truckTowName != null;
 
   void _initializeFields() {
-    _serviceId = castToType<int>(snapshotData['service_id']);
-    _serviceName = snapshotData['service_name'] as String?;
-    _isOnSite = snapshotData['Is_onSite'] as bool?;
+    _carFixId = castToType<int>(snapshotData['carFix_id']);
+    _carFixName = snapshotData['carFix_name'] as String?;
+    _carWashId = castToType<int>(snapshotData['carWash_id']);
+    _carWashName = snapshotData['carWash_name'] as String?;
+    _carElectricityId = castToType<int>(snapshotData['carElectricity_id']);
+    _carElectricityName = snapshotData['carElectricity_name'] as String?;
+    _truckTowId = castToType<int>(snapshotData['truckTow_id']);
+    _truckTowName = snapshotData['truckTow_name'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -71,15 +101,25 @@ class ServicesRecord extends FirestoreRecord {
 }
 
 Map<String, dynamic> createServicesRecordData({
-  int? serviceId,
-  String? serviceName,
-  bool? isOnSite,
+  int? carFixId,
+  String? carFixName,
+  int? carWashId,
+  String? carWashName,
+  int? carElectricityId,
+  String? carElectricityName,
+  int? truckTowId,
+  String? truckTowName,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
-      'service_id': serviceId,
-      'service_name': serviceName,
-      'Is_onSite': isOnSite,
+      'carFix_id': carFixId,
+      'carFix_name': carFixName,
+      'carWash_id': carWashId,
+      'carWash_name': carWashName,
+      'carElectricity_id': carElectricityId,
+      'carElectricity_name': carElectricityName,
+      'truckTow_id': truckTowId,
+      'truckTow_name': truckTowName,
     }.withoutNulls,
   );
 
@@ -91,14 +131,27 @@ class ServicesRecordDocumentEquality implements Equality<ServicesRecord> {
 
   @override
   bool equals(ServicesRecord? e1, ServicesRecord? e2) {
-    return e1?.serviceId == e2?.serviceId &&
-        e1?.serviceName == e2?.serviceName &&
-        e1?.isOnSite == e2?.isOnSite;
+    return e1?.carFixId == e2?.carFixId &&
+        e1?.carFixName == e2?.carFixName &&
+        e1?.carWashId == e2?.carWashId &&
+        e1?.carWashName == e2?.carWashName &&
+        e1?.carElectricityId == e2?.carElectricityId &&
+        e1?.carElectricityName == e2?.carElectricityName &&
+        e1?.truckTowId == e2?.truckTowId &&
+        e1?.truckTowName == e2?.truckTowName;
   }
 
   @override
-  int hash(ServicesRecord? e) =>
-      const ListEquality().hash([e?.serviceId, e?.serviceName, e?.isOnSite]);
+  int hash(ServicesRecord? e) => const ListEquality().hash([
+        e?.carFixId,
+        e?.carFixName,
+        e?.carWashId,
+        e?.carWashName,
+        e?.carElectricityId,
+        e?.carElectricityName,
+        e?.truckTowId,
+        e?.truckTowName
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ServicesRecord;

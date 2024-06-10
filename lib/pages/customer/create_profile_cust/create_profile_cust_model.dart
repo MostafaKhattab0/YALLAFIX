@@ -34,7 +34,7 @@ class CreateProfileCustModel extends FlutterFlowModel<CreateProfileCustWidget> {
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
   // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  CustomersRecord? customerOutput;
+  CustomersRecord? customerDoc;
 
   @override
   void initState(BuildContext context) {}

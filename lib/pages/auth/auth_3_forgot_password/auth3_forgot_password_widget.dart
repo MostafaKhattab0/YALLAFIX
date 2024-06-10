@@ -166,17 +166,6 @@ class _Auth3ForgotPasswordWidgetState extends State<Auth3ForgotPasswordWidget>
                                           size: 44.0,
                                         ),
                                       ),
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          '9ngulzkx' /* flow.io */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .displaySmall
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -256,7 +245,7 @@ class _Auth3ForgotPasswordWidgetState extends State<Auth3ForgotPasswordWidget>
                                             focusNode: _model.emailFocusNode,
                                             autofocus: true,
                                             autofillHints: const [
-                                              AutofillHints.telephoneNumber
+                                              AutofillHints.email
                                             ],
                                             textInputAction:
                                                 TextInputAction.send,

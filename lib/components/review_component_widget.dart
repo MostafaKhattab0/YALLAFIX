@@ -103,7 +103,7 @@ class _ReviewComponentWidgetState extends State<ReviewComponentWidget> {
                   ),
                   Text(
                     FFLocalizations.of(context).getText(
-                      'gs12jjk3' /* Hello World */,
+                      'glox1i2s' /* Hello World */,
                     ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
@@ -129,8 +129,8 @@ class _ReviewComponentWidgetState extends State<ReviewComponentWidget> {
                     child: Container(
                       width: 438.0,
                       height: 193.0,
-                      decoration: const BoxDecoration(
-                        color: Color(0xFFE5E9EC),
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).alternate,
                       ),
                       alignment: const AlignmentDirectional(0.0, -1.0),
                       child: Padding(

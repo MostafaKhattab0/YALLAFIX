@@ -112,7 +112,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
     'zl6dq79x': {
-      'en': 'MAKE IT HAPPEN!',
+      'en': 'Click | Book | Fixed!',
       'ar': '',
     },
     'wqmsj2h0': {
@@ -178,10 +178,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Appointment Information',
       'ar': '',
     },
-    '5d5q9v2l': {
-      'en': 'Option 1',
-      'ar': '',
-    },
     'nsae0v01': {
       'en': 'Choose a service',
       'ar': '',
@@ -195,7 +191,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
     'bdes8upr': {
-      'en': 'Please enter yout car issue',
+      'en': 'Describe What are you trying to do',
       'ar': '',
     },
     '8goacr0x': {
@@ -660,7 +656,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
     'j3fiic6b': {
-      'en': 'Avg. Grade',
+      'en': '',
       'ar': '',
     },
     'w43fuevv': {
@@ -717,11 +713,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'View Customer Requests',
       'ar': '',
     },
-    'z0fvj6vm': {
+    '6dttyth7': {
       'en': 'Accept',
       'ar': '',
     },
-    '2ucx36ip': {
+    'pp2twei4': {
       'en': 'Reject',
       'ar': '',
     },
@@ -782,6 +778,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // add_center
   {
+    'ypnexyyv': {
+      'en': 'Add Center',
+      'ar': '',
+    },
+    '572pwvno': {
+      'en': 'Please fill in the information below.',
+      'ar': '',
+    },
     'ohq2puq1': {
       'en': 'Personal Information',
       'ar': '',
@@ -810,12 +814,24 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Which services do you provide',
       'ar': '',
     },
-    'weqavwpx': {
-      'en': 'Support Emergency',
+    'mxqykpw7': {
+      'en': 'Car Wash',
       'ar': '',
     },
-    'mxqykpw7': {
-      'en': 'Support OnSite service',
+    'r0ir042m': {
+      'en': 'Car Fix',
+      'ar': '',
+    },
+    'weqavwpx': {
+      'en': 'Truck Tow',
+      'ar': '',
+    },
+    '1lsbvvup': {
+      'en': 'Car Electrician',
+      'ar': '',
+    },
+    '701qjmgy': {
+      'en': 'Other',
       'ar': '',
     },
     'f88zvci7': {
@@ -838,31 +854,27 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Create Center',
       'ar': '',
     },
-    'a7tc3tmd': {
-      'en': 'Please enter the patients full name.',
-      'ar': '',
-    },
-    'mqqe2hc2': {
-      'en': 'Please choose an option from the dropdown',
-      'ar': '',
-    },
     '3h7lo9t6': {
-      'en': 'Please enter an age for the patient.',
+      'en': 'Please enter ',
       'ar': '',
     },
     '6nu2tv6z': {
       'en': 'Please choose an option from the dropdown',
       'ar': '',
     },
-    'yxp6owbw': {
+    'q3dplyw8': {
+      'en': 'Field is required',
+      'ar': '',
+    },
+    'gawph80w': {
       'en': 'Please choose an option from the dropdown',
       'ar': '',
     },
-    'c11p7aed': {
-      'en': 'Please enter the date of birth of the patient.',
+    'olbcytr9': {
+      'en': 'Field is required',
       'ar': '',
     },
-    'ro47qgds': {
+    'b42zxqkk': {
       'en': 'Please choose an option from the dropdown',
       'ar': '',
     },
@@ -872,14 +884,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'ujno1jhm': {
       'en': 'Please choose an option from the dropdown',
-      'ar': '',
-    },
-    'ypnexyyv': {
-      'en': 'Add Center',
-      'ar': '',
-    },
-    '572pwvno': {
-      'en': 'Please fill in the information below.',
       'ar': '',
     },
     '5y1g9caw': {
@@ -957,14 +961,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // profile_advisor
   {
-    'krtsnvsp': {
-      'en': 'Andrea Davis',
-      'ar': '',
-    },
-    'fns2b4gy': {
-      'en': 'andrea@domainname.com',
-      'ar': '',
-    },
     'ux5ignzu': {
       'en': 'Active',
       'ar': '',
@@ -1144,10 +1140,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // auth_3_verifyPhone
   {
-    'wawzv1ij': {
-      'en': 'flow.io',
-      'ar': '',
-    },
     '1zosis7q': {
       'en': 'Verification Code',
       'ar': '',
@@ -1171,10 +1163,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // auth_3_ForgotPassword
   {
-    '9ngulzkx': {
-      'en': 'flow.io',
-      'ar': '',
-    },
     'w9erak60': {
       'en': 'Forgot Password',
       'ar': '',
@@ -1209,7 +1197,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Create Account',
       'ar': '',
     },
-    'wgzmii94': {
+    '36kghwkd': {
       'en': 'Create Account',
       'ar': '',
     },
@@ -1217,7 +1205,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Let\'s get started by filling out the form below.',
       'ar': '',
     },
-    'n1hpp2x6': {
+    'je3w4b2x': {
       'en': 'Email',
       'ar': '',
     },
@@ -1225,8 +1213,8 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Password',
       'ar': '',
     },
-    '182mqg80': {
-      'en': 'Password',
+    'pil8o0gc': {
+      'en': 'Confirm Password',
       'ar': '',
     },
     'gbib9qgb': {
@@ -1241,10 +1229,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Continue with Google',
       'ar': '',
     },
-    'fikmerfv': {
-      'en': 'Continue with Phone',
-      'ar': '',
-    },
     '5yrxx867': {
       'en': 'Log In',
       'ar': '',
@@ -1257,11 +1241,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Fill out the information below in order to access your account.',
       'ar': '',
     },
-    'jskx017y': {
+    'eggfubpv': {
       'en': 'Email',
       'ar': '',
     },
-    'n7sgzuex': {
+    'kohykza7': {
       'en': 'Password',
       'ar': '',
     },
@@ -1273,11 +1257,11 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Or sign in with',
       'ar': '',
     },
-    'qt55yyy6': {
+    'vawcnfgp': {
       'en': 'Continue with Google',
       'ar': '',
     },
-    'yluf3ply': {
+    'fikmerfv': {
       'en': 'Continue with Phone',
       'ar': '',
     },
@@ -1293,18 +1277,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   // login_center
   {
     'hw0r2n1o': {
-      'en': 'Welcome Back',
+      'en': 'It is an Honor to be With Us',
       'ar': '',
     },
     'a6yltimz': {
       'en': 'Fill out the information below in order to access your account.',
       'ar': '',
     },
-    'je3w4b2x': {
+    'jskx017y': {
       'en': 'Email',
       'ar': '',
     },
-    'kohykza7': {
+    'xc7gzaj1': {
       'en': 'Password',
       'ar': '',
     },
@@ -1320,7 +1304,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Or sign in with',
       'ar': '',
     },
-    'vawcnfgp': {
+    'vg833e56': {
       'en': 'Continue with Google',
       'ar': '',
     },
@@ -1333,7 +1317,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
-  // edit_booking_cust
+  // booking_edit_cust
   {
     'df726pu8': {
       'en': 'Appointment Information',
@@ -1399,25 +1383,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
   },
-  // appointments_advisor
-  {
-    'lwwyo7ci': {
-      'en': 'View Customer Requests',
-      'ar': '',
-    },
-    'sdgausol': {
-      'en': 'Finished',
-      'ar': '',
-    },
-    'g8t6a341': {
-      'en': 'Contact',
-      'ar': '',
-    },
-    '0fihrec1': {
-      'en': 'Home',
-      'ar': '',
-    },
-  },
   // contactcust_center
   {
     'h8wy4xlc': {
@@ -1455,7 +1420,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'en': 'Enter your name',
       'ar': '',
     },
-    'eggfubpv': {
+    'n1hpp2x6': {
       'en': 'Email',
       'ar': '',
     },
@@ -1550,6 +1515,40 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'ar': '',
     },
     'dg1w26tj': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // appointment_advisor
+  {
+    'lwwyo7ci': {
+      'en': 'View Customer Requests',
+      'ar': '',
+    },
+    'sdgausol': {
+      'en': 'Finished',
+      'ar': '',
+    },
+    'g8t6a341': {
+      'en': 'Contact',
+      'ar': '',
+    },
+    '0fihrec1': {
+      'en': 'Home',
+      'ar': '',
+    },
+  },
+  // maps
+  {
+    's2pykqqw': {
+      'en': 'Select Location',
+      'ar': '',
+    },
+    'd5o2qaqd': {
+      'en': 'Page Title',
+      'ar': '',
+    },
+    '7d8r3q5u': {
       'en': 'Home',
       'ar': '',
     },
@@ -1720,7 +1719,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // reviewComponent
   {
-    'nlyij4m9': {
+    'glox1i2s': {
       'en': 'Hello World',
       'ar': '',
     },
@@ -1730,6 +1729,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     's259vayj': {
       'en': 'Button',
+      'ar': '',
+    },
+  },
+  // map_page
+  {
+    'qmzthwgr': {
+      'en': 'Select Location',
       'ar': '',
     },
   },

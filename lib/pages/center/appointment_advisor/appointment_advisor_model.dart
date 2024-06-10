@@ -1,9 +1,10 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import 'requests_advisor_widget.dart' show RequestsAdvisorWidget;
+import 'appointment_advisor_widget.dart' show AppointmentAdvisorWidget;
 import 'package:flutter/material.dart';
 
-class RequestsAdvisorModel extends FlutterFlowModel<RequestsAdvisorWidget> {
+class AppointmentAdvisorModel
+    extends FlutterFlowModel<AppointmentAdvisorWidget> {
   ///  Local state fields for this page.
 
   CustomersRecord? custINFO;

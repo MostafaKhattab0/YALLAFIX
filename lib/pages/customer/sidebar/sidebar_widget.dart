@@ -279,12 +279,9 @@ class _SidebarWidgetState extends State<SidebarWidget> {
                                 onTap: () async {
                                   logFirebaseEvent(
                                       'SIDEBAR_COMP_Row_vzgwb5k2_ON_TAP');
-                                  logFirebaseEvent('Row_auth');
-                                  GoRouter.of(context).prepareAuthEvent();
-                                  await authManager.signOut();
-                                  GoRouter.of(context).clearRedirectLocation();
+                                  logFirebaseEvent('Row_navigate_to');
 
-                                  context.goNamedAuth('First', context.mounted);
+                                  context.pushNamed('history_cust');
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -403,194 +400,180 @@ class _SidebarWidgetState extends State<SidebarWidget> {
                             width: 1.0,
                           ),
                         ),
-                        child: Visibility(
-                          visible: (Theme.of(context).brightness ==
-                                  Brightness.light) ==
-                              true,
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'SIDEBAR_COMP_Container_ekpbxq1i_ON_TAP');
-                                      logFirebaseEvent(
-                                          'Container_set_dark_mode_settings');
-                                      setDarkModeSetting(
-                                          context, ThemeMode.light);
-                                    },
-                                    child: Container(
-                                      width: 115.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? FlutterFlowTheme.of(context)
-                                                .secondaryBackground
-                                            : FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        border: Border.all(
-                                          color: valueOrDefault<Color>(
-                                            Theme.of(context).brightness ==
-                                                    Brightness.light
-                                                ? FlutterFlowTheme.of(context)
-                                                    .alternate
-                                                : FlutterFlowTheme.of(context)
-                                                    .primaryBackground,
-                                            FlutterFlowTheme.of(context)
-                                                .alternate,
-                                          ),
-                                          width: 1.0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'SIDEBAR_COMP_Container_ekpbxq1i_ON_TAP');
+                                    logFirebaseEvent(
+                                        'Container_set_dark_mode_settings');
+                                    setDarkModeSetting(
+                                        context, ThemeMode.light);
+                                  },
+                                  child: Container(
+                                    width: 115.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.light
+                                          ? FlutterFlowTheme.of(context)
+                                              .secondaryBackground
+                                          : FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                        color: valueOrDefault<Color>(
+                                          Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? FlutterFlowTheme.of(context)
+                                                  .alternate
+                                              : FlutterFlowTheme.of(context)
+                                                  .primaryBackground,
+                                          FlutterFlowTheme.of(context)
+                                              .alternate,
                                         ),
+                                        width: 1.0,
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.wb_sunny_rounded,
-                                            color: Theme.of(context)
-                                                        .brightness ==
-                                                    Brightness.light
-                                                ? FlutterFlowTheme.of(context)
-                                                    .primaryText
-                                                : FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                            size: 16.0,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'k1v6erq8' /* Light Mode */,
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Theme.of(context)
-                                                                .brightness ==
-                                                            Brightness.light
-                                                        ? FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText
-                                                        : FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryText,
-                                                    letterSpacing: 0.0,
-                                                  ),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.wb_sunny_rounded,
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryText
+                                              : FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                          size: 16.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  4.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'k1v6erq8' /* Light Mode */,
                                             ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Theme.of(context)
+                                                              .brightness ==
+                                                          Brightness.light
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      logFirebaseEvent(
-                                          'SIDEBAR_COMP_Container_8ss9s7le_ON_TAP');
-                                      logFirebaseEvent(
-                                          'Container_set_dark_mode_settings');
-                                      setDarkModeSetting(
-                                          context, ThemeMode.dark);
-                                    },
-                                    child: Container(
-                                      width: 115.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? FlutterFlowTheme.of(context)
-                                                .secondaryBackground
-                                            : FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                        border: Border.all(
-                                          color: valueOrDefault<Color>(
-                                            Theme.of(context).brightness ==
-                                                    Brightness.dark
-                                                ? FlutterFlowTheme.of(context)
-                                                    .alternate
-                                                : FlutterFlowTheme.of(context)
-                                                    .primaryBackground,
-                                            FlutterFlowTheme.of(context)
-                                                .primaryBackground,
-                                          ),
-                                          width: 1.0,
+                              ),
+                              Expanded(
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    logFirebaseEvent(
+                                        'SIDEBAR_COMP_Container_8ss9s7le_ON_TAP');
+                                    logFirebaseEvent(
+                                        'Container_set_dark_mode_settings');
+                                    setDarkModeSetting(context, ThemeMode.dark);
+                                  },
+                                  child: Container(
+                                    width: 115.0,
+                                    height: 100.0,
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? FlutterFlowTheme.of(context)
+                                              .secondaryBackground
+                                          : FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      border: Border.all(
+                                        color: valueOrDefault<Color>(
+                                          Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? FlutterFlowTheme.of(context)
+                                                  .alternate
+                                              : FlutterFlowTheme.of(context)
+                                                  .primaryBackground,
+                                          FlutterFlowTheme.of(context)
+                                              .primaryBackground,
                                         ),
+                                        width: 1.0,
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.nightlight_round,
-                                            color: Theme.of(context)
-                                                        .brightness ==
-                                                    Brightness.dark
-                                                ? FlutterFlowTheme.of(context)
-                                                    .primaryText
-                                                : FlutterFlowTheme.of(context)
-                                                    .secondaryText,
-                                            size: 16.0,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'x02frloj' /* Dark Mode */,
-                                              ),
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    fontFamily: 'Readex Pro',
-                                                    color: Theme.of(context)
-                                                                .brightness ==
-                                                            Brightness.dark
-                                                        ? FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText
-                                                        : FlutterFlowTheme.of(
-                                                                context)
-                                                            .secondaryText,
-                                                    letterSpacing: 0.0,
-                                                  ),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.nightlight_round,
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? FlutterFlowTheme.of(context)
+                                                  .primaryText
+                                              : FlutterFlowTheme.of(context)
+                                                  .secondaryText,
+                                          size: 16.0,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  4.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            FFLocalizations.of(context).getText(
+                                              'x02frloj' /* Dark Mode */,
                                             ),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  color: Theme.of(context)
+                                                              .brightness ==
+                                                          Brightness.dark
+                                                      ? FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText
+                                                      : FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                  letterSpacing: 0.0,
+                                                ),
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
                       ),

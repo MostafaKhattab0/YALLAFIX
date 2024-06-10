@@ -25,11 +25,6 @@ class CentersRecord extends FirestoreRecord {
   LatLng? get centerLocation => _centerLocation;
   bool hasCenterLocation() => _centerLocation != null;
 
-  // "support_emergency" field.
-  bool? _supportEmergency;
-  bool get supportEmergency => _supportEmergency ?? false;
-  bool hasSupportEmergency() => _supportEmergency != null;
-
   // "center_image" field.
   String? _centerImage;
   String get centerImage => _centerImage ?? '';
@@ -45,11 +40,6 @@ class CentersRecord extends FirestoreRecord {
   double get centerRating => _centerRating ?? 0.0;
   bool hasCenterRating() => _centerRating != null;
 
-  // "center_id" field.
-  String? _centerId;
-  String get centerId => _centerId ?? '';
-  bool hasCenterId() => _centerId != null;
-
   // "center_brands" field.
   List<String>? _centerBrands;
   List<String> get centerBrands => _centerBrands ?? const [];
@@ -60,28 +50,62 @@ class CentersRecord extends FirestoreRecord {
   DocumentReference? get uid => _uid;
   bool hasUid() => _uid != null;
 
-  // "supports_onSite" field.
-  bool? _supportsOnSite;
-  bool get supportsOnSite => _supportsOnSite ?? false;
-  bool hasSupportsOnSite() => _supportsOnSite != null;
-
   // "ratingRef" field.
   List<double>? _ratingRef;
   List<double> get ratingRef => _ratingRef ?? const [];
   bool hasRatingRef() => _ratingRef != null;
 
+  // "truckTow" field.
+  bool? _truckTow;
+  bool get truckTow => _truckTow ?? false;
+  bool hasTruckTow() => _truckTow != null;
+
+  // "carWash" field.
+  bool? _carWash;
+  bool get carWash => _carWash ?? false;
+  bool hasCarWash() => _carWash != null;
+
+  // "CarElectrician" field.
+  bool? _carElectrician;
+  bool get carElectrician => _carElectrician ?? false;
+  bool hasCarElectrician() => _carElectrician != null;
+
+  // "carFix" field.
+  bool? _carFix;
+  bool get carFix => _carFix ?? false;
+  bool hasCarFix() => _carFix != null;
+
+  // "other" field.
+  bool? _other;
+  bool get other => _other ?? false;
+  bool hasOther() => _other != null;
+
+  // "im_center" field.
+  bool? _imCenter;
+  bool get imCenter => _imCenter ?? false;
+  bool hasImCenter() => _imCenter != null;
+
+  // "center_id" field.
+  String? _centerId;
+  String get centerId => _centerId ?? '';
+  bool hasCenterId() => _centerId != null;
+
   void _initializeFields() {
     _centerName = snapshotData['center_name'] as String?;
     _centerLocation = snapshotData['center_location'] as LatLng?;
-    _supportEmergency = snapshotData['support_emergency'] as bool?;
     _centerImage = snapshotData['center_image'] as String?;
     _centerDescription = snapshotData['center_description'] as String?;
     _centerRating = castToType<double>(snapshotData['center_rating']);
-    _centerId = snapshotData['center_id'] as String?;
     _centerBrands = getDataList(snapshotData['center_brands']);
     _uid = snapshotData['uid'] as DocumentReference?;
-    _supportsOnSite = snapshotData['supports_onSite'] as bool?;
     _ratingRef = getDataList(snapshotData['ratingRef']);
+    _truckTow = snapshotData['truckTow'] as bool?;
+    _carWash = snapshotData['carWash'] as bool?;
+    _carElectrician = snapshotData['CarElectrician'] as bool?;
+    _carFix = snapshotData['carFix'] as bool?;
+    _other = snapshotData['other'] as bool?;
+    _imCenter = snapshotData['im_center'] as bool?;
+    _centerId = snapshotData['center_id'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -121,25 +145,33 @@ class CentersRecord extends FirestoreRecord {
 Map<String, dynamic> createCentersRecordData({
   String? centerName,
   LatLng? centerLocation,
-  bool? supportEmergency,
   String? centerImage,
   String? centerDescription,
   double? centerRating,
-  String? centerId,
   DocumentReference? uid,
-  bool? supportsOnSite,
+  bool? truckTow,
+  bool? carWash,
+  bool? carElectrician,
+  bool? carFix,
+  bool? other,
+  bool? imCenter,
+  String? centerId,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'center_name': centerName,
       'center_location': centerLocation,
-      'support_emergency': supportEmergency,
       'center_image': centerImage,
       'center_description': centerDescription,
       'center_rating': centerRating,
-      'center_id': centerId,
       'uid': uid,
-      'supports_onSite': supportsOnSite,
+      'truckTow': truckTow,
+      'carWash': carWash,
+      'CarElectrician': carElectrician,
+      'carFix': carFix,
+      'other': other,
+      'im_center': imCenter,
+      'center_id': centerId,
     }.withoutNulls,
   );
 
@@ -154,30 +186,38 @@ class CentersRecordDocumentEquality implements Equality<CentersRecord> {
     const listEquality = ListEquality();
     return e1?.centerName == e2?.centerName &&
         e1?.centerLocation == e2?.centerLocation &&
-        e1?.supportEmergency == e2?.supportEmergency &&
         e1?.centerImage == e2?.centerImage &&
         e1?.centerDescription == e2?.centerDescription &&
         e1?.centerRating == e2?.centerRating &&
-        e1?.centerId == e2?.centerId &&
         listEquality.equals(e1?.centerBrands, e2?.centerBrands) &&
         e1?.uid == e2?.uid &&
-        e1?.supportsOnSite == e2?.supportsOnSite &&
-        listEquality.equals(e1?.ratingRef, e2?.ratingRef);
+        listEquality.equals(e1?.ratingRef, e2?.ratingRef) &&
+        e1?.truckTow == e2?.truckTow &&
+        e1?.carWash == e2?.carWash &&
+        e1?.carElectrician == e2?.carElectrician &&
+        e1?.carFix == e2?.carFix &&
+        e1?.other == e2?.other &&
+        e1?.imCenter == e2?.imCenter &&
+        e1?.centerId == e2?.centerId;
   }
 
   @override
   int hash(CentersRecord? e) => const ListEquality().hash([
         e?.centerName,
         e?.centerLocation,
-        e?.supportEmergency,
         e?.centerImage,
         e?.centerDescription,
         e?.centerRating,
-        e?.centerId,
         e?.centerBrands,
         e?.uid,
-        e?.supportsOnSite,
-        e?.ratingRef
+        e?.ratingRef,
+        e?.truckTow,
+        e?.carWash,
+        e?.carElectrician,
+        e?.carFix,
+        e?.other,
+        e?.imCenter,
+        e?.centerId
       ]);
 
   @override

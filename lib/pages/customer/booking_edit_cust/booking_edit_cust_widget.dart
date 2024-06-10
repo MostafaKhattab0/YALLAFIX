@@ -1,4 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -8,33 +7,33 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'booking_cust_model.dart';
-export 'booking_cust_model.dart';
+import 'booking_edit_cust_model.dart';
+export 'booking_edit_cust_model.dart';
 
-class BookingCustWidget extends StatefulWidget {
-  const BookingCustWidget({
+class BookingEditCustWidget extends StatefulWidget {
+  const BookingEditCustWidget({
     super.key,
-    this.centerRef,
+    required this.req,
   });
 
-  final DocumentReference? centerRef;
+  final RequestsRecord? req;
 
   @override
-  State<BookingCustWidget> createState() => _BookingCustWidgetState();
+  State<BookingEditCustWidget> createState() => _BookingEditCustWidgetState();
 }
 
-class _BookingCustWidgetState extends State<BookingCustWidget> {
-  late BookingCustModel _model;
+class _BookingEditCustWidgetState extends State<BookingEditCustWidget> {
+  late BookingEditCustModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => BookingCustModel());
+    _model = createModel(context, () => BookingEditCustModel());
 
     logFirebaseEvent('screen_view',
-        parameters: {'screen_name': 'booking_cust'});
+        parameters: {'screen_name': 'booking_edit_cust'});
     _model.descriptionTextController ??= TextEditingController();
     _model.descriptionFocusNode ??= FocusNode();
     _model.descriptionFocusNode!.addListener(() => setState(() {}));
@@ -50,7 +49,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<CentersRecord>(
-      stream: CentersRecord.getDocument(widget.centerRef!),
+      stream: CentersRecord.getDocument(widget.req!.centerRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -68,7 +67,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
             ),
           );
         }
-        final bookingCustCentersRecord = snapshot.data!;
+        final bookingEditCustCentersRecord = snapshot.data!;
         return GestureDetector(
           onTap: () => _model.unfocusNode.canRequestFocus
               ? FocusScope.of(context).requestFocus(_model.unfocusNode)
@@ -85,7 +84,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                 children: [
                   Text(
                     FFLocalizations.of(context).getText(
-                      'tmyr8lkp' /* Book an Appointment */,
+                      '53b20atz' /* Book an Appointment */,
                     ),
                     style: FlutterFlowTheme.of(context).headlineMedium.override(
                           fontFamily: 'Outfit',
@@ -94,7 +93,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                   ),
                   Text(
                     FFLocalizations.of(context).getText(
-                      'i7zk61pv' /* Please fill in the information... */,
+                      'byas9lig' /* Please fill in the information... */,
                     ),
                     style: FlutterFlowTheme.of(context).labelMedium.override(
                           fontFamily: 'Readex Pro',
@@ -118,7 +117,8 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                       size: 24.0,
                     ),
                     onPressed: () async {
-                      logFirebaseEvent('BOOKING_CUST_close_rounded_ICN_ON_TAP');
+                      logFirebaseEvent(
+                          'BOOKING_EDIT_CUST_close_rounded_ICN_ON_T');
                       logFirebaseEvent('IconButton_navigate_back');
                       context.safePop();
                     },
@@ -179,7 +179,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                 ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'ftuh0gen' /* Appointment Information */,
+                                    'df726pu8' /* Appointment Information */,
                                   ),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyLarge
@@ -188,9 +188,13 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                                if (bookingCustCentersRecord.truckTow == true)
+                                if (bookingEditCustCentersRecord.truckTow ==
+                                    true)
                                   StreamBuilder<List<ServicesRecord>>(
-                                    stream: queryServicesRecord(),
+                                    stream: queryServicesRecord(
+                                      queryBuilder: (servicesRecord) =>
+                                          servicesRecord.orderBy('carFix_id'),
+                                    ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {
@@ -214,12 +218,23 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                         multiSelectController: _model
                                                 .dropDownValueController ??=
                                             FormFieldController<List<String>>(
-                                                null),
-                                        options: List<String>.from(
-                                            dropDownServicesRecordList
-                                                .map((e) => e.truckTowName)
-                                                .toList()),
-                                        optionLabels: const [''],
+                                                _model.dropDownValue ??=
+                                                    List<String>.from(
+                                          dropDownServicesRecordList
+                                                  .map((e) =>
+                                                      valueOrDefault<String>(
+                                                        e.reference.id,
+                                                        'x',
+                                                      ))
+                                                  .toList() ??
+                                              [],
+                                        )),
+                                        options: dropDownServicesRecordList
+                                            .map((e) => valueOrDefault<String>(
+                                                  e.truckTowName,
+                                                  'x',
+                                                ))
+                                            .toList(),
                                         width: 300.0,
                                         height: 84.0,
                                         searchHintTextStyle:
@@ -244,7 +259,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                             ),
                                         hintText:
                                             FFLocalizations.of(context).getText(
-                                          'nsae0v01' /* Choose a service */,
+                                          'xm8a6eui' /* Choose a service */,
                                         ),
                                         searchHintText:
                                             FFLocalizations.of(context).getText(
@@ -292,7 +307,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                     alignLabelWithHint: true,
                                     hintText:
                                         FFLocalizations.of(context).getText(
-                                      'bdes8upr' /* Describe What are you trying t... */,
+                                      'clmyyyze' /* Please enter yout car issue */,
                                     ),
                                     hintStyle: FlutterFlowTheme.of(context)
                                         .labelMedium
@@ -320,7 +335,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primary,
                                         width: 2.0,
                                       ),
                                       borderRadius: BorderRadius.circular(12.0),
@@ -342,8 +357,12 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
                                     filled: true,
-                                    fillColor: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
+                                    fillColor: (_model.descriptionFocusNode
+                                                ?.hasFocus ??
+                                            false)
+                                        ? FlutterFlowTheme.of(context).accent1
+                                        : FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
                                     contentPadding:
                                         const EdgeInsetsDirectional.fromSTEB(
                                             16.0, 16.0, 16.0, 16.0),
@@ -367,7 +386,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                   children: [
                                     Text(
                                       FFLocalizations.of(context).getText(
-                                        '8goacr0x' /* Choose date and time */,
+                                        'ylx9lnwy' /* Choose date and time */,
                                       ),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
@@ -393,7 +412,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                   ),
                                   onPressed: () async {
                                     logFirebaseEvent(
-                                        'BOOKING_CUST_PAGE_Date_ON_TAP');
+                                        'BOOKING_EDIT_CUST_PAGE_Date_ON_TAP');
                                     logFirebaseEvent('Date_date_time_picker');
                                     final datePickedDate =
                                         await showDatePicker(
@@ -516,7 +535,7 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                           highlightColor: Colors.transparent,
                           onLongPress: () async {
                             logFirebaseEvent(
-                                'BOOKING_CUST_REQUEST_APPOINTMENT_BTN_ON_');
+                                'BOOKING_EDIT_CUST_REQUEST_APPOINTMENT_BT');
                             logFirebaseEvent('Button_navigate_to');
 
                             context.goNamed('requests_advisor');
@@ -524,18 +543,14 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                           child: FFButtonWidget(
                             onPressed: () async {
                               logFirebaseEvent(
-                                  'BOOKING_CUST_REQUEST_APPOINTMENT_BTN_ON_');
+                                  'BOOKING_EDIT_CUST_REQUEST_APPOINTMENT_BT');
                               logFirebaseEvent('Button_backend_call');
 
-                              await RequestsRecord.collection.doc().set({
+                              await widget.req!.reference.update({
                                 ...createRequestsRecordData(
+                                  requestDescription:
+                                      _model.descriptionTextController.text,
                                   requestDate: _model.datePicked,
-                                  requestDescription: valueOrDefault<String>(
-                                    _model.descriptionTextController.text,
-                                    'x',
-                                  ),
-                                  centerRef: widget.centerRef,
-                                  customerRef: currentUserDocument?.customerRef,
                                   isAccepted: false,
                                   isRejected: false,
                                 ),
@@ -545,27 +560,12 @@ class _BookingCustWidgetState extends State<BookingCustWidget> {
                                   },
                                 ),
                               });
-                              logFirebaseEvent('Button_show_snack_bar');
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(
-                                    'Your Request has been initiated',
-                                    style: TextStyle(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryText,
-                                    ),
-                                  ),
-                                  duration: const Duration(milliseconds: 4000),
-                                  backgroundColor:
-                                      FlutterFlowTheme.of(context).secondary,
-                                ),
-                              );
                               logFirebaseEvent('Button_navigate_to');
 
-                              context.pushNamed('Request_cust');
+                              context.goNamed('Request_cust');
                             },
                             text: FFLocalizations.of(context).getText(
-                              'dggoawvk' /* Request Appointment */,
+                              '2kakpf0e' /* Request Appointment */,
                             ),
                             options: FFButtonOptions(
                               width: double.infinity,

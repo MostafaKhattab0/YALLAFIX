@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -331,42 +332,94 @@ class _Auth3PhoneWidgetState extends State<Auth3PhoneWidget>
                                             onPressed: () async {
                                               logFirebaseEvent(
                                                   'AUTH_3_PHONE_PAGE_CONTINUE_BTN_ON_TAP');
-                                              logFirebaseEvent('Button_auth');
-                                              final phoneNumberVal = _model
-                                                  .phoneNumberTextController
-                                                  .text;
-                                              if (phoneNumberVal.isEmpty ||
-                                                  !phoneNumberVal
-                                                      .startsWith('+')) {
+                                              var shouldSetState = false;
+                                              logFirebaseEvent(
+                                                  'Button_backend_call');
+                                              _model.customerRef =
+                                                  await CustomersRecord
+                                                      .getDocumentOnce(
+                                                          currentUserDocument!
+                                                              .customerRef!);
+                                              shouldSetState = true;
+                                              if (_model
+                                                      .phoneNumberTextController
+                                                      .text ==
+                                                  _model.customerRef
+                                                      ?.customerPhone) {
+                                                logFirebaseEvent('Button_auth');
+                                                final phoneNumberVal = _model
+                                                    .phoneNumberTextController
+                                                    .text;
+                                                if (phoneNumberVal.isEmpty ||
+                                                    !phoneNumberVal
+                                                        .startsWith('+')) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(
+                                                    const SnackBar(
+                                                      content: Text(
+                                                          'Phone Number is required and has to start with +.'),
+                                                    ),
+                                                  );
+                                                  return;
+                                                }
+                                                await authManager
+                                                    .beginPhoneAuth(
+                                                  context: context,
+                                                  phoneNumber: phoneNumberVal,
+                                                  onCodeSent: (context) async {
+                                                    context.goNamedAuth(
+                                                      'auth_3_verifyPhone',
+                                                      context.mounted,
+                                                      queryParameters: {
+                                                        'phoneNumber':
+                                                            serializeParam(
+                                                          _model
+                                                              .phoneNumberTextController
+                                                              .text,
+                                                          ParamType.String,
+                                                        ),
+                                                      }.withoutNulls,
+                                                      ignoreRedirect: true,
+                                                    );
+                                                  },
+                                                );
+
+                                                if (shouldSetState) {
+                                                  setState(() {});
+                                                }
+                                                return;
+                                              } else {
+                                                logFirebaseEvent(
+                                                    'Button_show_snack_bar');
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
-                                                  const SnackBar(
+                                                  SnackBar(
                                                     content: Text(
-                                                        'Phone Number is required and has to start with +.'),
+                                                      'This phone is not associated with any E-mail',
+                                                      style: TextStyle(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                      ),
+                                                    ),
+                                                    duration: const Duration(
+                                                        milliseconds: 4000),
+                                                    backgroundColor:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .secondary,
                                                   ),
                                                 );
+                                                if (shouldSetState) {
+                                                  setState(() {});
+                                                }
                                                 return;
                                               }
-                                              await authManager.beginPhoneAuth(
-                                                context: context,
-                                                phoneNumber: phoneNumberVal,
-                                                onCodeSent: (context) async {
-                                                  context.goNamedAuth(
-                                                    'auth_3_verifyPhone',
-                                                    context.mounted,
-                                                    queryParameters: {
-                                                      'phoneNumber':
-                                                          serializeParam(
-                                                        _model
-                                                            .phoneNumberTextController
-                                                            .text,
-                                                        ParamType.String,
-                                                      ),
-                                                    }.withoutNulls,
-                                                    ignoreRedirect: true,
-                                                  );
-                                                },
-                                              );
+
+                                              if (shouldSetState) {
+                                                setState(() {});
+                                              }
                                             },
                                             text: FFLocalizations.of(context)
                                                 .getText(

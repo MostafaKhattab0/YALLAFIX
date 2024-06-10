@@ -1329,7 +1329,6 @@ class _AnalysisAdvisorWidgetState extends State<AnalysisAdvisorWidget>
                                       barWidth: 2.0,
                                       isCurved: true,
                                       preventCurveOverShooting: true,
-                                      dotData: FlDotData(show: false),
                                       belowBarData: BarAreaData(
                                         show: true,
                                         color: FlutterFlowTheme.of(context)
@@ -1352,7 +1351,6 @@ class _AnalysisAdvisorWidgetState extends State<AnalysisAdvisorWidget>
                                       barWidth: 2.0,
                                       isCurved: true,
                                       preventCurveOverShooting: true,
-                                      dotData: FlDotData(show: false),
                                       belowBarData: BarAreaData(
                                         show: true,
                                         color: FlutterFlowTheme.of(context)
@@ -1379,17 +1377,7 @@ class _AnalysisAdvisorWidgetState extends State<AnalysisAdvisorWidget>
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                                yAxisLabelInfo: AxisLabelInfo(
-                                  title: FFLocalizations.of(context).getText(
-                                    'j3fiic6b' /* Avg. Grade */,
-                                  ),
-                                  titleTextStyle: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        letterSpacing: 0.0,
-                                      ),
-                                ),
+                                yAxisLabelInfo: const AxisLabelInfo(),
                               ),
                             ),
                           ),

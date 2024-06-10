@@ -149,7 +149,7 @@ class _LoginCenterWidgetState extends State<LoginCenterWidget>
                                   ),
                                 Text(
                                   FFLocalizations.of(context).getText(
-                                    'hw0r2n1o' /* Welcome Back */,
+                                    'hw0r2n1o' /* It is an Honor to be With Us */,
                                   ),
                                   textAlign: TextAlign.start,
                                   style: FlutterFlowTheme.of(context)
@@ -190,7 +190,7 @@ class _LoginCenterWidgetState extends State<LoginCenterWidget>
                                       decoration: InputDecoration(
                                         labelText:
                                             FFLocalizations.of(context).getText(
-                                          'je3w4b2x' /* Email */,
+                                          'jskx017y' /* Email */,
                                         ),
                                         labelStyle: FlutterFlowTheme.of(context)
                                             .labelLarge
@@ -374,8 +374,10 @@ class _LoginCenterWidgetState extends State<LoginCenterWidget>
                                           return;
                                         }
 
-                                        context.goNamedAuth(
-                                            'home_cust', context.mounted);
+                                        logFirebaseEvent('Button_navigate_to');
+
+                                        context.pushNamedAuth(
+                                            'home_advisor', context.mounted);
                                       },
                                       text: FFLocalizations.of(context).getText(
                                         'zco0rn7g' /* Sign In */,
@@ -502,9 +504,11 @@ class _LoginCenterWidgetState extends State<LoginCenterWidget>
                                             if (user == null) {
                                               return;
                                             }
+                                            logFirebaseEvent(
+                                                'Button_navigate_to');
 
-                                            context.goNamedAuth(
-                                                'home_cust', context.mounted);
+                                            context.pushNamedAuth(
+                                                'add_center', context.mounted);
                                           },
                                           text: FFLocalizations.of(context)
                                               .getText(

@@ -234,12 +234,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LoginCenterWidget(),
         ),
         FFRoute(
-          name: 'edit_booking_cust',
-          path: '/editBookingCust',
+          name: 'booking_edit_cust',
+          path: '/bookingEditCust',
           asyncParams: {
             'req': getDoc(['requests'], RequestsRecord.fromSnapshot),
           },
-          builder: (context, params) => EditBookingCustWidget(
+          builder: (context, params) => BookingEditCustWidget(
             req: params.getParam(
               'req',
               ParamType.Document,
@@ -250,11 +250,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'appointment_cust',
           path: '/appointmentCust',
           builder: (context, params) => const AppointmentCustWidget(),
-        ),
-        FFRoute(
-          name: 'appointments_advisor',
-          path: '/appointmentsAdvisor',
-          builder: (context, params) => const AppointmentsAdvisorWidget(),
         ),
         FFRoute(
           name: 'contactcust_center',
@@ -277,6 +272,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'history_cust',
           path: '/historyCust',
           builder: (context, params) => const HistoryCustWidget(),
+        ),
+        FFRoute(
+          name: 'appointment_advisor',
+          path: '/appointmentAdvisor',
+          builder: (context, params) => const AppointmentAdvisorWidget(),
+        ),
+        FFRoute(
+          name: 'maps',
+          path: '/maps',
+          builder: (context, params) => const MapsWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

@@ -58,7 +58,7 @@ class _TimerWidgetState extends State<TimerWidget> {
       textAlign: TextAlign.start,
       style: FlutterFlowTheme.of(context).headlineSmall.override(
             fontFamily: 'Outfit',
-            color: const Color(0xFF0F0E0E),
+            color: FlutterFlowTheme.of(context).primaryText,
             letterSpacing: 0.0,
           ),
     );

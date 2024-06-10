@@ -748,9 +748,6 @@ class _ChangeThemelightdarkWidgetState extends State<ChangeThemelightdarkWidget>
                                   logFirebaseEvent(
                                       'CHANGE_THEMELIGHTDARK_SAVE_&_CLOSE_BTN_O');
                                   logFirebaseEvent(
-                                      'Button_set_dark_mode_settings');
-                                  setDarkModeSetting(context, ThemeMode.system);
-                                  logFirebaseEvent(
                                       'Button_close_dialog,_drawer,_etc');
                                   Navigator.pop(context);
                                 },

@@ -168,17 +168,6 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                           size: 44.0,
                                         ),
                                       ),
-                                      Text(
-                                        FFLocalizations.of(context).getText(
-                                          'wawzv1ij' /* flow.io */,
-                                        ),
-                                        style: FlutterFlowTheme.of(context)
-                                            .displaySmall
-                                            .override(
-                                              fontFamily: 'Outfit',
-                                              letterSpacing: 0.0,
-                                            ),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -365,7 +354,7 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                                   'AUTH_3_VERIFY_PHONE_VERIFY_CODE_BTN_ON_T');
                                               logFirebaseEvent('Button_auth');
                                               GoRouter.of(context)
-                                                  .prepareAuthEvent();
+                                                  .prepareAuthEvent(true);
                                               final smsCodeVal = _model
                                                   .pinCodeController!.text;
                                               if (smsCodeVal.isEmpty) {
@@ -392,7 +381,10 @@ class _Auth3VerifyPhoneWidgetState extends State<Auth3VerifyPhoneWidget>
                                                   'Button_navigate_to');
 
                                               context.pushNamedAuth(
-                                                  'home_cust', context.mounted);
+                                                'create_profile_cust',
+                                                context.mounted,
+                                                ignoreRedirect: true,
+                                              );
                                             },
                                             text: FFLocalizations.of(context)
                                                 .getText(

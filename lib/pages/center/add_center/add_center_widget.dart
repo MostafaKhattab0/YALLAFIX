@@ -130,26 +130,21 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Form(
-            key: _model.formKey,
-            autovalidateMode: AutovalidateMode.disabled,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Align(
-                          alignment: const AlignmentDirectional(0.0, -1.0),
-                          child: Container(
-                            constraints: const BoxConstraints(
-                              maxWidth: 770.0,
-                            ),
-                            decoration: const BoxDecoration(),
-                            child: Padding(
+          child: Stack(
+            children: [
+              Form(
+                key: _model.formKey,
+                autovalidateMode: AutovalidateMode.disabled,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   16.0, 12.0, 16.0, 0.0),
                               child: Column(
@@ -658,13 +653,63 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
+                                        Text(
+                                          FFLocalizations.of(context).getText(
+                                            'mxqykpw7' /* Car Wash */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                        Theme(
+                                          data: ThemeData(
+                                            checkboxTheme: CheckboxThemeData(
+                                              visualDensity:
+                                                  VisualDensity.compact,
+                                              materialTapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                              ),
+                                            ),
+                                            unselectedWidgetColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                          ),
+                                          child: Checkbox(
+                                            value: _model.carWashValue ??=
+                                                false,
+                                            onChanged: (newValue) async {
+                                              setState(() => _model
+                                                  .carWashValue = newValue!);
+                                            },
+                                            side: BorderSide(
+                                              width: 2,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                            ),
+                                            activeColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            checkColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                          ),
+                                        ),
                                         Padding(
                                           padding:
                                               const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 50.0, 0.0),
+                                                  120.0, 0.0, 0.0, 0.0),
                                           child: Text(
                                             FFLocalizations.of(context).getText(
-                                              'weqavwpx' /* Support Emergency */,
+                                              'r0ir042m' /* Car Fix */,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -693,11 +738,10 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                                     .secondaryText,
                                           ),
                                           child: Checkbox(
-                                            value: _model.checkboxValue1 ??=
-                                                false,
+                                            value: _model.carFixValue ??= false,
                                             onChanged: (newValue) async {
                                               setState(() => _model
-                                                  .checkboxValue1 = newValue!);
+                                                  .carFixValue = newValue!);
                                             },
                                             side: BorderSide(
                                               width: 2,
@@ -721,21 +765,77 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 50.0, 0.0),
-                                          child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'mxqykpw7' /* Support OnSite service */,
+                                        Text(
+                                          FFLocalizations.of(context).getText(
+                                            'weqavwpx' /* Truck Tow */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                        Theme(
+                                          data: ThemeData(
+                                            checkboxTheme: CheckboxThemeData(
+                                              visualDensity:
+                                                  VisualDensity.compact,
+                                              materialTapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                              ),
                                             ),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Readex Pro',
-                                                  letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                            unselectedWidgetColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                          ),
+                                          child: Checkbox(
+                                            value: _model.truckTowValue ??=
+                                                false,
+                                            onChanged: (newValue) async {
+                                              setState(() => _model
+                                                  .truckTowValue = newValue!);
+                                            },
+                                            side: BorderSide(
+                                              width: 2,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                            ),
+                                            activeColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            checkColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              const AlignmentDirectional(0.0, 0.0),
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    100.0, 0.0, 0.0, 0.0),
+                                            child: Text(
+                                              FFLocalizations.of(context)
+                                                  .getText(
+                                                '1lsbvvup' /* Car Electrician */,
+                                              ),
+                                              style: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Readex Pro',
+                                                    letterSpacing: 0.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                            ),
                                           ),
                                         ),
                                         Theme(
@@ -756,11 +856,69 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                                     .secondaryText,
                                           ),
                                           child: Checkbox(
-                                            value: _model.checkboxValue2 ??=
-                                                false,
+                                            value: _model
+                                                .carElectricianValue ??= false,
                                             onChanged: (newValue) async {
-                                              setState(() => _model
-                                                  .checkboxValue2 = newValue!);
+                                              setState(() =>
+                                                  _model.carElectricianValue =
+                                                      newValue!);
+                                            },
+                                            side: BorderSide(
+                                              width: 2,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                            ),
+                                            activeColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primary,
+                                            checkColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .info,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: const AlignmentDirectional(0.0, 0.0),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Text(
+                                          FFLocalizations.of(context).getText(
+                                            '701qjmgy' /* Other */,
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                        Theme(
+                                          data: ThemeData(
+                                            checkboxTheme: CheckboxThemeData(
+                                              visualDensity:
+                                                  VisualDensity.compact,
+                                              materialTapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4.0),
+                                              ),
+                                            ),
+                                            unselectedWidgetColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .secondaryText,
+                                          ),
+                                          child: Checkbox(
+                                            value: _model.otherValue ??= false,
+                                            onChanged: (newValue) async {
+                                              setState(() => _model.otherValue =
+                                                  newValue!);
                                             },
                                             side: BorderSide(
                                               width: 2,
@@ -787,11 +945,11 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                   ),
                                   FlutterFlowPlacePicker(
                                     iOSGoogleMapsApiKey:
-                                        'AIzaSyAyDQy4Erxj6SKlKcaLuDzH04hRrIQyMDc',
+                                        'AIzaSyDIuQQQutnSkFXltBCVVDoCLdnUSOmMNvQ',
                                     androidGoogleMapsApiKey:
-                                        'AIzaSyAyDQy4Erxj6SKlKcaLuDzH04hRrIQyMDc',
+                                        'AIzaSyBsZt4D2Dd2sH2s_c028WjOFNT-v56mu-Y',
                                     webGoogleMapsApiKey:
-                                        'AIzaSyAyDQy4Erxj6SKlKcaLuDzH04hRrIQyMDc',
+                                        'AIzaSyCHDVgNHYN6Hg7gsnTbp9yFNG9IDjYSfDc',
                                     onSelect: (place) async {
                                       setState(() =>
                                           _model.centerLocationValue = place);
@@ -971,8 +1129,6 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                               ),
                                               centerLocation: _model
                                                   .centerLocationValue.latLng,
-                                              supportEmergency:
-                                                  _model.checkboxValue1,
                                               centerImage:
                                                   valueOrDefault<String>(
                                                 _model.uploadedFileUrl,
@@ -981,12 +1137,14 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                               centerDescription: _model
                                                   .centerDescriptionTextController
                                                   .text,
-                                              centerId: valueOrDefault<String>(
-                                                currentUserReference?.id,
-                                                'x',
-                                              ),
-                                              supportsOnSite:
-                                                  _model.checkboxValue2,
+                                              centerId:
+                                                  currentUserReference?.id,
+                                              truckTow: _model.truckTowValue,
+                                              carWash: _model.carWashValue,
+                                              carElectrician:
+                                                  _model.carElectricianValue,
+                                              carFix: _model.carFixValue,
+                                              other: _model.otherValue,
                                             ),
                                             ...mapToFirestore(
                                               {
@@ -1039,20 +1197,20 @@ class _AddCenterWidgetState extends State<AddCenterWidget> {
                                     .addToEnd(const SizedBox(height: 32.0)),
                               ),
                             ),
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
-                  ),
+                    Container(
+                      constraints: const BoxConstraints(
+                        maxWidth: 770.0,
+                      ),
+                      decoration: const BoxDecoration(),
+                    ),
+                  ],
                 ),
-                Container(
-                  constraints: const BoxConstraints(
-                    maxWidth: 770.0,
-                  ),
-                  decoration: const BoxDecoration(),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

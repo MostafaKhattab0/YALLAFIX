@@ -86,6 +86,7 @@ class _ContactUSCustWidgetState extends State<ContactUSCustWidget> {
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).titleMedium.override(
                           fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context).primaryText,
                           letterSpacing: 0.0,
                         ),
                   ),
@@ -169,7 +170,7 @@ class _ContactUSCustWidgetState extends State<ContactUSCustWidget> {
                             obscureText: false,
                             decoration: InputDecoration(
                               labelText: FFLocalizations.of(context).getText(
-                                'je3w4b2x' /* Email */,
+                                'n1hpp2x6' /* Email */,
                               ),
                               hintText: FFLocalizations.of(context).getText(
                                 'z1cn70iz' /* Enter your email */,

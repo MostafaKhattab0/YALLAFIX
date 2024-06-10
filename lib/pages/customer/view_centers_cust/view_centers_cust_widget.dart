@@ -100,14 +100,14 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
                         image: Image.network(
                           valueOrDefault<String>(
                             widget.center?.centerImage,
-                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/0i414sy5trut/WhatsApp-Image-2022-01-11-at-3.52.52-PM.jpeg',
+                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/3424u3vyd892/71281166_1006334603031657_3720393885470425088_n.jpg',
                           ),
                           fit: BoxFit.contain,
                         ),
                         allowRotation: false,
                         tag: valueOrDefault<String>(
                           widget.center?.centerImage,
-                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/0i414sy5trut/WhatsApp-Image-2022-01-11-at-3.52.52-PM.jpeg',
+                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/3424u3vyd892/71281166_1006334603031657_3720393885470425088_n.jpg',
                         ),
                         useHeroAnimation: true,
                       ),
@@ -117,7 +117,7 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
                 child: Hero(
                   tag: valueOrDefault<String>(
                     widget.center?.centerImage,
-                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/0i414sy5trut/WhatsApp-Image-2022-01-11-at-3.52.52-PM.jpeg',
+                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/3424u3vyd892/71281166_1006334603031657_3720393885470425088_n.jpg',
                   ),
                   transitionOnUserGestures: true,
                   child: ClipRRect(
@@ -125,7 +125,7 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
                     child: Image.network(
                       valueOrDefault<String>(
                         widget.center?.centerImage,
-                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/0i414sy5trut/WhatsApp-Image-2022-01-11-at-3.52.52-PM.jpeg',
+                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/yallafixtest-9nu2ft/assets/3424u3vyd892/71281166_1006334603031657_3720393885470425088_n.jpg',
                       ),
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       height: 230.0,
@@ -163,21 +163,6 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
                             letterSpacing: 0.0,
                           ),
                     ),
-                  ),
-                  Text(
-                    valueOrDefault<String>(
-                      widget.center?.centerDescription,
-                      'x',
-                    ),
-                    style: FlutterFlowTheme.of(context).labelLarge.override(
-                          fontFamily: 'Readex Pro',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  Divider(
-                    height: 32.0,
-                    thickness: 1.0,
-                    color: FlutterFlowTheme.of(context).alternate,
                   ),
                   Align(
                     alignment: const AlignmentDirectional(0.0, 0.0),
@@ -218,6 +203,11 @@ class _ViewCentersCustWidgetState extends State<ViewCentersCustWidget> {
                         },
                       ),
                     ),
+                  ),
+                  Divider(
+                    height: 32.0,
+                    thickness: 1.0,
+                    color: FlutterFlowTheme.of(context).alternate,
                   ),
                 ],
               ),
